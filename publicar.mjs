@@ -194,7 +194,10 @@ function clienteFtp(cfg) {
       if (fin.codigo >= 400) throw new Error('subida incompleta: ' + fin.texto.trim());
     },
 
-    async cerrar() { try { await mandar('QUIT'); } catch {} sock?.destroy(); },
+    async cerrar() {
+      if (sock && !sock.destroyed && sock.writable) { try { await mandar('QUIT'); } catch {} }
+      sock?.destroy();
+    },
   };
 }
 
