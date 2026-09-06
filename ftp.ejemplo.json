@@ -1,0 +1,9 @@
+{
+  "host": "ftp.beagentry.com",
+  "usuario": "u123456789.beagentry",
+  "clave": "la-que-pusiste-en-hPanel",
+  "destino": "/public_html",
+  "web": "https://beagentry.com",
+  "puerto": 21,
+  "tls": true
+}

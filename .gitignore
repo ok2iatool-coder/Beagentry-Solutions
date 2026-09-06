@@ -1,3 +1,5 @@
 salida/
 *.zip
 .snaps/
+ftp.json
+.ftp-estado.json
