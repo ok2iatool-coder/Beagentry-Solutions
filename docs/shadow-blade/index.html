@@ -70,6 +70,24 @@
   @keyframes drip { 0% { transform: scaleY(0); transform-origin: top; } 50% { transform: scaleY(1); transform-origin: top; } 51% { transform-origin: bottom; } 100% { transform: scaleY(0); transform-origin: bottom; } }
   #bar { position: fixed; left: 0; top: 0; height: 2px; width: 0; background: var(--accent); z-index: 4; }
   #brand { position: fixed; left: 1.6rem; top: 1.4rem; z-index: 3; font-family: var(--serif); font-size: .8rem; letter-spacing: .3em; color: var(--dim); }
+  /* --- barra de autoria (Beagentry) --- */
+  #autor {
+    position: fixed; right: 1.6rem; top: 1.2rem; z-index: 3;
+    display: flex; align-items: center; gap: .9rem;
+    font-size: .64rem; letter-spacing: .22em; text-transform: uppercase; color: var(--dim);
+    padding: .55rem .9rem; border: 1px solid rgba(255,255,255,.1); border-radius: 999px;
+    background: rgba(7,7,10,.55); backdrop-filter: blur(10px); text-decoration: none;
+    transition: border-color .3s, color .3s;
+  }
+  #autor:hover { border-color: rgba(255,255,255,.35); color: var(--fg); }
+  #autor .p { color: var(--accent); }
+  #autor .p::before { content: ""; display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); margin-right: .5rem; vertical-align: middle; box-shadow: 0 0 8px var(--accent); }
+  #autor b { font-weight: 600; color: var(--fg); letter-spacing: .12em; }
+  #autor .sep { width: 1px; height: 12px; background: rgba(255,255,255,.15); }
+  @media (max-width: 700px) {
+    #autor { right: 1rem; top: 1rem; font-size: .56rem; gap: .6rem; padding: .45rem .7rem; }
+    #autor .largo { display: none; }
+  }
 
   /* --- carga --- */
   #loader {
@@ -94,6 +112,7 @@
 <div id="loader"><div class="t">SHADOW BLADE</div><div class="n">0%</div><div class="p"><b></b></div></div>
 <div id="bar"></div>
 <div id="brand">SHADOW BLADE</div>
+<a id="autor" href="../" title="Beagentry"><span class="p">Prueba</span><span class="sep"></span><span><span class="largo">Del modelo a la animación, </span>hecho por <b>Beagentry</b></span></a>
 <canvas id="gl"></canvas>
 <div id="vignette"></div>
 <div id="grain"></div>
