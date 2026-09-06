@@ -34,6 +34,11 @@ jobs:
 
       - name: Comprobar que estan las claves
         env:
+          # toJSON(secrets) trae los NOMBRES de lo que ve este repositorio; los
+          # valores los tapa GitHub. Sirve para ver si estan mal escritos o si
+          # se guardaron en la pestana Variables, que no vale para esto.
+          SECRETOS: ${{ toJSON(secrets) }}
+          VARIABLES: ${{ toJSON(vars) }}
           FTP_HOST: ${{ secrets.FTP_HOST }}
           FTP_USER: ${{ secrets.FTP_USER }}
           FTP_PASS: ${{ secrets.FTP_PASS }}
@@ -43,9 +48,14 @@ jobs:
           [ -z "$FTP_USER" ] && faltan="$faltan FTP_USER"
           [ -z "$FTP_PASS" ] && faltan="$faltan FTP_PASS"
           if [ -n "$faltan" ]; then
-            echo "::error::Faltan estos secretos en el repositorio:$faltan"
-            echo "Se anaden en Settings > Secrets and variables > Actions."
-            echo "Los datos salen de hPanel de Hostinger, en Archivos > Cuentas FTP."
+            echo "Secretos que SI ve este repositorio:"
+            python3 -c "import json,os; k=sorted(json.loads(os.environ['SECRETOS'])); print('  ', ', '.join(k) if k else '(ninguno)')"
+            echo "Variables (pestana Variables, esto NO sirve para las claves):"
+            python3 -c "import json,os; k=sorted(json.loads(os.environ['VARIABLES'])); print('  ', ', '.join(k) if k else '(ninguna)')"
+            echo ""
+            echo "Se anaden en Settings > Secrets and variables > Actions,"
+            echo "pestana Secrets, boton New repository secret. En mayusculas y sin espacios."
+            echo "::error::Faltan estos secretos:$faltan"
             exit 1
           fi
           echo "Claves presentes."
