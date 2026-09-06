@@ -20,6 +20,15 @@ Miniagencia: webs para negocios (200 / 350 / 600), agentes automatizados y labs.
   Trampa ya resuelta: el exportador de glTF deja el origen de las 103 piezas en
   el mismo punto, asi que el despiece se calcula con el centro de la caja de
   cada pieza, no con `matrix_world.translation`.
+- `.github/workflows/hostinger.yml` — **GitHub sube a Hostinger solo.** Cada vez
+  que cambia algo de `docs/` en `main`, este flujo hace un espejo por FTP en
+  `public_html` con `lftp` (`--delete`, asi no quedan restos de versiones
+  viejas). Necesita tres secretos en el repositorio, una sola vez:
+  Settings > Secrets and variables > Actions > New repository secret, con
+  `FTP_HOST`, `FTP_USER` y `FTP_PASS` (hPanel > Archivos > Cuentas FTP), y
+  opcionalmente `FTP_DIR` si la web no cuelga de `/public_html`. Sin ellos el
+  flujo se para en el primer paso con un mensaje claro, no sube nada a medias.
+  Tambien se puede lanzar a mano desde la pestana Actions.
 - `publicar.mjs` — **la forma de actualizar la web. Sin zips.** Un comando:
 
       node beagentry/publicar.mjs "que has cambiado"
@@ -30,7 +39,14 @@ Miniagencia: webs para negocios (200 / 350 / 600), agentes automatizados y labs.
   `.ftp-estado.json`. Sin `ftp.json` ese paso se salta. Banderas: `--solo-git`,
   `--solo-ftp`, `--todo` (reenviar todo por FTP).
 
-  Mejor todavia: apuntar el dominio a GitHub Pages con un CNAME y olvidarse de
-  Hostinger; entonces publicar es solo el push.
+  El FTP de aqui es el plan B, para subir desde tu equipo sin pasar por GitHub.
+  Lo normal es dejarlo sin `ftp.json` y que suba el flujo de Actions.
+
+## El ciclo, de principio a fin
+
+1. Editas lo que sea en `docs/`.
+2. `node beagentry/publicar.mjs "que has cambiado"`.
+3. GitHub Pages se actualiza en ~1 min y el flujo de Actions copia lo mismo a
+   Hostinger. Las dos webs quedan iguales. Ningun zip de por medio.
 
 Pendiente: en `generar.mjs` falta `ctx.jsonld = jsonLd(b, ctx)` antes de renderizar (el bloque JSON-LD sale vacio). Y el video vertical para Instagram no esta hecho.
