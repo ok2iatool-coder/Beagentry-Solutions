@@ -7,5 +7,17 @@ Miniagencia: webs para negocios (200 / 350 / 600), agentes automatizados y labs.
 - `clientes/*.json` + `plantillas/` + `generar.mjs` — generador de webs de negocio local con pagina de activacion (Bizum + Stripe) y legal. Salida en `salida/<slug>/`. `--final` quita la barra de demo.
 - `config.json` — datos de la agencia: Bizum, WhatsApp, enlaces de Stripe, escalones de precio. Los campos vacios salen como aviso al generar.
 - `serve.mjs` — puerto 5190. Raiz = `docs/`, detras `salida/`. `/demos` lista lo generado.
+- `publicar.mjs` — **la forma de actualizar la web. Sin zips.** Un comando:
+
+      node beagentry/publicar.mjs "que has cambiado"
+
+  Hace commit, push y GitHub Pages se actualiza solo en ~1 min. Si existe
+  `ftp.json` (copiar de `ftp.ejemplo.json`, no se sube al repo), ademas manda a
+  Hostinger por FTP **solo los ficheros que cambiaron**, comparando huellas en
+  `.ftp-estado.json`. Sin `ftp.json` ese paso se salta. Banderas: `--solo-git`,
+  `--solo-ftp`, `--todo` (reenviar todo por FTP).
+
+  Mejor todavia: apuntar el dominio a GitHub Pages con un CNAME y olvidarse de
+  Hostinger; entonces publicar es solo el push.
 
 Pendiente: en `generar.mjs` falta `ctx.jsonld = jsonLd(b, ctx)` antes de renderizar (el bloque JSON-LD sale vacio). Y el video vertical para Instagram no esta hecho.
