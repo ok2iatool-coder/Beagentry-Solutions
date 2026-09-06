@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Beagentry</title>
+<meta name="description" content="Beagentry. Desde páginas web hasta agentes automatizados y labs.">
+<link rel="icon" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#000;--tinta:#eee;--suave:#8a8a8a;--muy:#3a3a3a;--linea:rgba(255,255,255,.08);--ac:#fff}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--tinta);font-family:Inter,system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;font-weight:300;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.mono{font-family:"JetBrains Mono",ui-monospace,Consolas,monospace;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--suave)}
+.wrap{width:min(1180px,92vw);margin:0 auto}
+h1,h2{font-weight:300;line-height:1.02;margin:0}
+h1{font-size:clamp(2.6rem,7vw,5rem);letter-spacing:-.04em}
+h2{font-size:clamp(2rem,4.6vw,3.5rem);letter-spacing:-.035em}
+p{margin:0}
+
+/* nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:50;height:64px;background:rgba(0,0,0,.55);backdrop-filter:blur(14px);border-bottom:1px solid var(--linea)}
+nav .wrap{height:100%;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.logo{display:flex;align-items:center;gap:12px;font-weight:400;letter-spacing:.02em;font-size:.95rem}
+.logo img{width:36px;height:36px;filter:invert(1);mix-blend-mode:screen;display:block}
+.links{display:flex;gap:28px;align-items:center;font-size:.86rem;color:var(--suave)}
+.links a:hover{color:var(--tinta)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border:1px solid rgba(255,255,255,.25);border-radius:6px;font-size:.86rem;color:var(--tinta);font-weight:400;transition:background .2s,border-color .2s}
+.btn:hover{background:#fff;color:#000;border-color:#fff}
+.btn.solido{background:#fff;color:#000;border-color:#fff}
+.btn.solido:hover{background:#e6e6e6}
+@media(max-width:700px){.links a:not(.btn){display:none}}
+
+/* hero */
+.hero{min-height:100svh;display:grid;place-items:center;position:relative;padding:120px 0 80px;overflow:hidden}
+.hero .fondo{position:absolute;inset:0;pointer-events:none}
+.hero .fondo::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 55% 55% at 50% 46%,transparent 40%,#000 100%)}
+/* El logo va fijo a la pantalla: cae y gira mientras se hace scroll y se apaga a los 3 s */
+.flota{position:fixed;left:50%;top:46%;z-index:-1;width:min(72vw,680px);aspect-ratio:1;transform:translate(-50%,-50%);perspective:1100px;perspective-origin:50% 45%;pointer-events:none;will-change:transform,opacity}
+.flota .flotin{width:100%;height:100%;animation:flotar 9s cubic-bezier(.45,0,.55,1) infinite;transform-style:preserve-3d}
+.flota img{width:100%;height:100%;display:block;filter:invert(1);mix-blend-mode:screen;opacity:.85;transform:rotate(-8deg);will-change:transform,opacity;transform-style:preserve-3d}
+@keyframes flotar{0%{transform:translate(0,0) rotateX(4deg) rotateY(-18deg) rotateZ(-3deg)}25%{transform:translate(1.5%,-2.2%) rotateX(-3deg) rotateY(-4deg) rotateZ(2deg)}50%{transform:translate(0,-3.6%) rotateX(-6deg) rotateY(18deg) rotateZ(4deg)}75%{transform:translate(-1.5%,-1.4%) rotateX(3deg) rotateY(4deg) rotateZ(-2deg)}100%{transform:translate(0,0) rotateX(4deg) rotateY(-18deg) rotateZ(-3deg)}}
+.hero .wrap{position:relative;text-align:center;text-shadow:0 0 30px rgba(0,0,0,.9),0 0 80px rgba(0,0,0,.8)}
+.hero .mono,.hero p{text-shadow:0 0 20px #000,0 0 40px #000}
+.hero .mono{display:flex;gap:16px;justify-content:center;margin-bottom:34px}
+.hero .mono span+span::before{content:"/";margin-right:16px;color:var(--muy)}
+.hero p{font-size:clamp(1rem,1.6vw,1.2rem);color:var(--suave);max-width:36ch;margin:26px auto 40px}
+.hero .acciones{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.baja{position:absolute;bottom:28px;left:0;right:0;text-align:center;opacity:.6}
+
+/* secciones */
+section{padding:clamp(80px,12vw,160px) 0;border-top:1px solid var(--linea)}
+.cab{display:flex;gap:16px;align-items:baseline;margin-bottom:34px}
+.cab .n{color:var(--tinta)}
+.cab .mono+.mono::before{content:"·";margin-right:16px;color:var(--muy)}
+.sub{color:var(--suave);font-size:1.05rem;max-width:44ch;margin-top:20px}
+
+/* hacemos */
+.hacemos{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--linea);border:1px solid var(--linea);margin-top:56px}
+.hace{background:var(--bg);padding:44px 32px;min-height:260px;display:flex;flex-direction:column;justify-content:space-between;transition:background .3s}
+.hace:hover{background:#0a0a0a}
+.hace b{font-weight:300;font-size:clamp(1.6rem,2.6vw,2.2rem);letter-spacing:-.03em;display:block;margin:40px 0 10px;line-height:1.05}
+.hace p{color:var(--suave);font-size:.95rem}
+@media(max-width:760px){.hacemos{grid-template-columns:1fr}.hace{min-height:0}.hace b{margin-top:22px}}
+
+/* precios */
+.precios{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--linea);border:1px solid var(--linea);margin-top:56px}
+.precio{background:var(--bg);padding:40px 32px}
+.precio .num{font-size:clamp(2.6rem,5vw,4rem);letter-spacing:-.04em;line-height:1;margin:18px 0 10px}
+.precio .num small{font-size:1rem;color:var(--suave);letter-spacing:0;margin-left:4px}
+.precio p{color:var(--suave);font-size:.95rem}
+@media(max-width:760px){.precios{grid-template-columns:1fr}}
+
+/* pasos */
+.pasos{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:56px}
+.paso .mono{display:block;margin-bottom:14px}
+.paso b{font-weight:400;font-size:1.2rem;display:block;margin-bottom:8px;letter-spacing:-.01em}
+.paso p{color:var(--suave);font-size:.95rem}
+@media(max-width:760px){.pasos{grid-template-columns:1fr}}
+
+/* avances (galeria) */
+.avances{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1px;background:var(--linea);border:1px solid var(--linea);margin-top:56px}
+.avance{background:var(--bg);padding:36px 30px;min-height:240px;display:flex;flex-direction:column;justify-content:space-between;transition:background .3s;position:relative}
+.avance:hover{background:#0a0a0a}
+.avance .arriba{display:flex;justify-content:space-between;align-items:center}
+.avance .flecha{width:34px;height:34px;border:1px solid rgba(255,255,255,.2);border-radius:50%;display:grid;place-items:center;font-size:.9rem;color:var(--suave);transition:background .3s,color .3s,border-color .3s,transform .3s}
+.avance:hover .flecha{background:#fff;color:#000;border-color:#fff;transform:translate(2px,-2px)}
+.avance b{font-weight:300;font-size:clamp(1.5rem,2.4vw,2rem);letter-spacing:-.03em;display:block;margin:34px 0 8px;line-height:1.05}
+.avance p{color:var(--suave);font-size:.92rem}
+.avance .estado{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;font-family:"JetBrains Mono",monospace;color:var(--suave)}
+.avance .estado::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:#7ef0b0;margin-right:8px;vertical-align:middle}
+.avance.wip .estado::before{background:#ffd166}
+
+/* cierre */
+.cierre{text-align:center}
+.cierre .acciones{display:flex;gap:12px;justify-content:center;margin-top:40px;flex-wrap:wrap}
+
+footer{border-top:1px solid var(--linea);padding:36px 0}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+footer .logo img{width:28px;height:28px}
+footer .mono a:hover{color:var(--tinta)}
+
+/* aparecer */
+.ap{opacity:0;transform:translateY(18px);transition:opacity .9s ease,transform .9s ease}
+.ap.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.ap{opacity:1;transform:none;transition:none}.hero .fondo img{animation:none}}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap">
+  <a class="logo" href="#"><img src="logo.png" alt="Beagentry">Beagentry</a>
+  <div class="links">
+    <a href="#hacemos">Qué hacemos</a>
+    <a href="#precios">Precios</a>
+    <a href="#avances">Avances</a>
+    <a class="btn" href="#hablar">Hablar →</a>
+  </div>
+</div></nav>
+
+<div class="flota" id="flota"><div class="flotin"><img id="logo3d" src="logo.png" alt=""></div></div>
+<header class="hero">
+  <div class="fondo"></div>
+  <div class="wrap">
+    <div class="mono"><span>Beagentry</span><span>Webs · Agentes · Labs</span><span>2026</span></div>
+    <h1>Tu web, hecha<br>antes de pedirla.</h1>
+    <p>La construimos, te la enseñamos, y si te gusta es tuya hoy. Precio cerrado.</p>
+    <div class="acciones">
+      <a class="btn solido" href="#precios">Precios →</a>
+      <a class="btn" href="#hablar">Hablar</a>
+    </div>
+  </div>
+  <div class="baja mono">Baja</div>
+</header>
+
+<section id="hacemos"><div class="wrap">
+  <div class="cab ap"><span class="mono n">01</span><span class="mono">Qué hacemos</span></div>
+  <h2 class="ap">De una web a un agente.<br>Y lo que haya en medio.</h2>
+  <div class="hacemos ap">
+    <div class="hace"><span class="mono">Webs</span><div><b>Páginas web</b><p>Para negocios. Hechas antes de pedirlas, precio cerrado.</p></div></div>
+    <div class="hace"><span class="mono">Agentes</span><div><b>Agentes automatizados</b><p>De todo tipo. Atienden, responden, clasifican, ejecutan. Sin descanso.</p></div></div>
+    <div class="hace"><span class="mono">Labs</span><div><b>Labs</b><p>Lo que aún no existe. Prototipos, modelos, experimentos a medida.</p></div></div>
+  </div>
+</div></section>
+
+<section id="precios"><div class="wrap">
+  <div class="cab ap"><span class="mono n">02</span><span class="mono">Precio cerrado</span><span class="mono">Webs</span></div>
+  <h2 class="ap">Tres números. Nada más.</h2>
+  <div class="precios ap">
+    <div class="precio"><span class="mono">Web</span><div class="num">200<small>€</small></div><p>Lista hoy. Dominio, legal y WhatsApp.</p></div>
+    <div class="precio"><span class="mono">Web + SEO local</span><div class="num">350<small>€</small></div><p>Para que te encuentren en tu zona.</p></div>
+    <div class="precio"><span class="mono">A medida</span><div class="num">600<small>€</small></div><p>Diseño propio y más páginas.</p></div>
+  </div>
+</div></section>
+
+<section id="como"><div class="wrap">
+  <div class="cab ap"><span class="mono n">03</span><span class="mono">Cómo</span></div>
+  <h2 class="ap">Sin reuniones.</h2>
+  <div class="pasos ap">
+    <div class="paso"><span class="mono">Uno</span><b>La ves</b><p>Te mandamos tu web ya hecha.</p></div>
+    <div class="paso"><span class="mono">Dos</span><b>La activas</b><p>Bizum o tarjeta. Un minuto.</p></div>
+    <div class="paso"><span class="mono">Tres</span><b>Es tuya</b><p>En 24 horas, en tu dominio.</p></div>
+  </div>
+</div></section>
+
+<section id="avances"><div class="wrap">
+  <div class="cab ap"><span class="mono n">04</span><span class="mono">Avances</span></div>
+  <h2 class="ap">Cosas en marcha.</h2>
+  <p class="sub ap">Lo que estamos construyendo ahora mismo. Se actualiza según avanza.</p>
+  <div class="avances ap" id="galeria"></div>
+</div></section>
+
+<section id="hablar" class="cierre"><div class="wrap">
+  <h2 class="ap">¿Hablamos?</h2>
+  <div class="acciones ap">
+    <a class="btn solido" href="https://instagram.com/beagentry" target="_blank" rel="noopener">Instagram →</a>
+    <a class="btn" href="mailto:ok2iatool@gmail.com">ok2iatool@gmail.com</a>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <a class="logo" href="#"><img src="logo.png" alt="Beagentry"></a>
+  <span class="mono">© 2026 Beagentry · <a href="https://instagram.com/beagentry" target="_blank" rel="noopener">@beagentry</a></span>
+</div></footer>
+
+<script>
+// Galeria de avances: una linea por trabajo. Enlace, nombre, una frase, y
+// estado ("listo" o "wip"). Se pinta sola.
+var AVANCES=[
+  {url:'shadow-blade/', nombre:'Shadow Blade', texto:'Tres modelos en 3D que cambian con el scroll. Meshy, Blender y three.js.', tipo:'Labs · 3D', estado:'wip'},
+  {url:'vela/', nombre:'Vela', texto:'Agente que contesta el WhatsApp de un negocio. Producto ficticio, demo real.', tipo:'Agentes', estado:'listo'},
+];
+(function(){
+  var g=document.getElementById('galeria');
+  AVANCES.forEach(function(a){
+    var el=document.createElement('a');el.className='avance'+(a.estado==='wip'?' wip':'');el.href=a.url;el.target='_blank';el.rel='noopener';
+    el.innerHTML='<div class="arriba"><span class="mono"></span><span class="flecha">↗</span></div><div><b></b><p></p><div class="estado" style="margin-top:14px"></div></div>';
+    el.querySelector('.mono').textContent=a.tipo;el.querySelector('b').textContent=a.nombre;el.querySelector('p').textContent=a.texto;
+    el.querySelector('.estado').textContent=a.estado==='wip'?'En marcha':'Listo';
+    g.appendChild(el);
+  });
+})();
+(function(){
+  // Logo 3D: se inclina con el raton. Al hacer scroll, cae despacio y gira
+  // (el reloj de la caida corre mientras hay scroll: hacia abajo cae, hacia
+  // arriba deshace la caida, con tope a los 4,5 s). Se apaga segun entra en
+  // pantalla el apartado "Que hacemos" y desaparece cuando su titulo se acerca
+  // a la parte alta. Arriba del todo vuelve a su sitio suavemente.
+  var img=document.getElementById('logo3d'),flota=document.getElementById('flota'),hacemos=document.getElementById('hacemos');
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(img&&!reduce){
+    var DUR=4500,mx=0,my=0,tx=0,ty=0,acc=0,ultimo=0,prev=0,activo=false,lastY=0,dir=1;
+    function pinta(t){
+      var dt=prev?t-prev:0;prev=t;
+      if(scrollY<=2){acc=Math.max(0,acc-dt*2)}
+      else if(t-ultimo<140){acc=Math.min(DUR,Math.max(0,acc+dir*dt))}
+      var f=acc/DUR,e=1-Math.pow(1-f,2);
+      tx+=(mx-tx)*.08;ty+=(my-ty)*.08;
+      var caida=e*innerHeight*.32;
+      flota.style.transform='translate(-50%,-50%) translate3d(0,'+caida.toFixed(1)+'px,0)';
+      var r=hacemos.getBoundingClientRect(),pos=Math.min(1,Math.max(0,(innerHeight-r.top)/(innerHeight*.9)));
+      flota.style.opacity=(.85*(1-pos)).toFixed(3);
+      flota.style.visibility=pos>=1?'hidden':'visible';
+      var rx=ty*-14+e*55, ry=tx*20+e*-30, rz=-8+e*20, esc=1+e*.25, z=e*-220;
+      img.style.transform='translate3d(0,0,'+z+'px) rotateX('+rx+'deg) rotateY('+ry+'deg) rotateZ('+rz+'deg) scale('+esc+')';
+      var enMov=(t-ultimo<140)||(scrollY<=2&&acc>0)||Math.abs(mx-tx)>.001||Math.abs(my-ty)>.001;
+      if(enMov)requestAnimationFrame(pinta);else{activo=false;prev=0}
+    }
+    function pide(){if(!activo){activo=true;prev=0;requestAnimationFrame(pinta)}}
+    addEventListener('scroll',function(){var y=scrollY;if(y!==lastY)dir=y>lastY?1:-1;lastY=y;ultimo=performance.now();pide()},{passive:true});
+    addEventListener('mousemove',function(ev){mx=ev.clientX/innerWidth*2-1;my=ev.clientY/innerHeight*2-1;pide()},{passive:true});
+    addEventListener('mouseleave',function(){mx=0;my=0;pide()});
+    addEventListener('resize',pide);
+    pide();
+  }
+  var els=document.querySelectorAll('.ap');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return}
+  var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:.15});
+  els.forEach(function(e){io.observe(e)});
+})();
+</script>
+</body>
+</html>

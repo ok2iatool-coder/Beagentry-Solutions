@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vela</title>
+<meta name="description" content="Vela. El agente que responde el WhatsApp de tu negocio.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#000;--tinta:#eee;--suave:#8a8a8a;--muy:#3a3a3a;--linea:rgba(255,255,255,.08);--verde:#7ef0b0}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--tinta);font-family:Inter,system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;font-weight:300;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.mono{font-family:"JetBrains Mono",ui-monospace,Consolas,monospace;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--suave)}
+.wrap{width:min(1180px,92vw);margin:0 auto}
+h1,h2{font-weight:300;line-height:1.02;margin:0}
+h1{font-size:clamp(2.6rem,7vw,5.4rem);letter-spacing:-.04em}
+h2{font-size:clamp(2rem,4.6vw,3.6rem);letter-spacing:-.035em}
+p{margin:0}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border:1px solid rgba(255,255,255,.25);border-radius:6px;font-size:.86rem;color:var(--tinta);font-weight:400;transition:background .2s,border-color .2s,color .2s}
+.btn:hover{background:#fff;color:#000;border-color:#fff}
+.btn.solido{background:#fff;color:#000;border-color:#fff}
+.btn.solido:hover{background:#e6e6e6}
+
+/* nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:50;height:64px;background:rgba(0,0,0,.55);backdrop-filter:blur(14px);border-bottom:1px solid var(--linea)}
+nav .wrap{height:100%;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.logo{display:flex;align-items:center;gap:12px;font-weight:400;letter-spacing:.02em;font-size:.95rem}
+.marca{width:22px;height:22px;position:relative}
+.marca i{position:absolute;left:3px;right:3px;height:7px;border-radius:2px;background:linear-gradient(90deg,#fff,#555)}
+.marca i:nth-child(1){top:2px;transform:skewX(-20deg)}
+.marca i:nth-child(2){top:12px;transform:skewX(20deg)}
+.links{display:flex;gap:28px;align-items:center;font-size:.86rem;color:var(--suave)}
+.links a:hover{color:var(--tinta)}
+@media(max-width:700px){.links a:not(.btn){display:none}}
+
+/* hero */
+.hero{min-height:100svh;display:grid;place-items:center;position:relative;padding:120px 0 80px;overflow:hidden}
+.hero .rejilla{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.14) 1px,transparent 1px);background-size:34px 34px;mask-image:radial-gradient(ellipse 60% 60% at 50% 50%,#000 20%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse 60% 60% at 50% 50%,#000 20%,transparent 70%);pointer-events:none}
+.escena{position:absolute;inset:0;perspective:1100px;perspective-origin:50% 45%;pointer-events:none}
+.objeto{position:absolute;left:50%;top:44%;width:min(62vw,560px);aspect-ratio:1;transform-style:preserve-3d;will-change:transform;opacity:.62}
+.objeto .l{position:absolute;left:8%;right:8%;height:26%;border-radius:22px;background:linear-gradient(100deg,#e6e6e6 0%,#6a6a6a 45%,#0a0a0a 100%);box-shadow:0 40px 80px -30px rgba(0,0,0,.9);transform-style:preserve-3d}
+.objeto .l:nth-child(1){top:6%;transform:translateZ(60px) skewX(-18deg)}
+.objeto .l:nth-child(2){top:37%;transform:translateZ(0) skewX(18deg);background:linear-gradient(-80deg,#e6e6e6 0%,#5e5e5e 50%,#060606 100%)}
+.objeto .l:nth-child(3){top:68%;transform:translateZ(-60px) skewX(-18deg);opacity:.85}
+.hero::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 55% 55% at 50% 44%,transparent 45%,#000 100%);pointer-events:none}
+.hero .wrap{position:relative;z-index:2;text-align:center;text-shadow:0 0 30px rgba(0,0,0,.95),0 0 80px rgba(0,0,0,.9)}
+.hero .mono{display:flex;gap:16px;justify-content:center;margin-bottom:34px}
+.hero .mono span+span::before{content:"/";margin-right:16px;color:var(--muy)}
+.hero p{font-size:clamp(1rem,1.6vw,1.2rem);color:var(--suave);max-width:36ch;margin:26px auto 40px;text-shadow:0 0 20px #000,0 0 40px #000}
+.hero .acciones{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.baja{position:absolute;bottom:28px;left:0;right:0;text-align:center;opacity:.6;z-index:2}
+
+/* secciones */
+section{padding:clamp(80px,12vw,160px) 0;border-top:1px solid var(--linea);position:relative}
+.cab{display:flex;gap:16px;align-items:baseline;margin-bottom:34px}
+.cab .n{color:var(--tinta)}
+.cab .mono+.mono::before{content:"·";margin-right:16px;color:var(--muy)}
+.sub{color:var(--suave);font-size:1.05rem;max-width:44ch;margin-top:20px}
+
+/* demo chat */
+.demo{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;margin-top:64px;align-items:start}
+.panel{border:1px solid var(--linea);border-radius:12px;background:#070707;overflow:hidden;will-change:transform}
+.panel .barra{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid var(--linea)}
+.panel .barra b{font-weight:400;font-size:.85rem}
+.pulso{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--verde);box-shadow:0 0 0 0 rgba(126,240,176,.6);animation:pulso 2s infinite;margin-right:8px;vertical-align:middle}
+@keyframes pulso{70%{box-shadow:0 0 0 8px rgba(126,240,176,0)}100%{box-shadow:0 0 0 0 rgba(126,240,176,0)}}
+.chat{padding:22px;display:flex;flex-direction:column;gap:12px;min-height:380px}
+.msg{max-width:78%;padding:11px 14px;border-radius:12px;font-size:.92rem;line-height:1.45;opacity:0;transform:translateY(12px);transition:opacity .6s,transform .6s}
+.msg.in{opacity:1;transform:none}
+.msg.cli{align-self:flex-start;background:#161616;border-bottom-left-radius:3px}
+.msg.vela{align-self:flex-end;background:#fff;color:#000;border-bottom-right-radius:3px}
+.msg .h{display:block;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;opacity:.5;margin-top:6px;font-family:"JetBrains Mono",monospace}
+.log{padding:22px;font-family:"JetBrains Mono",monospace;font-size:.74rem;line-height:1.9;color:var(--suave)}
+.log div{opacity:0;transform:translateX(-8px);transition:opacity .5s,transform .5s}
+.log div.in{opacity:1;transform:none}
+.log b{color:var(--tinta);font-weight:400}
+.log .ok{color:var(--verde)}
+@media(max-width:860px){.demo{grid-template-columns:1fr}}
+
+/* capacidades */
+.caps{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--linea);border:1px solid var(--linea);margin-top:56px}
+.cap{background:var(--bg);padding:40px 28px;min-height:230px;display:flex;flex-direction:column;justify-content:space-between;transition:background .3s}
+.cap:hover{background:#0a0a0a}
+.cap b{font-weight:300;font-size:1.5rem;letter-spacing:-.02em;display:block;margin:34px 0 8px;line-height:1.1}
+.cap p{color:var(--suave);font-size:.92rem}
+@media(max-width:900px){.caps{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.caps{grid-template-columns:1fr}.cap{min-height:0}}
+
+/* numeros */
+.nums{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:56px}
+.num b{display:block;font-weight:300;font-size:clamp(3rem,7vw,6rem);letter-spacing:-.05em;line-height:1}
+.num b small{font-size:1.2rem;color:var(--suave);letter-spacing:0;margin-left:6px}
+.num p{color:var(--suave);margin-top:8px}
+@media(max-width:760px){.nums{grid-template-columns:1fr}}
+
+/* precio */
+.precio{text-align:center}
+.precio .grande{font-weight:300;font-size:clamp(4rem,12vw,10rem);letter-spacing:-.06em;line-height:1;margin:30px 0 10px;will-change:transform}
+.precio .grande small{font-size:1.4rem;color:var(--suave);letter-spacing:0;margin-left:8px}
+.precio p{color:var(--suave)}
+.precio .acciones{display:flex;gap:12px;justify-content:center;margin-top:40px;flex-wrap:wrap}
+
+footer{border-top:1px solid var(--linea);padding:36px 0}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+
+/* aparecer + parallax */
+.ap{opacity:0;transform:translateY(18px);transition:opacity .9s ease,transform .9s ease}
+.ap.in{opacity:1;transform:none}
+[data-p]{will-change:transform}
+@media(prefers-reduced-motion:reduce){.ap,.msg,.log div{opacity:1;transform:none;transition:none}}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap">
+  <a class="logo" href="#"><span class="marca"><i></i><i></i></span>Vela</a>
+  <div class="links">
+    <a href="#demo">Demo</a>
+    <a href="#capacidades">Capacidades</a>
+    <a href="#precio">Precio</a>
+    <a class="btn" href="#precio">Probar →</a>
+  </div>
+</div></nav>
+
+<header class="hero">
+  <div class="rejilla" data-p="0.15"></div>
+  <div class="escena"><div class="objeto" id="objeto"><div class="l"></div><div class="l"></div><div class="l"></div></div></div>
+  <div class="wrap" id="heroTxt">
+    <div class="mono"><span>Vela</span><span>Agente de WhatsApp</span><span>2026</span></div>
+    <h1>Responde por ti.<br>Mientras duermes.</h1>
+    <p>Un agente que atiende el WhatsApp de tu negocio. Reservas, dudas, pedidos. En segundos, a cualquier hora.</p>
+    <div class="acciones">
+      <a class="btn solido" href="#demo">Verlo funcionar →</a>
+      <a class="btn" href="#precio">Precio</a>
+    </div>
+  </div>
+  <div class="baja mono">Baja</div>
+</header>
+
+<section id="demo"><div class="wrap">
+  <div class="cab ap"><span class="mono n">01</span><span class="mono">En directo</span></div>
+  <h2 class="ap">Un cliente escribe.<br>Vela contesta.</h2>
+  <p class="sub ap">Conversación real de una clínica dental. Vela reservó la cita sin que nadie mirara el móvil.</p>
+  <div class="demo">
+    <div class="panel ap" data-p="-0.04">
+      <div class="barra"><b><span class="pulso"></span>Clínica Dental Sur</b><span class="mono">WhatsApp · 23:41</span></div>
+      <div class="chat" id="chat">
+        <div class="msg cli">Hola, me he roto un trozo de muela, ¿tenéis algo mañana?<span class="h">Cliente · 23:41</span></div>
+        <div class="msg vela">Hola Marta. Lo siento, eso molesta. Mañana tengo hueco a las 9:30 y a las 12:15 con la Dra. Ruiz. ¿Cuál te va mejor?<span class="h">Vela · 23:41</span></div>
+        <div class="msg cli">A las 9:30</span><span class="h">Cliente · 23:42</span></div>
+        <div class="msg vela">Hecho. Cita mañana 9:30 con la Dra. Ruiz, urgencia de fractura dental. Te he enviado el recordatorio. Si duele esta noche, ibuprofeno 400 y evita masticar por ese lado.<span class="h">Vela · 23:42</span></div>
+        <div class="msg cli">Gracias!!<span class="h">Cliente · 23:42</span></div>
+      </div>
+    </div>
+    <div class="panel ap" data-p="0.05">
+      <div class="barra"><b>Vela · registro</b><span class="mono">Modelo</span></div>
+      <div class="log" id="log">
+        <div><b>$</b> mensaje entrante · +34 6·· ··· 218</div>
+        <div>intención → <b>urgencia dental</b> · confianza 0.96</div>
+        <div>cliente conocido → <b>Marta G.</b> · última visita 03/2026</div>
+        <div>agenda → consultando huecos Dra. Ruiz</div>
+        <div>huecos → 09:30 · 12:15</div>
+        <div>respuesta → enviada en <b>2.8 s</b></div>
+        <div>cliente elige → <b>09:30</b></div>
+        <div>agenda → cita creada · recordatorio programado</div>
+        <div class="ok">✓ resuelto sin intervención humana</div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section id="capacidades"><div class="wrap">
+  <div class="cab ap"><span class="mono n">02</span><span class="mono">Capacidades</span></div>
+  <h2 class="ap">Hace lo que haría<br>tu mejor empleado.</h2>
+  <div class="caps ap">
+    <div class="cap"><span class="mono">Reservas</span><div><b>Agenda sola</b><p>Lee tu calendario y cierra la cita.</p></div></div>
+    <div class="cap"><span class="mono">Pedidos</span><div><b>Toma pedidos</b><p>Carta, alergias, hora de recogida.</p></div></div>
+    <div class="cap"><span class="mono">Memoria</span><div><b>Recuerda</b><p>Sabe quién es cada cliente y qué pidió.</p></div></div>
+    <div class="cap"><span class="mono">Límites</span><div><b>Sabe parar</b><p>Si duda, te avisa. Nunca inventa.</p></div></div>
+  </div>
+</div></section>
+
+<section id="numeros"><div class="wrap">
+  <div class="cab ap"><span class="mono n">03</span><span class="mono">Números</span></div>
+  <h2 class="ap">Sin descanso.</h2>
+  <div class="nums ap">
+    <div class="num"><b><span data-n="3">0</span><small>seg</small></b><p>Tiempo medio de respuesta.</p></div>
+    <div class="num"><b><span data-n="92">0</span><small>%</small></b><p>Conversaciones resueltas sin ti.</p></div>
+    <div class="num"><b>24<small>/7</small></b><p>Sin festivos ni vacaciones.</p></div>
+  </div>
+</div></section>
+
+<section id="precio" class="precio"><div class="wrap">
+  <div class="mono ap">Un precio</div>
+  <div class="grande ap" data-p="-0.06">49<small>€ / mes</small></div>
+  <p class="ap">Sin permanencia. Instalado en un día.</p>
+  <div class="acciones ap">
+    <a class="btn solido" href="#">Probar 14 días gratis →</a>
+    <a class="btn" href="#demo">Ver la demo</a>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <a class="logo" href="#"><span class="marca"><i></i><i></i></span></a>
+  <span class="mono">© 2026 Vela · Demo de Beagentry</span>
+</div></footer>
+
+<script>
+(function(){
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var obj=document.getElementById('objeto'),heroTxt=document.getElementById('heroTxt');
+  var pis=[].slice.call(document.querySelectorAll('[data-p]'));
+  var mx=0,my=0,tx=0,ty=0,pedido=false,vh=innerHeight;
+
+  function pinta(){
+    pedido=false;
+    if(reduce)return;
+    var y=scrollY,p=Math.min(1,Math.max(0,y/vh)),e=1-Math.pow(1-p,2);
+    tx+=(mx-tx)*.08;ty+=(my-ty)*.08;
+    // objeto 3D: sigue al raton y gira/se hunde con el scroll
+    obj.style.transform='translate(-50%,-50%) translate3d(0,'+(y*.3)+'px,'+(e*-300)+'px) rotateX('+(ty*-10+e*70)+'deg) rotateY('+(tx*14+e*-40)+'deg) rotateZ('+(e*25)+'deg) scale('+(1+e*.3)+')';
+    obj.style.opacity=(.62*(1-e*1.1)).toFixed(3);
+    heroTxt.style.transform='translate3d(0,'+(y*.18)+'px,0)';heroTxt.style.opacity=(1-p*1.2).toFixed(3);
+    // parallax suave del resto
+    for(var i=0;i<pis.length;i++){var el=pis[i],r=el.getBoundingClientRect();if(r.bottom<-300||r.top>vh+300)continue;
+      var c=(r.top+r.height/2-vh/2)*Number(el.dataset.p);el.style.transform='translate3d(0,'+c.toFixed(1)+'px,0)'}
+    if(Math.abs(mx-tx)>.001||Math.abs(my-ty)>.001)pide();
+  }
+  function pide(){if(!pedido){pedido=true;requestAnimationFrame(pinta)}}
+  addEventListener('scroll',pide,{passive:true});
+  addEventListener('resize',function(){vh=innerHeight;pide()});
+  addEventListener('mousemove',function(ev){mx=ev.clientX/innerWidth*2-1;my=ev.clientY/innerHeight*2-1;pide()},{passive:true});
+  pinta();
+
+  // aparecer
+  var io=new IntersectionObserver(function(en){en.forEach(function(x){if(!x.isIntersecting)return;var el=x.target;el.classList.add('in');io.unobserve(el);
+    el.querySelectorAll('[data-n]').forEach(cuenta);
+    if(el.id==='chat'||el.querySelector('#chat'))escalona(el.querySelectorAll('.msg'),700);
+    if(el.querySelector('#log'))escalona(el.querySelectorAll('#log div'),420);
+  })},{threshold:.15});
+  document.querySelectorAll('.ap').forEach(function(e){io.observe(e)});
+  function escalona(lista,paso){lista.forEach(function(m,i){setTimeout(function(){m.classList.add('in')},300+i*paso)})}
+  function cuenta(s){var fin=Number(s.dataset.n),t0=null;function f(t){if(!t0)t0=t;var p=Math.min(1,(t-t0)/1400),e=1-Math.pow(1-p,3);s.textContent=Math.round(fin*e);if(p<1)requestAnimationFrame(f)}requestAnimationFrame(f)}
+})();
+</script>
+</body>
+</html>

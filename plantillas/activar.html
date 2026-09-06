@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Activa la web de {{nombre}} · {{agencia}}</title>
+<meta name="robots" content="noindex">
+<style>
+:root{--ac:#ffd166;--fondo:#0f0f10;--panel:#18181b;--linea:rgba(255,255,255,.1);--tinta:#f4f4f5;--suave:#a1a1aa;--ok:#22c55e}
+*{box-sizing:border-box}
+body{margin:0;background:var(--fondo);color:var(--tinta);font-family:"Segoe UI",system-ui,-apple-system,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{width:min(960px,92vw);margin:0 auto}
+h1,h2,h3{line-height:1.15;margin:0 0 .4em;letter-spacing:-.01em}
+h1{font-size:clamp(2rem,5vw,3.2rem)}
+h2{font-size:clamp(1.4rem,3vw,2rem)}
+section{padding:clamp(40px,6vw,72px) 0;border-top:1px solid var(--linea)}
+.suave{color:var(--suave)}
+.eyebrow{color:var(--ac);font-weight:700;text-transform:uppercase;letter-spacing:.14em;font-size:.76rem;margin-bottom:.6em}
+header{padding:20px 0}
+header .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.logo{font-weight:800;font-size:1.1rem;letter-spacing:.02em;text-decoration:none}
+.logo i{display:inline-block;width:10px;height:10px;background:var(--ac);border-radius:2px;margin-right:8px;transform:rotate(45deg)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;border-radius:999px;font-weight:700;text-decoration:none;background:var(--ac);color:#111;border:2px solid var(--ac);cursor:pointer;font-size:1rem;transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn.sec{background:transparent;color:var(--tinta);border-color:var(--linea)}
+.btn.sec:hover{border-color:var(--tinta)}
+.hero{padding:clamp(40px,7vw,90px) 0}
+.hero p{font-size:1.15rem;max-width:52ch}
+.marco{margin-top:32px;border:1px solid var(--linea);border-radius:16px;overflow:hidden;background:#000;box-shadow:0 30px 60px -30px rgba(0,0,0,.8)}
+.marco .barra{display:flex;gap:6px;padding:10px 14px;background:#222;border-bottom:1px solid var(--linea);align-items:center}
+.marco .barra i{width:10px;height:10px;border-radius:50%;background:#444}
+.marco .barra span{margin-left:10px;font-size:.8rem;color:var(--suave);font-family:ui-monospace,monospace}
+.marco iframe{width:100%;height:520px;border:0;display:block;background:#fff}
+@media(max-width:700px){.marco iframe{height:420px}}
+
+/* escalones */
+.escalones{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:28px}
+.esc{background:var(--panel);border:1px solid var(--linea);border-radius:16px;padding:26px;display:flex;flex-direction:column;position:relative}
+.esc.destacado{border-color:var(--ac);box-shadow:0 0 0 1px var(--ac) inset}
+.esc .tag{position:absolute;top:-12px;left:22px;background:var(--ac);color:#111;font-size:.72rem;font-weight:800;padding:4px 10px;border-radius:999px;letter-spacing:.06em;text-transform:uppercase}
+.esc h3{font-size:1.15rem}
+.esc .precio{font-size:2.4rem;font-weight:800;margin:6px 0 2px}
+.esc .precio small{font-size:.9rem;color:var(--suave);font-weight:500}
+.esc .resumen{color:var(--suave);margin:0 0 18px;min-height:3.2em}
+.esc ul{list-style:none;padding:0;margin:0 0 24px;flex:1}
+.esc li{padding:7px 0 7px 26px;position:relative;font-size:.95rem;border-top:1px solid var(--linea)}
+.esc li::before{content:"✓";position:absolute;left:2px;color:var(--ok);font-weight:800}
+.esc .btn{justify-content:center}
+.esc.sel{outline:2px solid var(--ok);outline-offset:2px}
+
+/* pago */
+#pagar{scroll-margin-top:16px}
+.pago{background:var(--panel);border:1px solid var(--linea);border-radius:16px;padding:28px;margin-top:24px}
+.pago .cab{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.pago .cab b{font-size:1.4rem}
+.tabs{display:flex;gap:8px;margin-bottom:20px}
+.tabs button{background:transparent;border:1px solid var(--linea);color:var(--tinta);padding:10px 18px;border-radius:999px;font-weight:700;cursor:pointer;font-size:.95rem}
+.tabs button.on{background:var(--tinta);color:#111;border-color:var(--tinta)}
+.panel{display:none}
+.panel.on{display:block}
+.dato{display:grid;grid-template-columns:120px 1fr auto;gap:12px;align-items:center;padding:12px 0;border-top:1px solid var(--linea)}
+.dato span{color:var(--suave);font-size:.9rem}
+.dato code{font-size:1.15rem;font-family:ui-monospace,Consolas,monospace;word-break:break-all}
+.dato button{background:transparent;border:1px solid var(--linea);color:var(--tinta);padding:6px 12px;border-radius:8px;cursor:pointer;font-size:.85rem}
+.dato button.hecho{border-color:var(--ok);color:var(--ok)}
+@media(max-width:600px){.dato{grid-template-columns:1fr auto}.dato span{grid-column:1/-1}}
+.nota{font-size:.92rem;color:var(--suave);margin-top:16px}
+.pendiente{color:#f87171}
+
+/* pasos */
+.pasos{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:24px}
+.paso{border:1px solid var(--linea);border-radius:14px;padding:22px;background:var(--panel)}
+.paso .n{color:var(--ac);font-weight:800;font-size:.85rem;margin-bottom:8px}
+.paso b{display:block;margin-bottom:6px}
+.paso p{margin:0;color:var(--suave);font-size:.95rem}
+
+.letra{font-size:.95rem;color:var(--suave);max-width:70ch}
+.letra li{margin-bottom:8px}
+footer{padding:28px 0;border-top:1px solid var(--linea);font-size:.85rem;color:var(--suave)}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+</style>
+</head>
+<body>
+
+<header><div class="wrap">
+  <a class="logo" href="https://{{agencia_dominio}}"><i></i>{{agencia_mayus}}</a>
+  {{#si agencia_whatsapp}}<a class="btn sec" href="{{agencia_url_whatsapp}}" target="_blank" rel="noopener">Hablar con {{agencia}}</a>{{/si}}
+</div></header>
+
+<section class="hero" style="border-top:0"><div class="wrap">
+  <div class="eyebrow">Demo preparada para {{nombre}}</div>
+  <h1>Tu web ya está hecha.<br>Solo falta que sea tuya.</h1>
+  <p class="suave">La has visto. Si te gusta, eliges cómo la quieres y pagas. En 24 horas está en tu dominio, con tu factura y sin que tengas que hacer nada más.</p>
+  <p><a class="btn" href="index.html" target="_blank" rel="noopener">Ver la web completa ↗</a></p>
+  <div class="marco">
+    <div class="barra"><i></i><i></i><i></i><span>{{dominio_sugerido}}</span></div>
+    <iframe src="index.html" title="Demo de {{nombre}}" loading="lazy"></iframe>
+  </div>
+</div></section>
+
+<section id="precios"><div class="wrap">
+  <div class="eyebrow">Elige</div>
+  <h2>Tres formas de tenerla. Sin presupuestos, sin llamadas.</h2>
+  <p class="suave">Precio cerrado. Lo que ves es lo que pagas.</p>
+  <div class="escalones">
+    {{#cada escalones}}
+    <div class="esc{{#si destacado}} destacado{{/si}}" data-clave="{{clave}}" data-precio="{{precio}}" data-nombre="{{nombre}}" data-stripe="{{stripe_url}}">
+      {{#si destacado}}<span class="tag">El que elige casi todo el mundo</span>{{/si}}
+      <h3>{{nombre}}</h3>
+      <div class="precio">{{precio}} € <small>IVA incluido</small></div>
+      <p class="resumen">{{resumen}}</p>
+      <ul>{{#cada incluye}}<li>{{valor}}</li>{{/cada incluye}}</ul>
+      <button class="btn elegir" type="button">Quiero esta</button>
+    </div>
+    {{/cada escalones}}
+  </div>
+</div></section>
+
+<section id="pagar"><div class="wrap">
+  <div class="eyebrow">Pagar</div>
+  <h2>Como te venga mejor</h2>
+  <p class="suave">Bizum si quieres que esté hecho ya. Tarjeta si prefieres recibo automático al momento.</p>
+  <div class="pago">
+    <div class="cab"><span>Has elegido: <b id="p-nombre">{{escalon_defecto_nombre}}</b></span><b id="p-precio">{{escalon_defecto_precio}} €</b></div>
+    <div class="tabs">
+      <button type="button" class="on" data-tab="bizum">Bizum</button>
+      <button type="button" data-tab="tarjeta">Tarjeta</button>
+    </div>
+
+    <div class="panel on" id="tab-bizum">
+      <div class="dato"><span>Enviar a</span><code>{{#si agencia_bizum}}{{agencia_bizum}}{{#sino}}<em class="pendiente">[número de Bizum pendiente en config.json]</em>{{/si}}</code><button type="button" data-copia="{{agencia_bizum}}">Copiar</button></div>
+      <div class="dato"><span>Importe</span><code id="b-importe">{{escalon_defecto_precio}} €</code><button type="button" data-copia-id="b-importe-raw">Copiar</button><span id="b-importe-raw" hidden>{{escalon_defecto_precio}}</span></div>
+      <div class="dato"><span>Concepto</span><code id="b-concepto">{{concepto_pago}}</code><button type="button" data-copia-id="b-concepto">Copiar</button></div>
+      <p class="nota">Pon el concepto tal cual para que sepamos que eres tú. En cuanto llegue te escribimos por WhatsApp para pedirte el dominio y los datos de la factura.</p>
+    </div>
+
+    <div class="panel" id="tab-tarjeta">
+      <p id="t-con"><a class="btn" id="t-boton" href="#" target="_blank" rel="noopener">Pagar con tarjeta →</a></p>
+      <p id="t-sin" class="nota" hidden>El pago con tarjeta de este escalón aún no está activado. {{#si agencia_whatsapp}}<a href="{{agencia_url_whatsapp}}" target="_blank" rel="noopener">Escríbenos</a> y te mandamos el enlace en un minuto.{{#sino}}Escríbenos y te mandamos el enlace en un minuto.{{/si}}</p>
+      <p class="nota">Pago seguro con tarjeta, Apple Pay o Google Pay. Recibes el recibo por correo al momento.</p>
+    </div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="eyebrow">Después de pagar</div>
+  <h2>Qué pasa en las siguientes 24 horas</h2>
+  <div class="pasos">
+    <div class="paso"><div class="n">PASO 1</div><b>Te escribimos</b><p>Por WhatsApp, para pedirte el dominio que quieres y los datos de factura.</p></div>
+    <div class="paso"><div class="n">PASO 2</div><b>Cambios</b><p>Nos dices qué quieres tocar: fotos, textos, precios. Dos rondas incluidas.</p></div>
+    <div class="paso"><div class="n">PASO 3</div><b>En tu dominio</b><p>La conectamos, comprobamos móvil y velocidad, y te mandamos la factura.</p></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="eyebrow">Sin sorpresas</div>
+  <h2>Letra pequeña, que no es pequeña</h2>
+  <ul class="letra">
+    <li>La web es tuya. Te entregamos los archivos si algún día quieres llevártela.</li>
+    <li>Incluye las rondas de cambios de tu escalón. A partir de ahí, cada cambio son {{cambio_extra}} €.</li>
+    <li>Dominio y alojamiento el primer año van incluidos. Después, si quieres que nos ocupemos nosotros de todo (renovaciones, cambios pequeños, que nunca se caiga), son {{mantenimiento}} € al mes. Si no, te pasamos el control y listo.</li>
+    <li>Factura con IVA a nombre de tu negocio.</li>
+    <li>Si a los 7 días no estás contento y aún no hemos conectado tu dominio, te devolvemos el dinero.</li>
+  </ul>
+</div></section>
+
+<footer><div class="wrap">
+  <span>{{agencia}} · {{agencia_dominio}}{{#si agencia_instagram}} · <a href="https://instagram.com/{{agencia_instagram}}" target="_blank" rel="noopener">@{{agencia_instagram}}</a>{{/si}}</span>
+  <span>Página de activación para {{nombre}}</span>
+</div></footer>
+
+<script>
+(function(){
+  var escs=[].slice.call(document.querySelectorAll('.esc'));
+  var pNombre=document.getElementById('p-nombre'),pPrecio=document.getElementById('p-precio');
+  var bImp=document.getElementById('b-importe'),bRaw=document.getElementById('b-importe-raw'),bCon=document.getElementById('b-concepto');
+  var tCon=document.getElementById('t-con'),tSin=document.getElementById('t-sin'),tBtn=document.getElementById('t-boton');
+  var concepto='{{{concepto_pago}}}';
+  function elegir(e,scroll){
+    escs.forEach(function(x){x.classList.toggle('sel',x===e)});
+    var p=e.dataset.precio;
+    pNombre.textContent=e.dataset.nombre;pPrecio.textContent=p+' €';
+    bImp.textContent=p+' €';bRaw.textContent=p;
+    bCon.textContent=concepto+' '+e.dataset.clave;
+    var s=e.dataset.stripe;
+    tCon.hidden=!s;tSin.hidden=!!s;if(s)tBtn.href=s;
+    if(scroll)document.getElementById('pagar').scrollIntoView({behavior:'smooth'});
+  }
+  escs.forEach(function(e){e.querySelector('.elegir').addEventListener('click',function(){elegir(e,true)})});
+  var def=document.querySelector('.esc.destacado')||escs[0];if(def)elegir(def,false);
+  document.querySelectorAll('.tabs button').forEach(function(b){b.addEventListener('click',function(){
+    document.querySelectorAll('.tabs button').forEach(function(x){x.classList.toggle('on',x===b)});
+    document.querySelectorAll('.panel').forEach(function(p){p.classList.toggle('on',p.id==='tab-'+b.dataset.tab)});
+  })});
+  document.querySelectorAll('[data-copia],[data-copia-id]').forEach(function(b){b.addEventListener('click',function(){
+    var t=b.dataset.copia!=null?b.dataset.copia:document.getElementById(b.dataset.copiaId).textContent;
+    if(!t)return;
+    var done=function(){b.textContent='Copiado';b.classList.add('hecho');setTimeout(function(){b.textContent='Copiar';b.classList.remove('hecho')},1600)};
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(done,done)}else{done()}
+  })});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aviso legal y privacidad · {{nombre}}</title>
+<meta name="robots" content="noindex">
+<style>
+body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,sans-serif;color:#1d1a17;background:{{color_fondo}};line-height:1.6}
+.wrap{width:min(760px,92vw);margin:0 auto;padding:48px 0 80px}
+h1{font-size:2rem;margin:0 0 .3em}
+h2{font-size:1.25rem;margin:2em 0 .5em;color:{{color}}}
+p,li{font-size:1rem}
+a{color:{{color}}}
+.volver{display:inline-block;margin-bottom:28px;text-decoration:none;font-weight:600}
+.pendiente{background:#fff3cd;padding:0 6px;border-radius:4px}
+</style>
+</head>
+<body><div class="wrap">
+<a class="volver" href="index.html">← Volver a {{nombre}}</a>
+<h1>Aviso legal y política de privacidad</h1>
+<p>Última actualización: {{fecha}}</p>
+
+<h2>1. Titular de la web</h2>
+<p>En cumplimiento de la Ley 34/2002, de Servicios de la Sociedad de la Información y del Comercio Electrónico, se informa de que el titular de este sitio web es:</p>
+<ul>
+  <li>Titular: {{{titular_legal_html}}}</li>
+  <li>NIF: {{{nif_html}}}</li>
+  <li>Dirección: {{direccion}}</li>
+  <li>Teléfono: {{telefono}}</li>
+  {{#si email}}<li>Correo electrónico: {{email}}</li>{{/si}}
+</ul>
+
+<h2>2. Objeto</h2>
+<p>Este sitio web tiene una finalidad informativa: dar a conocer la actividad de {{nombre}}, su ubicación, horario y medios de contacto. No se realizan ventas ni contratación a través de la web.</p>
+
+<h2>3. Propiedad intelectual</h2>
+<p>Los textos, imágenes y el diseño de esta web son propiedad de {{nombre}} o se usan con autorización. No está permitida su reproducción sin consentimiento.</p>
+
+<h2>4. Protección de datos</h2>
+<p>Esta web no tiene formularios ni recoge datos personales por sí misma. Cuando contactas por WhatsApp, teléfono o correo electrónico, los datos que nos facilitas (nombre, número de teléfono y el contenido del mensaje) los trata {{nombre}} únicamente para atender tu consulta o tu pedido, conforme al Reglamento (UE) 2016/679 y la Ley Orgánica 3/2018.</p>
+<ul>
+  <li>Responsable: {{{titular_legal_html}}}.</li>
+  <li>Finalidad: responder a tu consulta o gestionar tu pedido o reserva.</li>
+  <li>Base legal: tu consentimiento al contactarnos y, en su caso, la relación precontractual.</li>
+  <li>Conservación: el tiempo necesario para atender la consulta y los plazos legales aplicables.</li>
+  <li>Destinatarios: no se ceden datos a terceros, salvo obligación legal. WhatsApp (Meta Platforms Ireland Ltd.) trata los mensajes según su propia política de privacidad.</li>
+  <li>Derechos: puedes ejercer los derechos de acceso, rectificación, supresión, oposición, limitación y portabilidad escribiendo a {{#si email}}{{email}}{{#sino}}la dirección indicada arriba{{/si}}. También puedes reclamar ante la Agencia Española de Protección de Datos (<a href="https://www.aepd.es" target="_blank" rel="noopener">aepd.es</a>).</li>
+</ul>
+
+<h2>5. Cookies</h2>
+<p>Esta web no utiliza cookies propias ni de terceros, ni herramientas de analítica o seguimiento. Los enlaces a Google Maps, Instagram o WhatsApp abren esos servicios en una página nueva y están sujetos a sus propias políticas.</p>
+
+<h2>6. Responsabilidad</h2>
+<p>{{nombre}} procura que la información publicada (horarios, precios, carta) esté actualizada, pero puede haber variaciones. Ante cualquier duda, contacta directamente con el negocio.</p>
+
+<h2>7. Legislación</h2>
+<p>Este aviso se rige por la legislación española. Para cualquier controversia serán competentes los juzgados y tribunales de {{ciudad}}.</p>
+
+<p style="margin-top:48px;color:#6b645c;font-size:.9rem">Web realizada por <a href="https://{{agencia_dominio}}" target="_blank" rel="noopener">{{agencia}}</a>.</p>
+</div></body>
+</html>

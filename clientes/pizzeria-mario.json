@@ -1,0 +1,40 @@
+{
+  "slug": "pizzeria-mario",
+  "nombre": "Pizzería Mario",
+  "sector": "Pizzería artesana",
+  "eslogan": "Masa de 48 horas, horno de leña y el mismo Mario desde 1998.",
+  "descripcion": "Llevamos más de veinticinco años haciendo pizza en el barrio de Ruzafa. Masa madre fermentada 48 horas, tomate San Marzano y mozzarella fresca cada mañana. Sin prisas y sin trucos: horno de leña y las manos de siempre.",
+  "ciudad": "Valencia",
+  "barrio": "Ruzafa",
+  "direccion": "Carrer de Cuba 42, 46006 València",
+  "telefono": "963 000 000",
+  "whatsapp": "34600000000",
+  "email": "hola@pizzeriamario.es",
+  "instagram": "pizzeriamario",
+  "maps": "Pizzería Mario, Carrer de Cuba 42, Valencia",
+  "color": "#b8321f",
+  "color_fondo": "#fbf6ee",
+  "titulo_servicios": "La carta",
+  "servicios": [
+    { "nombre": "Margherita", "descripcion": "Tomate San Marzano, mozzarella fior di latte y albahaca.", "precio": "9,50 €" },
+    { "nombre": "Diavola", "descripcion": "Salami picante, mozzarella y un toque de miel.", "precio": "11,50 €" },
+    { "nombre": "Quattro formaggi", "descripcion": "Gorgonzola, taleggio, parmesano y mozzarella.", "precio": "12 €" },
+    { "nombre": "Ruzafa", "descripcion": "Nuestra pizza del barrio: sobrasada, queso de cabra y rúcula.", "precio": "12,50 €" },
+    { "nombre": "Calzone clásico", "descripcion": "Jamón cocido, ricotta y mozzarella, cerrado al horno.", "precio": "11 €" },
+    { "nombre": "Tiramisú de la casa", "descripcion": "Receta de la madre de Mario. Se acaba pronto.", "precio": "5 €" }
+  ],
+  "horario": [
+    { "dias": "Martes a jueves", "horas": "13:00 – 16:00 · 20:00 – 23:30" },
+    { "dias": "Viernes y sábado", "horas": "13:00 – 16:00 · 20:00 – 00:30" },
+    { "dias": "Domingo", "horas": "13:00 – 16:30" },
+    { "dias": "Lunes", "horas": "Cerrado" }
+  ],
+  "destacados": [
+    { "titulo": "Masa madre", "texto": "48 horas de fermentación. Ligera, se digiere bien." },
+    { "titulo": "Horno de leña", "texto": "400 grados y 90 segundos. Borde alto y fondo fino." },
+    { "titulo": "Para llevar", "texto": "Pídela por WhatsApp y la tienes lista en 15 minutos." }
+  ],
+  "fotos": [],
+  "titular_legal": "",
+  "nif": ""
+}

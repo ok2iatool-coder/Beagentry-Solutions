@@ -1,0 +1,55 @@
+{
+  "agencia": "Beagentry",
+  "dominio": "beagentry.com",
+  "instagram": "beagentry",
+  "whatsapp": "",
+  "email": "",
+  "bizum": "",
+  "titular": "",
+  "nif": "",
+  "stripe": { "200": "", "350": "", "600": "" },
+  "escalones": [
+    {
+      "clave": "200",
+      "nombre": "Web",
+      "precio": 200,
+      "resumen": "Tu web tal y como la ves, lista hoy.",
+      "incluye": [
+        "La web completa que has visto en la demo",
+        "Tu dominio conectado (o uno nuevo el primer año)",
+        "Botones de WhatsApp y llamada",
+        "Aviso legal, privacidad y cookies",
+        "Dos rondas de cambios"
+      ]
+    },
+    {
+      "clave": "350",
+      "nombre": "Web + SEO local",
+      "precio": 350,
+      "destacado": true,
+      "resumen": "Para que te encuentren en Google cuando buscan en tu zona.",
+      "incluye": [
+        "Todo lo del escalón Web",
+        "Ficha de Google Business revisada y enlazada",
+        "Datos estructurados para que Google entienda el negocio",
+        "Textos orientados a tu ciudad y barrio",
+        "Velocidad y móvil comprobados"
+      ]
+    },
+    {
+      "clave": "600",
+      "nombre": "A medida",
+      "precio": 600,
+      "resumen": "Diseño propio y más páginas para negocios que venden caro.",
+      "incluye": [
+        "Todo lo del escalón Web + SEO local",
+        "Diseño exclusivo, no de plantilla",
+        "Hasta 6 páginas (servicios, equipo, catálogo, blog)",
+        "Vídeo o fotos tuyas integrados",
+        "Cuatro rondas de cambios"
+      ]
+    }
+  ],
+  "cambio_extra": 30,
+  "mantenimiento": 15
+}
