@@ -3,24 +3,77 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Beagentry</title>
-<meta name="description" content="Beagentry. Desde páginas web hasta agentes automatizados y labs.">
+<title>Software avanzado, agentes y webs · Beagentry</title>
+<meta name="description" content="Construimos software avanzado: agentes automatizados que trabajan solos, laboratorio de 3D e ingeniería por código, y páginas web a precio cerrado desde 200 €.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <link rel="icon" href="logo.png">
 <link rel="canonical" href="https://beagentry.com/">
 <!-- Vista previa al compartir el enlace por WhatsApp, Instagram o X -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Beagentry">
-<meta property="og:title" content="Beagentry">
-<meta property="og:description" content="Tu web, hecha antes de pedirla. Desde páginas web hasta agentes automatizados y labs.">
+<meta property="og:title" content="Software avanzado, agentes y webs · Beagentry">
+<meta property="og:locale" content="es_ES">
+<meta property="og:description" content="Construimos software avanzado. Agentes automatizados, laboratorio de 3D e ingeniería, y webs a precio cerrado.">
 <meta property="og:url" content="https://beagentry.com/">
-<meta property="og:image" content="https://beagentry.com/logo.png">
-<meta property="og:image:width" content="1254">
-<meta property="og:image:height" content="1254">
+<meta property="og:image" content="https://beagentry.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Beagentry — construimos software avanzado: agentes, labs y webs a precio cerrado.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Beagentry">
-<meta name="twitter:description" content="Tu web, hecha antes de pedirla. Desde páginas web hasta agentes automatizados y labs.">
-<meta name="twitter:image" content="https://beagentry.com/logo.png">
+<meta name="twitter:title" content="Software avanzado, agentes y webs · Beagentry">
+<meta name="twitter:description" content="Construimos software avanzado. Agentes automatizados, laboratorio de 3D e ingeniería, y webs a precio cerrado.">
+<meta name="twitter:image" content="https://beagentry.com/og.png">
 <meta name="theme-color" content="#000000">
+<!-- Datos estructurados: quien es el negocio, que vende y por cuanto. Sin esto
+     Google solo ve un titular bonito y tiene que adivinar el resto. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://beagentry.com/#negocio",
+      "name": "Beagentry",
+      "url": "https://beagentry.com/",
+      "logo": "https://beagentry.com/logo.png",
+      "image": "https://beagentry.com/logo.png",
+      "description": "Software avanzado a medida: agentes automatizados que atienden WhatsApp, laboratorio de 3D e ingeniería por código, y páginas web para negocios a precio cerrado.",
+      "email": "ok2iatool@gmail.com",
+      "priceRange": "200 €–600 €",
+      "currenciesAccepted": "EUR",
+      "areaServed": { "@type": "Country", "name": "España" },
+      "knowsLanguage": "es",
+      "sameAs": ["https://instagram.com/beagentry"],
+      "makesOffer": [
+        {
+          "@type": "Offer", "name": "Web", "price": "200", "priceCurrency": "EUR",
+          "url": "https://beagentry.com/#precios",
+          "description": "Tu web tal y como la ves, lista hoy. Dominio conectado, botones de WhatsApp y llamada, aviso legal y dos rondas de cambios."
+        },
+        {
+          "@type": "Offer", "name": "Web + SEO local", "price": "350", "priceCurrency": "EUR",
+          "url": "https://beagentry.com/#precios",
+          "description": "Para que te encuentren en Google cuando buscan en tu zona. Ficha de Google Business, datos estructurados y textos orientados a tu ciudad."
+        },
+        {
+          "@type": "Offer", "name": "A medida", "price": "600", "priceCurrency": "EUR",
+          "url": "https://beagentry.com/#precios",
+          "description": "Diseño exclusivo y hasta seis páginas, para negocios que venden caro."
+        }
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://beagentry.com/#web",
+      "url": "https://beagentry.com/",
+      "name": "Beagentry",
+      "inLanguage": "es",
+      "publisher": { "@id": "https://beagentry.com/#negocio" }
+    }
+  ]
+}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
@@ -69,7 +122,7 @@ nav .wrap{height:100%;display:flex;align-items:center;justify-content:space-betw
 
 /* secciones */
 section{padding:clamp(80px,12vw,160px) 0;border-top:1px solid var(--linea)}
-.hero + section{border-top:0}
+#hacemos,#precios{border-top:0}
 .cab{display:flex;gap:16px;align-items:baseline;margin-bottom:34px}
 .cab .n{color:var(--tinta)}
 .cab .mono+.mono::before{content:"·";margin-right:16px;color:var(--muy)}
@@ -121,8 +174,30 @@ footer .logo img{width:28px;height:28px}
 footer .mono a:hover{color:var(--tinta)}
 
 /* aparecer */
+/* Banda del turbofan: una pista alta con el lienzo pegado dentro. Lo que
+   recorre el scroll DENTRO de la pista es el mando del motor (fotograma 1 a
+   900). Fuera de vista el bucle se para, no gasta GPU. */
+#motor{padding:0;border-top:0}
+.pista{position:relative;height:220vh}   /* 420vh era el doble de scroll para el mismo estiron */
+.pegado{position:sticky;top:0;height:100vh;overflow:hidden}
+#glMotor{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none}
+.capa{position:absolute;left:50%;transform:translateX(-50%);top:96px;pointer-events:none}
+.capa h2{margin-top:10px;text-shadow:0 0 30px #000,0 0 70px #000}
+.capa .sub{margin-top:16px;text-shadow:0 0 20px #000,0 0 40px #000}
+.lectura{position:absolute;left:50%;transform:translateX(-50%);bottom:52px;width:min(1180px,92vw);
+  display:flex;gap:28px;flex-wrap:wrap;align-items:baseline;color:var(--suave);font-size:.8rem;pointer-events:none;
+  text-shadow:0 0 18px #000,0 0 36px #000}
+.lectura[hidden]{display:none}   /* .lectura es flex: sin esto el atributo hidden no puede con el */
+.lectura b{color:var(--tinta);font-weight:400}
+.lectura .fase{color:var(--tinta)}
+.cargaMotor{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);color:var(--muy);font-size:.8rem;
+  letter-spacing:.16em;text-transform:uppercase}
+@media(max-width:760px){.pista{height:180vh}.capa{top:80px}.lectura{gap:16px;font-size:.72rem}}
 .ap{opacity:0;transform:translateY(18px);transition:opacity .9s ease,transform .9s ease}
 .ap.in{opacity:1;transform:none}
+/* Las rejillas dibujan sus lineas con el fondo y el gap de 1px: si se desvanecen,
+   la linea de 8% de blanco desaparece en negro. Entran deslizando, sin fundido. */
+.hacemos.ap,.precios.ap,.avances.ap{opacity:1}
 @media(prefers-reduced-motion:reduce){.ap{opacity:1;transform:none;transition:none}.hero .fondo img{animation:none}}
 </style>
 </head>
@@ -143,8 +218,8 @@ footer .mono a:hover{color:var(--tinta)}
   <div class="fondo"></div>
   <div class="wrap">
     <div class="mono"><span>Beagentry</span><span>Webs · Agentes · Labs</span><span>2026</span></div>
-    <h1>Tu web, hecha<br>antes de pedirla.</h1>
-    <p>La construimos, te la enseñamos, y si te gusta es tuya hoy. Precio cerrado.</p>
+    <h1>Construimos<br>software avanzado.</h1>
+    <p>Desde tu página web hasta programas que nadie más te va a hacer. Precio cerrado.</p>
     <div class="acciones">
       <a class="btn solido" href="#precios">Precios →</a>
       <a class="btn" href="#hablar">Hablar</a>
@@ -182,6 +257,28 @@ footer .mono a:hover{color:var(--tinta)}
     <div class="paso"><span class="mono">Tres</span><b>Es tuya</b><p>En 24 horas, en tu dominio.</p></div>
   </div>
 </div></section>
+
+<!-- El turbofan de escuela/obras/turbofan, pilotado por el scroll. Se carga
+     en diferido: la portada pinta sin esperar a los 37 MB del modelo. -->
+<section id="motor">
+  <div class="pista" id="pistaMotor">
+    <div class="pegado">
+      <canvas id="glMotor"></canvas>
+      <div class="capa wrap">
+        <div class="cab"><span class="mono">Labs</span><span class="mono">Ingeniería</span></div>
+        <h2>Un turbofan de verdad.<br>Y está girando.</h2>
+        <p class="sub">Doscientas sesenta y cuatro piezas y 2142 álabes, modelados en Blender por código. No es un vídeo: gira aquí, en tu navegador. Baja y dale gas.</p>
+      </div>
+      <div class="lectura mono" id="lecturaMotor" hidden>
+        <span class="fase" id="motorFase"></span>
+        <span>N1 <b id="motorN1">0 %</b></span>
+        <span>N2 <b id="motorN2">0 %</b></span>
+        <span id="motorCotas"></span>
+      </div>
+      <div class="cargaMotor mono" id="motorCarga">cargando el motor…</div>
+    </div>
+  </div>
+</section>
 
 <section id="avances"><div class="wrap">
   <div class="cab ap"><span class="mono n">04</span><span class="mono">Avances</span></div>
@@ -259,6 +356,88 @@ var AVANCES=[
   if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return}
   var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:.15});
   els.forEach(function(e){io.observe(e)});
+})();
+</script>
+
+<script type="importmap">
+{ "imports": { "three": "./turbofan/vendor/three.module.js", "three/addons/": "./turbofan/vendor/addons/" } }
+</script>
+<script>
+// Turbofan de la banda "Labs". Tres reglas:
+//   1. carga en diferido — el modelo son 37 MB, no puede retrasar la portada;
+//      no se pide hasta que la banda esta a un pantallazo de distancia,
+//   2. el scroll DENTRO de la pista es el mando: 0 al entrar, 1 al salir,
+//   3. el bucle de dibujo solo corre con la banda a la vista.
+(function(){
+  var pista=document.getElementById('pistaMotor'); if(!pista) return;
+  var carga=document.getElementById('motorCarga'), lectura=document.getElementById('lecturaMotor');
+  var elFase=document.getElementById('motorFase'), elN1=document.getElementById('motorN1'), elN2=document.getElementById('motorN2');
+
+  // quien pide no gastar animacion, o va con ahorro de datos, no lo carga
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches || (navigator.connection && navigator.connection.saveData)){
+    carga.textContent='motor en pausa · ahorro de datos'; return;
+  }
+
+  var motor=null, pedido=false, visible=false;
+
+  // La llama el bucle del motor una vez por fotograma: 0 al entrar en la pista,
+  // 1 al salir. De paso retira el texto: entras, lo lees con el motor lejos y
+  // a ralenti, y para cuando el motor se te viene encima ya no estorba. En el
+  // movil, ademas, es lo unico que evita que el parrafo se cruce con la gondola.
+  var capa=document.querySelector('#motor .capa'), opacidadPuesta=-1;
+  function avance(){
+    var recorrido=pista.offsetHeight-innerHeight;
+    var p=recorrido>0 ? Math.min(1,Math.max(0,-pista.getBoundingClientRect().top/recorrido)) : 0;
+    var t=Math.min(1,Math.max(0,(p-0.12)/0.23)), o=1-t*t*(3-2*t);
+    if(Math.abs(o-opacidadPuesta)>0.01){ opacidadPuesta=o; capa.style.opacity=o.toFixed(3); }
+    return p;
+  }
+  // el motor llama aqui al cambiar de plano o de regimen, no en cada fotograma
+  function alProgreso(texto,S){
+    elFase.textContent=texto;
+    elN1.textContent=S.n1.toFixed(0)+' %'; elN2.textContent=S.n2.toFixed(0)+' %';
+  }
+
+  function cargar(){
+    if(pedido) return; pedido=true;
+    import('./turbofan/motor.js').then(function(mod){
+      return mod.montar({canvas:document.getElementById('glMotor'), rutaModelo:'./turbofan/modelo/',
+                         alProgreso:alProgreso, leerAvance:avance});
+    }).then(function(m){
+      motor=m; window.__motor=m; carga.hidden=true; lectura.hidden=false;
+      var c=m.cotas;
+      document.getElementById('motorCotas').textContent='fan Ø '+c.fan_diametro+' m · BPR '+c.bpr+' · '+c.alabes+' álabes';
+      m.progreso(avance());
+      if(visible) m.arrancar();
+    }).catch(function(e){
+      carga.textContent='el motor no ha podido cargar'; console.error('turbofan:', e);
+    });
+  }
+
+  // Cuando cargar y cuando dibujar. Tres disparadores para lo mismo, y no es
+  // paranoia: si el observador de intersecciones no llega a dispararse (pestana
+  // en segundo plano, webview estrangulada) la banda se quedaria en "cargando"
+  // para siempre. El reloj lento es el seguro, y se apaga en cuanto sirve.
+  function cerca(margen){
+    var r=pista.getBoundingClientRect();
+    return r.top < innerHeight*margen && r.bottom > -innerHeight*(margen-1);
+  }
+  // el reloj se queda puesto: tambien es lo que PARA el bucle al salir de la
+  // banda, y un getBoundingClientRect cada 800 ms no le cuesta nada a nadie
+  setInterval(comprobar, 800);
+  function comprobar(){
+    if(cerca(2)) cargar();
+    visible=cerca(1);
+    if(motor){ if(visible) motor.arrancar(); else motor.parar(); }
+  }
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(comprobar,{rootMargin:'100% 0px'}).observe(pista);
+  }
+  addEventListener('scroll', comprobar, {passive:true});
+  comprobar();
+
+  // sin oyente de resize: el bucle de `motor.js` consulta `avance` una vez por
+  // fotograma, asi que el encuadre se recoloca solo.
 })();
 </script>
 </body>

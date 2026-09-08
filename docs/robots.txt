@@ -1,0 +1,11 @@
+# beagentry.com
+User-agent: *
+Allow: /
+
+# Los 37 MB de geometria del turbofan no aportan nada a la busqueda y rastrearlos
+# solo gasta presupuesto de rastreo. El three.js de al lado SI se deja rastrear:
+# bloquearlo haria que Google no pudiera dibujar la banda y lo anotase como
+# recurso bloqueado.
+Disallow: /turbofan/modelo/
+
+Sitemap: https://beagentry.com/sitemap.xml

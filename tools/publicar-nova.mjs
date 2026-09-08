@@ -62,7 +62,18 @@ const idx = join(DESTINO, 'index.html');
 let html = readFileSync(idx, 'utf8');
 const ancla = '    <div id="modal-root"></div>\n';
 if (!html.includes(ancla)) { console.error('no encuentro el ancla modal-root en index.html'); process.exit(1); }
-writeFileSync(idx, html.replace(ancla, ancla + BARRA));
+// Lo mismo que la barra, y por lo mismo: vite no sabe nada del sitio publico,
+// asi que el canonical y la descripcion tambien hay que volver a ponerlos. Sin
+// canonical la misma pagina existe en beagentry.com y en github.io, y Google
+// tiene que elegir una por su cuenta.
+const CABECERA = `
+    <link rel="canonical" href="https://beagentry.com/nova-engine/">
+    <meta name="description" content="Editor 3D en tiempo real con la ergonomia de Unreal Engine 5, corriendo en el navegador: viewport PBR, gizmos, outliner y exportacion.">
+    <meta name="robots" content="index, follow, max-image-preview:large">`;
 
-console.log('listo -> docs/nova-engine/ (con barra de autoria)');
+html = html.replace(ancla, ancla + BARRA);
+if (!html.includes('</title>')) { console.error('no encuentro el title en index.html'); process.exit(1); }
+writeFileSync(idx, html.replace('</title>', '</title>' + CABECERA));
+
+console.log('listo -> docs/nova-engine/ (con barra de autoria y cabecera SEO)');
 console.log('publica con: node beagentry/publicar.mjs "nova engine al dia"');
