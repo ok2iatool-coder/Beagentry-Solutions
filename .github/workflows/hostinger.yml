@@ -16,10 +16,11 @@
 
 name: Publicar en Hostinger
 
+# Desde el 2026-09-08 beagentry.com lo sirve GitHub Pages (docs/CNAME), asi que
+# este flujo YA NO se dispara solo: no hace falta y fallaba en cada push porque
+# nunca se pusieron los secretos. Se queda aqui, lanzable a mano desde la pestana
+# Actions > Run workflow, por si algun dia se vuelve a alojar en Hostinger.
 on:
-  push:
-    branches: [main]
-    paths: ['docs/**', '.github/workflows/hostinger.yml']
   workflow_dispatch:
 
 concurrency:
