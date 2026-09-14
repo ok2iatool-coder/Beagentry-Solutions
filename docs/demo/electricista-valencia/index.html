@@ -3,23 +3,23 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{{nombre}} · {{sector}} en {{ciudad}}</title>
-<meta name="description" content="{{nombre}}, {{sector}} en {{zona}}. {{eslogan}}">
-<meta property="og:title" content="{{nombre}} · {{sector}} en {{ciudad}}">
-<meta property="og:description" content="{{eslogan}}">
+<title>Electricista Valencia · Electricista autorizado en Valencia</title>
+<meta name="description" content="Electricista Valencia, Electricista autorizado en Valencia. Averías, cuadros y boletines en Valencia. Presupuesto cerrado antes de tocar nada.">
+<meta property="og:title" content="Electricista Valencia · Electricista autorizado en Valencia">
+<meta property="og:description" content="Averías, cuadros y boletines en Valencia. Presupuesto cerrado antes de tocar nada.">
 <meta property="og:type" content="business.business">
-{{#si foto_principal}}<meta property="og:image" content="{{foto_principal}}">{{/si}}
-{{#si es_demo}}<!-- Demo de prospeccion alojada en el dominio de la agencia: NO se indexa.
+
+<!-- Demo de prospeccion alojada en el dominio de la agencia: NO se indexa.
      Una pagina publica con el nombre del negocio competiria en Google con la
      suya de verdad, o la suplantaria. Con --final esto desaparece, porque
      entonces la web vive en el dominio del cliente y si tiene que indexarse. -->
-<meta name="robots" content="noindex, nofollow">{{/si}}
-<link rel="icon" href="data:image/svg+xml,{{{favicon}}}">
-<script type="application/ld+json">{{{jsonld}}}</script>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22%230b4da2%22%2F%3E%3Ctext%20x%3D%2232%22%20y%3D%2243%22%20font-family%3D%22Segoe%20UI%2CArial%22%20font-size%3D%2234%22%20font-weight%3D%22700%22%20text-anchor%3D%22middle%22%20fill%3D%22%23fff%22%3EE%3C%2Ftext%3E%3C%2Fsvg%3E">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"Electricista Valencia","description":"Averías, cuadros y boletines en Valencia. Presupuesto cerrado antes de tocar nada.","url":"https://electricistavalencia.es","areaServed":"Valencia"}</script>
 <style>
 :root{
-  --c:{{color}};
-  --fondo:{{color_fondo}};
+  --c:#0b4da2;
+  --fondo:#f7f8fa;
   --tinta:#1d1a17;
   --suave:#6b645c;
   --linea:rgba(29,26,23,.12);
@@ -59,11 +59,7 @@ nav ul a:hover{color:var(--tinta)}
 .hero::before{content:"";position:absolute;inset:0;background:
   radial-gradient(60% 80% at 80% 20%,rgba(255,255,255,.22),transparent 60%),
   radial-gradient(50% 60% at 10% 90%,rgba(0,0,0,.28),transparent 60%);}
-{{#si foto_principal}}
-.hero{background:#000}
-.hero::after{content:"";position:absolute;inset:0;background:url("{{foto_principal}}") center/cover;opacity:.55}
-.hero::before{z-index:1;background:linear-gradient(90deg,rgba(0,0,0,.7),rgba(0,0,0,.2))}
-{{/si}}
+
 .hero .wrap{position:relative;z-index:2;max-width:760px;margin-left:max(4vw,calc((100vw - 1080px)/2))}
 .hero h1{font-size:clamp(2.4rem,6vw,4.4rem);margin-bottom:.35em}
 .hero p{font-size:clamp(1.05rem,2vw,1.35rem);opacity:.92;max-width:34ch;margin:0 0 1.6em}
@@ -93,8 +89,8 @@ nav ul a:hover{color:var(--tinta)}
 .sobre p{font-size:1.1rem;color:#3d3833}
 .sobre .lado{aspect-ratio:4/3;border-radius:var(--radio);background:
   linear-gradient(135deg,color-mix(in srgb,var(--c) 85%,#000),var(--c) 60%,color-mix(in srgb,var(--c) 60%,#fff));position:relative;overflow:hidden}
-.sobre .lado::after{content:"{{inicial}}";position:absolute;inset:0;display:grid;place-items:center;font-size:9rem;font-weight:800;color:rgba(255,255,255,.22)}
-{{#si foto_secundaria}}.sobre .lado{background:url("{{foto_secundaria}}") center/cover}.sobre .lado::after{content:none}{{/si}}
+.sobre .lado::after{content:"E";position:absolute;inset:0;display:grid;place-items:center;font-size:9rem;font-weight:800;color:rgba(255,255,255,.22)}
+
 @media(max-width:800px){.sobre .wrap{grid-template-columns:1fr}}
 
 /* galeria */
@@ -124,7 +120,7 @@ footer a{text-decoration:none}
 footer a:hover{text-decoration:underline}
 
 /* whatsapp flotante */
-.flot{position:fixed;right:18px;bottom:{{#si demo}}86px{{#sino}}18px{{/si}};z-index:30;width:58px;height:58px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 10px 24px -8px rgba(0,0,0,.4)}
+.flot{position:fixed;right:18px;bottom:18px;z-index:30;width:58px;height:58px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 10px 24px -8px rgba(0,0,0,.4)}
 .flot svg{width:30px;height:30px;fill:#fff}
 
 /* barra demo */
@@ -136,107 +132,105 @@ footer a:hover{text-decoration:underline}
 <body>
 
 <nav><div class="wrap">
-  <a class="marca" href="#"><i></i>{{nombre}}</a>
+  <a class="marca" href="#"><i></i>Electricista Valencia</a>
   <ul>
-    <li><a href="#servicios">{{titulo_servicios}}</a></li>
+    <li><a href="#servicios">Qué hacemos</a></li>
     <li><a href="#sobre">Nosotros</a></li>
     <li><a href="#donde">Horario y dónde</a></li>
     <li><a href="#contacto">Contacto</a></li>
   </ul>
-  <a class="btn" href="{{url_whatsapp}}" target="_blank" rel="noopener">WhatsApp</a>
+  <a class="btn" href="#" target="_blank" rel="noopener">WhatsApp</a>
 </div></nav>
 
 <header class="hero"><div class="wrap">
-  <span class="pill">{{sector}} · {{zona}}</span>
-  <h1>{{nombre}}</h1>
-  <p>{{eslogan}}</p>
+  <span class="pill">Electricista autorizado · Valencia</span>
+  <h1>Electricista Valencia</h1>
+  <p>Averías, cuadros y boletines en Valencia. Presupuesto cerrado antes de tocar nada.</p>
   <div class="acciones">
-    <a class="btn" href="{{url_whatsapp}}" target="_blank" rel="noopener">
+    <a class="btn" href="#" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.1.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.2c0-.1-.2-.2-.5-.3z"/></svg>
       Escríbenos por WhatsApp</a>
-    <a class="btn sec" href="{{tel_href}}">Llamar · {{telefono}}</a>
+    <a class="btn sec" href="#">Llamar · [tu teléfono]</a>
   </div>
 </div></header>
 
-{{#si destacados}}
+
 <section><div class="wrap">
   <div class="tres">
-    {{#cada destacados}}
-    <div class="card"><div class="n">{{numero}}</div><h3>{{titulo}}</h3><p>{{texto}}</p></div>
-    {{/cada}}
+    
+    <div class="card"><div class="n">1</div><h3>El mismo día</h3><p>Si te has quedado sin luz, no se espera al lunes.</p></div>
+    
+    <div class="card"><div class="n">2</div><h3>Presupuesto cerrado</h3><p>Sabes lo que cuesta antes de que nadie toque un cable.</p></div>
+    
+    <div class="card"><div class="n">3</div><h3>Instalador autorizado</h3><p>La instalación queda legal y con su certificado en la mano.</p></div>
+    
   </div>
 </div></section>
-{{/si}}
+
 
 <section class="servicios" id="servicios"><div class="wrap">
-  <div class="eyebrow">{{titulo_servicios}}</div>
+  <div class="eyebrow">Qué hacemos</div>
   <h2>Lo que hacemos, sin letra pequeña</h2>
   <div class="lista">
-    {{#cada servicios}}
-    <div class="item"><div><b>{{nombre}}</b><span>{{descripcion}}</span></div>{{#si precio}}<div class="precio">{{precio}}</div>{{/si}}</div>
-    {{/cada}}
+    
+    <div class="item"><div><b>Averías y urgencias</b><span>Se ha ido la luz, salta el diferencial o huele a quemado. Se atiende el mismo día.</span></div></div>
+    
+    <div class="item"><div><b>Cambio de cuadro eléctrico</b><span>Cuadros antiguos por uno nuevo con diferencial y automáticos, según normativa.</span></div></div>
+    
+    <div class="item"><div><b>Boletines eléctricos (CIE)</b><span>El certificado que te piden para dar de alta la luz o cambiar de potencia.</span></div></div>
+    
+    <div class="item"><div><b>Enchufes y puntos de luz</b><span>Ampliar tomas, mover puntos, regletas y cajas. Sin dejar la pared hecha un cristo.</span></div></div>
+    
+    <div class="item"><div><b>Iluminación LED</b><span>Cambio a LED en casa, local o negocio. Focos, carriles y exterior.</span></div></div>
+    
+    <div class="item"><div><b>Punto de recarga para coche</b><span>Instalación del cargador en garaje o vivienda, con su protección.</span></div></div>
+    
   </div>
 </div></section>
 
 <section class="sobre" id="sobre"><div class="wrap">
   <div>
     <div class="eyebrow">Nosotros</div>
-    <h2>{{sector}} en {{barrio}}</h2>
-    <p>{{descripcion}}</p>
-    <a class="btn sec" href="#contacto">{{#si hay_direccion}}Ven a vernos{{#sino}}Pide presupuesto{{/si}}</a>
+    <h2>Electricista autorizado en Valencia</h2>
+    <p>Instalaciones eléctricas en viviendas y locales de Valencia y alrededores. Averías el mismo día, cambio de cuadro, boletines para dar de alta la luz y puntos de recarga para coche eléctrico. Lo que se presupuesta es lo que se cobra.</p>
+    <a class="btn sec" href="#contacto">Pide presupuesto</a>
   </div>
   <div class="lado"></div>
 </div></section>
 
-{{#si galeria}}
-<section class="galeria"><div class="wrap">
-  {{#cada galeria}}<img src="{{valor}}" alt="{{nombre_negocio}}" loading="lazy">{{/cada}}
-</div></section>
-{{/si}}
+
 
 <section class="donde" id="donde"><div class="wrap">
-  {{#si horario}}
+  
   <div>
-    <div class="eyebrow">Horario</div>
-    <table>
-      {{#cada horario}}<tr><td>{{dias}}</td><td>{{horas}}</td></tr>{{/cada}}
-    </table>
-  </div>
-  {{/si}}
-  <div>
-    <div class="eyebrow">{{#si hay_direccion}}Dónde estamos{{#sino}}Zona de trabajo{{/si}}</div>
-    <p class="dir">{{direccion}}</p>
-    {{#si hay_direccion}}<a class="btn" href="{{url_maps}}" target="_blank" rel="noopener">Cómo llegar</a>{{/si}}
+    <div class="eyebrow">Zona de trabajo</div>
+    <p class="dir">[tu dirección o zona]</p>
+    
   </div>
 </div></section>
 
 <section class="contacto" id="contacto"><div class="wrap">
   <div class="eyebrow">Contacto</div>
-  <h2>{{#si hay_direccion}}Te esperamos en {{barrio}}{{#sino}}Trabajamos en {{zona}}{{/si}}</h2>
-  <p>{{#si hay_direccion}}Escríbenos por WhatsApp o llámanos. Respondemos en el momento en horario de apertura.{{#sino}}Escríbenos por WhatsApp o llámanos y te decimos cuándo podemos pasar.{{/si}}</p>
+  <h2>Trabajamos en Valencia</h2>
+  <p>Escríbenos por WhatsApp o llámanos y te decimos cuándo podemos pasar.</p>
   <div class="acciones">
-    <a class="btn" href="{{url_whatsapp}}" target="_blank" rel="noopener">WhatsApp</a>
-    <a class="btn sec" href="{{tel_href}}">{{telefono}}</a>
-    {{#si email}}<a class="btn sec" href="mailto:{{email}}">{{email}}</a>{{/si}}
-    {{#si instagram}}<a class="btn sec" href="https://instagram.com/{{instagram}}" target="_blank" rel="noopener">@{{instagram}}</a>{{/si}}
+    <a class="btn" href="#" target="_blank" rel="noopener">WhatsApp</a>
+    <a class="btn sec" href="#">[tu teléfono]</a>
+    
+    
   </div>
 </div></section>
 
 <footer><div class="wrap">
-  <span>© {{anyo}} {{nombre}}{{#si hay_direccion}} · {{direccion}}{{/si}}</span>
-  <span><a href="legal.html">Aviso legal y privacidad</a> · Web por <a href="https://{{agencia_dominio}}" target="_blank" rel="noopener">{{agencia}}</a></span>
+  <span>© 2026 Electricista Valencia</span>
+  <span><a href="legal.html">Aviso legal y privacidad</a> · Web por <a href="https://beagentry.com" target="_blank" rel="noopener">Beagentry</a></span>
 </div></footer>
 
-<a class="flot" href="{{url_whatsapp}}" target="_blank" rel="noopener" aria-label="WhatsApp">
+<a class="flot" href="#" target="_blank" rel="noopener" aria-label="WhatsApp">
   <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.1.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.2c0-.1-.2-.2-.5-.3z"/></svg>
 </a>
 
-{{#si demo}}
-<div class="demo">
-  <span>Esta web es una <b>demo preparada para {{nombre}}</b> por {{agencia}}. Si te gusta, es tuya hoy.</span>
-  <a href="activar.html">Activarla desde {{precio_base}} €</a>
-</div>
-{{/si}}
+
 
 </body>
 </html>

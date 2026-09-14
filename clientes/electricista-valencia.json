@@ -1,0 +1,35 @@
+{
+  "slug": "electricista-valencia",
+  "nombre": "Electricista Valencia",
+  "sector": "Electricista autorizado",
+  "eslogan": "Averías, cuadros y boletines en Valencia. Presupuesto cerrado antes de tocar nada.",
+  "descripcion": "Instalaciones eléctricas en viviendas y locales de Valencia y alrededores. Averías el mismo día, cambio de cuadro, boletines para dar de alta la luz y puntos de recarga para coche eléctrico. Lo que se presupuesta es lo que se cobra.",
+  "ciudad": "Valencia",
+  "barrio": "",
+  "direccion": "",
+  "telefono": "",
+  "whatsapp": "",
+  "email": "",
+  "instagram": "",
+  "maps": "",
+  "color": "#0b4da2",
+  "color_fondo": "#f7f8fa",
+  "titulo_servicios": "Qué hacemos",
+  "servicios": [
+    { "nombre": "Averías y urgencias", "descripcion": "Se ha ido la luz, salta el diferencial o huele a quemado. Se atiende el mismo día.", "precio": "" },
+    { "nombre": "Cambio de cuadro eléctrico", "descripcion": "Cuadros antiguos por uno nuevo con diferencial y automáticos, según normativa.", "precio": "" },
+    { "nombre": "Boletines eléctricos (CIE)", "descripcion": "El certificado que te piden para dar de alta la luz o cambiar de potencia.", "precio": "" },
+    { "nombre": "Enchufes y puntos de luz", "descripcion": "Ampliar tomas, mover puntos, regletas y cajas. Sin dejar la pared hecha un cristo.", "precio": "" },
+    { "nombre": "Iluminación LED", "descripcion": "Cambio a LED en casa, local o negocio. Focos, carriles y exterior.", "precio": "" },
+    { "nombre": "Punto de recarga para coche", "descripcion": "Instalación del cargador en garaje o vivienda, con su protección.", "precio": "" }
+  ],
+  "horario": [],
+  "destacados": [
+    { "titulo": "El mismo día", "texto": "Si te has quedado sin luz, no se espera al lunes." },
+    { "titulo": "Presupuesto cerrado", "texto": "Sabes lo que cuesta antes de que nadie toque un cable." },
+    { "titulo": "Instalador autorizado", "texto": "La instalación queda legal y con su certificado en la mano." }
+  ],
+  "fotos": [],
+  "titular_legal": "",
+  "nif": ""
+}

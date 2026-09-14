@@ -8,4 +8,9 @@ Allow: /
 # recurso bloqueado.
 Disallow: /turbofan/modelo/
 
+# Las demos que se preparan para un negocio antes de que sea cliente llevan su
+# nombre. Que Google las indexe seria competir con la web real de esa empresa
+# desde un dominio que no es suyo.
+Disallow: /demo/
+
 Sitemap: https://beagentry.com/sitemap.xml
