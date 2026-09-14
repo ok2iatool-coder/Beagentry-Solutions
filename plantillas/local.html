@@ -140,7 +140,7 @@ footer a:hover{text-decoration:underline}
   <ul>
     <li><a href="#servicios">{{titulo_servicios}}</a></li>
     <li><a href="#sobre">Nosotros</a></li>
-    <li><a href="#donde">Horario y dónde</a></li>
+    <li><a href="#donde">{{#si hay_direccion}}Horario y dónde{{#sino}}Zona de trabajo{{/si}}</a></li>
     <li><a href="#contacto">Contacto</a></li>
   </ul>
   <a class="btn" href="{{url_whatsapp}}" target="_blank" rel="noopener">WhatsApp</a>
