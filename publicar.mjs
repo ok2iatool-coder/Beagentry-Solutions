@@ -5,7 +5,8 @@
 //   node beagentry/publicar.mjs --solo-ftp           no toca git, solo sube a Hostinger
 //   node beagentry/publicar.mjs --solo-git           no sube por FTP
 //   node beagentry/publicar.mjs --todo               reenvia por FTP todo, no solo lo cambiado
-//   node beagentry/publicar.mjs --sin-revisar-legal  publica aunque el aviso legal este a medias
+//   node beagentry/publicar.mjs --revisar-legal      SOLO revisa lo legal y sale, no publica
+//   node beagentry/publicar.mjs --sin-revisar-legal  publica saltandose esa revision
 //
 // Antes de nada revisa la parte legal: la web es un portfolio sin precios, y
 // si alguna pagina vuelve a anunciar tarifas sin que exista aviso legal, se
@@ -338,6 +339,11 @@ function revisarLegal() {
 // ------------------------------------------------------------ marcha
 
 if (!existsSync(DOCS)) { err('no encuentro docs/'); process.exit(1); }
+
+// Probar la revision legal NO puede exigir lanzar el publicador entero: con
+// --solo-git se cuela hasta el push y publica la web sin querer. Paso una vez.
+if (args.includes('--revisar-legal')) { revisarLegal(); process.exit(0); }
+
 if (!args.includes('--sin-revisar-legal')) revisarLegal();
 if (!soloFtp) publicarGit();
 if (!soloGit) await publicarFtp();
