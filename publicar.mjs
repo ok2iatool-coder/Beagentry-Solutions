@@ -5,8 +5,13 @@
 //   node beagentry/publicar.mjs --solo-ftp           no toca git, solo sube a Hostinger
 //   node beagentry/publicar.mjs --solo-git           no sube por FTP
 //   node beagentry/publicar.mjs --todo               reenvia por FTP todo, no solo lo cambiado
+//   node beagentry/publicar.mjs --sin-revisar-legal  publica aunque el aviso legal este a medias
 //
-// Hace dos cosas:
+// Antes de nada revisa la parte legal: la web es un portfolio sin precios, y
+// si alguna pagina vuelve a anunciar tarifas sin que exista aviso legal, se
+// niega a publicar (anunciar precios obliga a publicar NIF y domicilio).
+//
+// Despues hace dos cosas:
 //   1. git add + commit + push  ->  GitHub Pages se actualiza solo en ~1 min.
 //   2. Si existe ftp.json, sube a Hostinger SOLO los ficheros de docs/ que
 //      cambiaron desde la ultima vez (huella sha1 en .ftp-estado.json).
@@ -249,9 +254,91 @@ async function publicarFtp() {
   }
 }
 
+// ------------------------------------------- 0. la pagina legal, antes de nada
+
+// La web es un PORTFOLIO: ensena trabajos, no vende nada. Por eso no lleva
+// aviso legal con nombre, NIF y domicilio — el articulo 10 de la LSSI obliga
+// a publicarlos a quien ejerce una actividad economica, y esa parte esta en
+// pausa hasta que haya alta.
+//
+// El riesgo real, entonces, no es que falten datos: es que un dia vuelvan los
+// precios de un copiar y pegar y la web pase a ser un escaparate comercial sin
+// que nadie se acuerde de que eso arrastra el aviso legal. Eso es lo que
+// vigila esto.
+const SENALES_COMERCIALES = [
+  [/\b\d{1,5}([.,]\d{1,2})?\s*(&euro;|€|eur\b|euros\b)|(&euro;|€)\s*\d{1,5}/i, 'un precio en euros'],
+  [/"@type"\s*:\s*"Offer"/, 'una Offer en los datos estructurados'],
+  [/"priceRange"/, 'priceRange en los datos estructurados'],
+  [/\bbizum\b/i, 'un cobro por Bizum'],
+  [/stripe\.com|buy\.stripe/i, 'un enlace de pago de Stripe'],
+];
+
+function revisarLegal() {
+  const legal = join(DOCS, 'legal', 'index.html');
+  if (!existsSync(legal)) {
+    err('no encuentro docs/legal/index.html: no publiques sin la pagina de privacidad');
+    process.exit(1);
+  }
+
+  // Las demos de cliente son webs de OTRO negocio, con su propio legal dentro;
+  // que lleven precios no dice nada de esta web.
+  const paginas = [];
+  (function recorrer(dir) {
+    for (const e of readdirSync(dir, { withFileTypes: true })) {
+      const p = join(dir, e.name);
+      const rel = relative(DOCS, p).split(sep).join('/');
+      if (rel.startsWith('demo/') || rel.startsWith('legal/')) continue;
+      if (e.isDirectory()) recorrer(p);
+      else if (e.name.endsWith('.html')) paginas.push([rel, p]);
+    }
+  })(DOCS);
+
+  const hallazgos = [];
+  for (const [rel, abs] of paginas) {
+    const crudo = readFileSync(abs, 'utf8');
+    // Mirar solo el HTML crudo no basta: en vela/ el precio estaba escrito
+    // "49<small>&euro; / mes</small>", con la cifra y el simbolo separados por
+    // una etiqueta, y ningun patron de "numero pegado a euro" lo veia. Se
+    // revisa tambien el texto sin etiquetas, que es lo que lee una persona.
+    const visible = crudo
+      .replace(/<(script|style)[\s\S]*?<\/\1>/gi, ' ')
+      .replace(/<[^>]+>/g, '')
+      .replace(/&euro;/g, '€')
+      .replace(/\s+/g, ' ');
+    for (const [patron, que] of SENALES_COMERCIALES) {
+      if (patron.test(crudo) || patron.test(visible)) hallazgos.push(`  ${rel}: ${que}`);
+    }
+  }
+
+  const tieneAvisoLegal = /art[ií]culo 10/i.test(readFileSync(legal, 'utf8'));
+  if (hallazgos.length && !tieneAvisoLegal) {
+    err('\nla web ha vuelto a anunciar precios, y no hay aviso legal:');
+    [...new Set(hallazgos)].forEach((h) => err(h));
+    err('\nAnunciar tarifa publica es ejercer una actividad economica, y eso');
+    err('obliga a publicar titular, NIF y domicilio (art. 10 LSSI), ademas de');
+    err('indicar si los precios llevan IVA. O se quitan los precios, o se');
+    err('recupera el aviso legal completo.');
+    err('(para saltarse esta comprobacion: --sin-revisar-legal)\n');
+    process.exit(1);
+  }
+
+  const huecos = readFileSync(legal, 'utf8').match(/PENDIENTE: [^<]+/g) || [];
+  if (huecos.length) {
+    err(`\npagina legal incompleta: quedan ${huecos.length} datos por rellenar`);
+    [...new Set(huecos)].forEach((h) => err('  - ' + h));
+    err('(para saltarse esta comprobacion: --sin-revisar-legal)\n');
+    process.exit(1);
+  }
+
+  log(hallazgos.length
+    ? 'legal: hay precios publicados y aviso legal puesto, correcto'
+    : 'legal: portfolio sin precios, pagina de privacidad al dia');
+}
+
 // ------------------------------------------------------------ marcha
 
 if (!existsSync(DOCS)) { err('no encuentro docs/'); process.exit(1); }
+if (!args.includes('--sin-revisar-legal')) revisarLegal();
 if (!soloFtp) publicarGit();
 if (!soloGit) await publicarFtp();
 log('listo.');

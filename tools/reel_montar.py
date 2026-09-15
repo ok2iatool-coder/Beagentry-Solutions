@@ -51,6 +51,22 @@ tira = tiras.new_image(name='reel', filepath=os.path.join(carpeta, ficheros[0]),
 for f in ficheros[1:]:
     tira.elements.append(f)
 
+# TERCERA TRAMPA, y la peor porque el resultado parece bueno: la captura no
+# tiene por que medir lo mismo que el video. Se graba al doble para que el texto
+# salga suavizado y se baja aqui. Pero el sequencer NO escala por su cuenta:
+# pone la imagen a tamano original centrada en el lienzo, asi que un origen de
+# 3840x2160 en un video de 1920x1080 sale recortado al cuarto central, ampliado
+# al 200%. Se ve como un zoom brutal que se come los textos de la pagina. No
+# avisa nadie: el montaje termina con codigo 0 y los .jpg de origen estan bien.
+# Mientras la captura y la salida midieron lo mismo esto no se noto nunca.
+w0 = tira.elements[0].orig_width
+h0 = tira.elements[0].orig_height
+if (w0, h0) != (ancho, alto):
+    k = min(ancho / w0, alto / h0)
+    tira.transform.scale_x = k
+    tira.transform.scale_y = k
+    print('[montar] origen %dx%d -> escala %.4f para caber en %dx%d' % (w0, h0, k, ancho, alto))
+
 scn.frame_start = 1
 scn.frame_end = len(ficheros)
 

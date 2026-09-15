@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Software avanzado, agentes y webs · Beagentry</title>
-<meta name="description" content="Construimos software avanzado: agentes automatizados que trabajan solos, laboratorio de 3D e ingeniería por código, y páginas web a precio cerrado desde 200 €.">
+<meta name="description" content="Cuaderno de trabajo de Beagentry: agentes automatizados, laboratorio de 3D e ingeniería por código, y páginas web construidas a mano.">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <link rel="icon" href="logo.png">
 <link rel="canonical" href="https://beagentry.com/">
@@ -13,54 +13,33 @@
 <meta property="og:site_name" content="Beagentry">
 <meta property="og:title" content="Software avanzado, agentes y webs · Beagentry">
 <meta property="og:locale" content="es_ES">
-<meta property="og:description" content="Construimos software avanzado. Agentes automatizados, laboratorio de 3D e ingeniería, y webs a precio cerrado.">
+<meta property="og:description" content="Cuaderno de trabajo: agentes automatizados, laboratorio de 3D e ingeniería, y webs construidas a mano.">
 <meta property="og:url" content="https://beagentry.com/">
 <meta property="og:image" content="https://beagentry.com/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Beagentry — construimos software avanzado: agentes, labs y webs a precio cerrado.">
+<meta property="og:image:alt" content="Beagentry — software avanzado: agentes, labs y webs construidas a mano.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Software avanzado, agentes y webs · Beagentry">
-<meta name="twitter:description" content="Construimos software avanzado. Agentes automatizados, laboratorio de 3D e ingeniería, y webs a precio cerrado.">
+<meta name="twitter:description" content="Cuaderno de trabajo: agentes automatizados, laboratorio de 3D e ingeniería, y webs construidas a mano.">
 <meta name="twitter:image" content="https://beagentry.com/og.png">
 <meta name="theme-color" content="#000000">
-<!-- Datos estructurados: quien es el negocio, que vende y por cuanto. Sin esto
-     Google solo ve un titular bonito y tiene que adivinar el resto. -->
+<!-- Datos estructurados. Aqui habia un ProfessionalService con los tres
+     escalones como Offer; se quito al pasar la web a portfolio: anunciar
+     tarifa publica es ejercer una actividad, y esa parte esta en pausa.
+     Cuando vuelvan los precios, vuelve ese bloque (esta en el historial). -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "ProfessionalService",
-      "@id": "https://beagentry.com/#negocio",
+      "@type": "Organization",
+      "@id": "https://beagentry.com/#autor",
       "name": "Beagentry",
       "url": "https://beagentry.com/",
       "logo": "https://beagentry.com/logo.png",
-      "image": "https://beagentry.com/logo.png",
-      "description": "Software avanzado a medida: agentes automatizados que atienden WhatsApp, laboratorio de 3D e ingeniería por código, y páginas web para negocios a precio cerrado.",
       "email": "ok2iatool@gmail.com",
-      "priceRange": "200 €–600 €",
-      "currenciesAccepted": "EUR",
-      "areaServed": { "@type": "Country", "name": "España" },
-      "knowsLanguage": "es",
-      "sameAs": ["https://www.instagram.com/beagentry0/"],
-      "makesOffer": [
-        {
-          "@type": "Offer", "name": "Web", "price": "200", "priceCurrency": "EUR",
-          "url": "https://beagentry.com/#precios",
-          "description": "Tu web tal y como la ves, lista hoy. Dominio conectado, botones de WhatsApp y llamada, aviso legal y dos rondas de cambios."
-        },
-        {
-          "@type": "Offer", "name": "Web + SEO local", "price": "350", "priceCurrency": "EUR",
-          "url": "https://beagentry.com/#precios",
-          "description": "Para que te encuentren en Google cuando buscan en tu zona. Ficha de Google Business, datos estructurados y textos orientados a tu ciudad."
-        },
-        {
-          "@type": "Offer", "name": "A medida", "price": "600", "priceCurrency": "EUR",
-          "url": "https://beagentry.com/#precios",
-          "description": "Diseño exclusivo y hasta seis páginas, para negocios que venden caro."
-        }
-      ]
+      "sameAs": ["https://www.instagram.com/beagentry0/"]
     },
     {
       "@type": "WebSite",
@@ -68,15 +47,16 @@
       "url": "https://beagentry.com/",
       "name": "Beagentry",
       "inLanguage": "es",
-      "publisher": { "@id": "https://beagentry.com/#negocio" }
+      "description": "Cuaderno de trabajo: agentes automatizados, laboratorio de 3D e ingenieria por codigo, y paginas web construidas a mano.",
+      "publisher": { "@id": "https://beagentry.com/#autor" }
     }
   ]
 }
 </script>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<!-- Tipografias servidas desde este dominio: ningun visitante pasa por
+     fonts.googleapis.com. Ver /fuentes/fuentes.css -->
+<link rel="stylesheet" href="/fuentes/fuentes.css">
 <style>
 :root{--bg:#000;--tinta:#eee;--suave:#8a8a8a;--muy:#3a3a3a;--linea:rgba(255,255,255,.08);--ac:#fff}
 *{box-sizing:border-box}
@@ -122,7 +102,7 @@ nav .wrap{height:100%;display:flex;align-items:center;justify-content:space-betw
 
 /* secciones */
 section{padding:clamp(80px,12vw,160px) 0;border-top:1px solid var(--linea)}
-#hacemos,#precios{border-top:0}
+#hacemos{border-top:0}
 .cab{display:flex;gap:16px;align-items:baseline;margin-bottom:34px}
 .cab .n{color:var(--tinta)}
 .cab .mono+.mono::before{content:"·";margin-right:16px;color:var(--muy)}
@@ -136,20 +116,6 @@ section{padding:clamp(80px,12vw,160px) 0;border-top:1px solid var(--linea)}
 .hace p{color:var(--suave);font-size:.95rem}
 @media(max-width:760px){.hacemos{grid-template-columns:1fr}.hace{min-height:0}.hace b{margin-top:22px}}
 
-/* precios */
-.precios{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--linea);border:1px solid var(--linea);margin-top:56px}
-.precio{background:var(--bg);padding:40px 32px}
-.precio .num{font-size:clamp(2.6rem,5vw,4rem);letter-spacing:-.04em;line-height:1;margin:18px 0 10px}
-.precio .num small{font-size:1rem;color:var(--suave);letter-spacing:0;margin-left:4px}
-.precio p{color:var(--suave);font-size:.95rem}
-@media(max-width:760px){.precios{grid-template-columns:1fr}}
-
-/* pasos */
-.pasos{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:56px}
-.paso .mono{display:block;margin-bottom:14px}
-.paso b{font-weight:400;font-size:1.2rem;display:block;margin-bottom:8px;letter-spacing:-.01em}
-.paso p{color:var(--suave);font-size:.95rem}
-@media(max-width:760px){.pasos{grid-template-columns:1fr}}
 
 /* avances (galeria) */
 .avances{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1px;background:var(--linea);border:1px solid var(--linea);margin-top:56px}
@@ -207,7 +173,6 @@ footer .mono a:hover{color:var(--tinta)}
   <a class="logo" href="#"><img src="logo.png" alt="Beagentry">Beagentry</a>
   <div class="links">
     <a href="#hacemos">Qué hacemos</a>
-    <a href="#precios">Precios</a>
     <a href="#avances">Avances</a>
     <a class="btn" href="#hablar">Hablar →</a>
   </div>
@@ -219,9 +184,9 @@ footer .mono a:hover{color:var(--tinta)}
   <div class="wrap">
     <div class="mono"><span>Beagentry</span><span>Webs · Agentes · Labs</span><span>2026</span></div>
     <h1>Construimos<br>software avanzado.</h1>
-    <p>Desde tu página web hasta programas que nadie más te va a hacer. Precio cerrado.</p>
+    <p>Un cuaderno de trabajo abierto: webs, agentes que funcionan solos y cosas que todavía no existen.</p>
     <div class="acciones">
-      <a class="btn solido" href="#precios">Precios →</a>
+      <a class="btn solido" href="#avances">Ver los trabajos →</a>
       <a class="btn" href="#hablar">Hablar</a>
     </div>
   </div>
@@ -232,29 +197,9 @@ footer .mono a:hover{color:var(--tinta)}
   <div class="cab ap"><span class="mono n">01</span><span class="mono">Qué hacemos</span></div>
   <h2 class="ap">De una web a un agente.<br>Y lo que haya en medio.</h2>
   <div class="hacemos ap">
-    <div class="hace"><span class="mono">Webs</span><div><b>Páginas web</b><p>Para negocios. Hechas antes de pedirlas, precio cerrado.</p></div></div>
+    <div class="hace"><span class="mono">Webs</span><div><b>Páginas web</b><p>Escritas a mano, sin plantillas ni maquetadores. Rápidas porque pesan poco.</p></div></div>
     <div class="hace"><span class="mono">Agentes</span><div><b>Agentes automatizados</b><p>De todo tipo. Atienden, responden, clasifican, ejecutan. Sin descanso.</p></div></div>
     <div class="hace"><span class="mono">Labs</span><div><b>Labs</b><p>Lo que aún no existe. Prototipos, modelos, experimentos a medida.</p></div></div>
-  </div>
-</div></section>
-
-<section id="precios"><div class="wrap">
-  <div class="cab ap"><span class="mono n">02</span><span class="mono">Precio cerrado</span><span class="mono">Webs</span></div>
-  <h2 class="ap">Tres números. Nada más.</h2>
-  <div class="precios ap">
-    <div class="precio"><span class="mono">Web</span><div class="num">200<small>€</small></div><p>Lista hoy. Dominio, legal y WhatsApp.</p></div>
-    <div class="precio"><span class="mono">Web + SEO local</span><div class="num">350<small>€</small></div><p>Para que te encuentren en tu zona.</p></div>
-    <div class="precio"><span class="mono">A medida</span><div class="num">600<small>€</small></div><p>Diseño propio y más páginas.</p></div>
-  </div>
-</div></section>
-
-<section id="como"><div class="wrap">
-  <div class="cab ap"><span class="mono n">03</span><span class="mono">Cómo</span></div>
-  <h2 class="ap">Sin reuniones.</h2>
-  <div class="pasos ap">
-    <div class="paso"><span class="mono">Uno</span><b>La ves</b><p>Te mandamos tu web ya hecha.</p></div>
-    <div class="paso"><span class="mono">Dos</span><b>La activas</b><p>Bizum o tarjeta. Un minuto.</p></div>
-    <div class="paso"><span class="mono">Tres</span><b>Es tuya</b><p>En 24 horas, en tu dominio.</p></div>
   </div>
 </div></section>
 
@@ -297,7 +242,7 @@ footer .mono a:hover{color:var(--tinta)}
 
 <footer><div class="wrap">
   <a class="logo" href="#"><img src="logo.png" alt="Beagentry"></a>
-  <span class="mono">© 2026 Beagentry · <a href="https://www.instagram.com/beagentry0/" target="_blank" rel="noopener">@beagentry0</a></span>
+  <span class="mono">© 2026 Beagentry · <a href="https://www.instagram.com/beagentry0/" target="_blank" rel="noopener">@beagentry0</a> · <a href="/legal/#privacidad">Privacidad</a> · <a href="/legal/#cookies">Cookies</a> · <a href="/legal/#uso">Uso</a></span>
 </div></footer>
 
 <script>

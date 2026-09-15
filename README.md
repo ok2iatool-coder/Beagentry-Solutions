@@ -1,15 +1,53 @@
 # Beagentry
 
-Miniagencia: webs para negocios (200 / 350 / 600), agentes automatizados y labs.
+Miniagencia: webs para negocios, agentes automatizados y labs. La web publica
+es un PORTFOLIO y no anuncia precios — el porque, en el punto Legal de abajo.
+El generador de webs de cliente (`generar.mjs`) sigue manejando los tres
+escalones de 200 / 350 / 600 en `config.json`, que es otra cosa: eso va en el
+presupuesto que se le manda a un cliente, no publicado en beagentry.com.
 
-- `docs/` — TODO lo publico. Es lo que sirve GitHub Pages (repo `ok2iatool-coder/Beagentry-Solutions`, Settings > Pages > main, carpeta /docs) y lo que se sube tal cual a `public_html` en Hostinger. Dentro: `index.html` + `logo.png` (la web de la agencia, correo ok2iatool@gmail.com), `vela/` (producto ficticio, agente de WhatsApp) y `shadow-blade/` (copia estatica de `../shinobi-scroll`: tres modelos 3D con scroll; si cambia el original, volver a copiar index.html, main.js, assets/ y vendor/), `motor/` (el Le Rhone 9C de `escuela/obras/lerhone9c` con despiece animado; three.js propio en `motor/vendor/`) y `nova-engine/` (el editor 3D compilado, ver abajo).
+- `docs/` — TODO lo publico. Es lo que sirve GitHub Pages (repo `ok2iatool-coder/Beagentry-Solutions`, Settings > Pages > main, carpeta /docs) y lo que se sube tal cual a `public_html` en Hostinger. Dentro: `index.html` + `logo.png` (la web de la agencia, correo ok2iatool@gmail.com), `vela/` (producto ficticio, agente de WhatsApp) y `shadow-blade/` (copia estatica de `../shinobi-scroll`: tres modelos 3D con scroll; si cambia el original, volver a copiar index.html, main.js, assets/ y vendor/), `motor/` (el Le Rhone 9C de `escuela/obras/lerhone9c` con despiece animado; three.js propio en `motor/vendor/`) y `nova-engine/` (el editor 3D compilado, ver abajo), mas `legal/` (aviso legal, privacidad y cookies) y `fuentes/` (las tipografias, servidas desde aqui y no desde Google).
 - La galeria "Avances" de la web se rellena en la lista `AVANCES` al principio del script de `docs/index.html`; los enlaces son relativos para que valgan en localhost, Pages y Hostinger.
-- **SEO.** `docs/robots.txt` y `docs/sitemap.xml` (las cinco paginas reales),
-  y en la portada datos estructurados JSON-LD: `ProfessionalService` con los
-  tres escalones como `Offer`, mas `WebSite`. Tenia guasa que el escalon de
-  350 € venda "datos estructurados para que Google entienda el negocio" y la
-  web de la agencia no tuviera ninguno. El `<title>` era la palabra
-  "Beagentry" a secas — ahora lleva el gancho y el precio.
+- **Legal, y por que la web NO tiene precios.** La portada tenia tres
+  escalones (200 / 350 / 600), un embudo de pago con Bizum y un
+  `ProfessionalService` con tres `Offer` en los datos estructurados. Todo eso
+  se quito el 2026-09-15 **a proposito**: anunciar tarifa publica es ejercer
+  una actividad economica, y eso obliga a darse de alta y a publicar titular,
+  NIF y domicilio (art. 10 LSSI). Mientras no haya alta, la web es un
+  **portfolio**: ensena trabajos y no vende nada, y asi no tiene que publicar
+  ningun dato personal. **No devolver los precios sin hablarlo**: si vuelven,
+  vuelve tambien el aviso legal completo (el bloque JSON-LD con las tres
+  ofertas esta en el historial de git).
+  - `publicar.mjs` lo vigila solo: recorre `docs/` buscando precios en euros,
+    `Offer`, `priceRange`, Bizum o enlaces de Stripe, y **se niega a publicar**
+    si encuentra alguno y la pagina legal no tiene aviso legal. Las demos de
+    cliente (`docs/demo/`) estan excluidas: son webs de otro negocio, con su
+    propio legal dentro. Valvula de escape: `--sin-revisar-legal`.
+  - `docs/legal/` es una sola pagina con tres apartados anclados: privacidad,
+    cookies y uso. Enlazada desde el pie de TODAS las paginas; las de labs no
+    tenian pie y se les puso uno.
+  - **Esta web no usa cookies**, asi que no lleva banner: no hay analitica ni
+    pixeles. Lo unico que se guarda en el navegador es `nova-engine.autosave`
+    en localStorage (la escena del editor, exenta por el art. 22.2 LSSI) y esta
+    declarado.
+  - Por eso mismo las tipografias se sirven desde `docs/fuentes/` y ya no desde
+    `fonts.googleapis.com`: pedirlas a Google manda la IP del visitante a un
+    tercero de EE. UU. sin avisarle, y entonces la frase "no cedemos tus datos"
+    seria falsa. Son fuentes VARIABLES, un binario por familia cubre todos los
+    pesos: 216 KB en vez de los 852 KB que salen de descargar un fichero por
+    peso. Si alguna pagina nueva necesita otra familia, se anade ahi, no por
+    `<link>` a Google.
+  - El JSON-LD de las cuatro obras apunta a `#autor` (una `Organization` a
+    secas). Antes era `#negocio`, un `ProfessionalService` con precios; al
+    quitarlo se habrian quedado cuatro `creator` colgando de un `@id`
+    inexistente.
+
+- **SEO.** `docs/robots.txt` y `docs/sitemap.xml` (las seis paginas reales, legal incluida),
+  y en la portada datos estructurados JSON-LD: `Organization` (como autor de
+  los trabajos) mas `WebSite`. Aqui hubo un `ProfessionalService` con los tres
+  escalones como `Offer`; se retiro al pasar la web a portfolio, ver el punto
+  Legal de arriba. El `<title>` era la palabra "Beagentry" a secas — ahora
+  lleva el gancho.
   Todas las hijas llevan ya `canonical`: el sitio se sirve a la vez desde
   GitHub Pages y desde beagentry.com, y sin canonical Google tiene que elegir
   el original por su cuenta. El de `nova-engine/` lo reinyecta
@@ -60,6 +98,40 @@ Miniagencia: webs para negocios (200 / 350 / 600), agentes automatizados y labs.
   - el avance se lee **una vez por fotograma dentro del bucle**, no en el evento
     `scroll`: asi no puede perderse un evento ni quedarse con un estado viejo;
   - se regenera copiando `turbofan-web/modelo/` y `turbofan-web/vendor/`.
+
+- `docs/escaparate/` — **el escaparate del laboratorio, pensado para grabarlo.**
+  Una columna de 620 px con la portada, seis fichas (turbofan, Le Rhone 9C,
+  Phantom 4, el plegable, ORION V7 y la torre) y el cierre; cada una ocupa una
+  pantalla entera. Sin dependencias: HTML, CSS y siete `.webp` que suman 232 kB.
+  Las fotos las prepara `python beagentry/tools/escaparate_img.py`, que recorta
+  cada render de `escuela/obras/` a su pieza — los de control salen con la pieza
+  flotando en un fondo enorme y cada uno con un margen distinto — y los baja a
+  1400 px.
+
+  Se graba con el mismo `tools/reel.mjs` que la portada:
+
+      REEL_URL=https://beagentry.com/escaparate/ REEL_LISTO=__escaparate         node beagentry/tools/reel.mjs --vertical
+
+  Lo que hay que respetar si se toca:
+  - **el alto de cada seccion lo pone el script con `innerHeight`**, no `100svh`.
+    En el Chrome que usa el grabador `svh` vale menos que `innerHeight`, y con
+    `svh` cada ficha se iba descolocando un poco mas que la anterior hasta que
+    la sexta entraba por la mitad;
+  - **nada se anima con `transition`.** El avance sale del scroll y se escribe
+    en `--e0..--e3` una vez por fotograma, asi que el grabador puede parar en
+    cualquier punto y la captura es exactamente la de ese punto. La pagina
+    publica `window.__grabar()` para eso, y `window.__escaparate` como aviso de
+    que ya esta montada;
+  - **el bucle se para solo** cuando el scroll deja de moverse. Con un `rAF`
+    eterno, Chrome no daba nunca la pagina por pintada y las capturas fallaban;
+  - **el grabador no da el cuadro que pide.** Medido sobre sus propias
+    capturas: se le piden 540x960 y el viewport sale 590x1049; de ahi captura
+    los 590 de ancho enteros pero solo los 960 primeros pixeles de alto, y los
+    mete en 1080x1920. O sea que **recorta un 8 % por abajo y estira un 9 % a lo
+    alto** — y eso vale para todo lo que se grabe con `reel.mjs`, no solo para
+    esta pagina. Consecuencia practica aqui: abajo del todo no puede ir nada que
+    importe, y por eso el "desliza" de la portada va a un 12 % del borde y no
+    pegado a el.
 
 - `tools/publicar-nova.mjs` — recompila Nova Engine con `--base=./` y lo deja en
   `docs/nova-engine/` con la barra de autoria reinyectada (vite reescribe el

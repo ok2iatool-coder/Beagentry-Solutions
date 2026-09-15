@@ -29,6 +29,8 @@ const BARRA = `    <!-- Beagentry: barra de autoria, la reinyecta tools/publicar
         color:#8b95a3;padding:.5rem .8rem;border:1px solid rgba(255,255,255,.12);border-radius:999px;
         background:rgba(10,14,20,.82);backdrop-filter:blur(10px);text-decoration:none;transition:border-color .3s,color .3s}
       #bea-autor:hover{border-color:rgba(255,255,255,.4);color:#e8edf4}
+      #bea-autor a{color:inherit;text-decoration:none}
+      #bea-autor a:hover{color:#fff}
       #bea-autor .p{color:#3ba0ff}
       #bea-autor .p::before{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;
         background:#3ba0ff;margin-right:.45rem;vertical-align:middle;box-shadow:0 0 8px #3ba0ff}
@@ -36,10 +38,12 @@ const BARRA = `    <!-- Beagentry: barra de autoria, la reinyecta tools/publicar
       #bea-autor .sep{width:1px;height:11px;background:rgba(255,255,255,.15)}
       @media(max-width:820px){#bea-autor .largo{display:none}}
     </style>
-    <a id="bea-autor" href="../" title="Beagentry">
+    <div id="bea-autor">
       <span class="p">Prueba</span><span class="sep"></span>
-      <span><span class="largo">Editor 3D en el navegador, </span>hecho por <b>Beagentry</b></span>
-    </a>
+      <a href="../" title="Beagentry"><span class="largo">Editor 3D en el navegador, </span>hecho por <b>Beagentry</b></a>
+      <span class="sep"></span>
+      <a href="/legal/" title="Aviso legal, privacidad y cookies">Legal</a>
+    </div>
 `;
 
 if (!existsSync(join(NOVA, 'node_modules'))) {

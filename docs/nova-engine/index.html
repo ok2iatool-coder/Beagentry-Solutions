@@ -15,14 +15,14 @@
 <meta property="og:image" content="https://beagentry.com/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Beagentry — construimos software avanzado: agentes, labs y webs a precio cerrado.">
+<meta property="og:image:alt" content="Beagentry — software avanzado: agentes, labs y webs construidas a mano.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Nova Engine — un editor 3D con la ergonomía de Unreal, en el navegador">
 <meta name="twitter:description" content="Editor de niveles 3D en tiempo real con la ergonomía de Unreal Engine 5, corriendo entero dentro del navegador.">
 <meta name="twitter:image" content="https://beagentry.com/og.png">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
-{"@type":"SoftwareApplication","@id":"https://beagentry.com/nova-engine/#obra","name":"Nova Engine","url":"https://beagentry.com/nova-engine/","description":"Editor de niveles 3D en tiempo real con la ergonomía de Unreal Engine 5, corriendo entero dentro del navegador.","inLanguage":"es","image":"https://beagentry.com/og.png","creator":{"@id":"https://beagentry.com/#negocio"}},
+{"@type":"SoftwareApplication","@id":"https://beagentry.com/nova-engine/#obra","name":"Nova Engine","url":"https://beagentry.com/nova-engine/","description":"Editor de niveles 3D en tiempo real con la ergonomía de Unreal Engine 5, corriendo entero dentro del navegador.","inLanguage":"es","image":"https://beagentry.com/og.png","creator":{"@id":"https://beagentry.com/#autor"}},
 {"@type":"WebPage","@id":"https://beagentry.com/nova-engine/#pagina","url":"https://beagentry.com/nova-engine/","name":"Nova Engine","isPartOf":{"@id":"https://beagentry.com/#web"},"inLanguage":"es","primaryImageOfPage":"https://beagentry.com/og.png"},
 {"@type":"BreadcrumbList","itemListElement":[
 {"@type":"ListItem","position":1,"name":"Beagentry","item":"https://beagentry.com/"},
@@ -112,6 +112,8 @@
         color:#8b95a3;padding:.5rem .8rem;border:1px solid rgba(255,255,255,.12);border-radius:999px;
         background:rgba(10,14,20,.82);backdrop-filter:blur(10px);text-decoration:none;transition:border-color .3s,color .3s}
       #bea-autor:hover{border-color:rgba(255,255,255,.4);color:#e8edf4}
+      #bea-autor a{color:inherit;text-decoration:none}
+      #bea-autor a:hover{color:#fff}
       #bea-autor .p{color:#3ba0ff}
       #bea-autor .p::before{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;
         background:#3ba0ff;margin-right:.45rem;vertical-align:middle;box-shadow:0 0 8px #3ba0ff}
@@ -119,9 +121,11 @@
       #bea-autor .sep{width:1px;height:11px;background:rgba(255,255,255,.15)}
       @media(max-width:820px){#bea-autor .largo{display:none}}
     </style>
-    <a id="bea-autor" href="../" title="Beagentry">
+    <div id="bea-autor">
       <span class="p">Prueba</span><span class="sep"></span>
-      <span><span class="largo">Editor 3D en el navegador, </span>hecho por <b>Beagentry</b></span>
-    </a>
+      <a href="../" title="Beagentry"><span class="largo">Editor 3D en el navegador, </span>hecho por <b>Beagentry</b></a>
+      <span class="sep"></span>
+      <a href="/legal/" title="Aviso legal, privacidad y cookies">Legal</a>
+    </div>
   </body>
 </html>

@@ -50,6 +50,15 @@ const PERFIL = {
   probe:      { w: 540,  h: 960,  escala: 4, fps: 30, seg: 0 },
 }[modo];
 
+// El perfil se puede pisar por entorno. Sirve para lo de siempre: la web entra
+// en el cuadro pero "con mucho zoom", porque a 1920 px CSS un escritorio normal
+// ya va justo. Capturando a 2560 CSS y bajando al montar entra un tercio mas de
+// pagina y todo sale mas pequeno, sin tocar el diseno. La resolucion final es
+// ancho*escala x alto*escala, asi que al subir el ancho hay que bajar la escala.
+if (process.env.REEL_W) PERFIL.w = Number(process.env.REEL_W);
+if (process.env.REEL_H) PERFIL.h = Number(process.env.REEL_H);
+if (process.env.REEL_ESCALA) PERFIL.escala = Number(process.env.REEL_ESCALA);
+
 const SALIDA = join(process.env.REEL_OUT || '.', 'reel-' + modo);
 
 // ---------------------------------------------------------------- CDP minimo

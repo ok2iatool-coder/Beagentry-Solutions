@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>El laboratorio · Beagentry</title>
+<meta name="description" content="Seis piezas modeladas dentro de Blender escribiendo código: un turbofan de doble eje, un motor rotativo de 1917, un dron, un plegable, un fusil y una torre de catorce plantas.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="icon" href="../logo.png">
+<link rel="canonical" href="https://beagentry.com/escaparate/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Beagentry">
+<meta property="og:title" content="El laboratorio · Beagentry">
+<meta property="og:locale" content="es_ES">
+<meta property="og:description" content="Nada de esto se ha tocado con el ratón. Seis piezas modeladas escribiendo código dentro de Blender.">
+<meta property="og:url" content="https://beagentry.com/escaparate/">
+<meta property="og:image" content="https://beagentry.com/og.png">
+<meta name="theme-color" content="#000000">
+
+<!-- Tipografias servidas desde este dominio: ningun visitante pasa por
+     fonts.googleapis.com. Ver /fuentes/fuentes.css -->
+<link rel="stylesheet" href="/fuentes/fuentes.css">
+<link rel="preload" as="image" href="img/turbofan.webp">
+
+<style>
+:root{
+  --bg:#000; --tinta:#f0f0f0; --suave:#8d8d8d; --muy:#3a3a3a;
+  --linea:rgba(255,255,255,.10);
+  --brasa:#ff6a3c;              /* del cobre del Le Rhone y la llama del turbofan */
+  --col:min(620px,100vw);       /* la columna: el ancho del video vertical */
+}
+*{box-sizing:border-box}
+html{background:#000;scroll-behavior:auto}
+body{
+  margin:0;background:var(--bg);color:var(--tinta);
+  font-family:Inter,system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+  font-weight:300;line-height:1.5;-webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+h1,h2{font-weight:200;margin:0;letter-spacing:-.04em;line-height:1.02}
+p{margin:0}
+
+.mono{
+  font-family:"JetBrains Mono",ui-monospace,Consolas,monospace;
+  font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--suave);
+}
+
+/* La pagina es una sola columna estrecha y centrada: es el encuadre del video
+   vertical, y en escritorio se lee como una ficha de catalogo. */
+main{width:var(--col);margin:0 auto;padding:0 24px}
+/* --alto lo pone el script con innerHeight. Tiene que ser EXACTAMENTE el alto
+   del cuadro: el grabador avanza el scroll de pantalla en pantalla, y con svh
+   (que en el Chrome emulado vale menos que innerHeight) cada ficha se iba
+   descolocando un poco mas que la anterior. 100svh queda de respaldo. */
+section{min-height:var(--alto,100svh);display:flex;flex-direction:column;justify-content:center;padding:80px 0 56px}
+
+/* ---------------------------------------------------------------- barra */
+.barra{position:fixed;top:0;left:0;right:0;height:2px;z-index:60;background:rgba(255,255,255,.07)}
+.barra i{display:block;height:100%;width:0;background:var(--brasa);transform-origin:0 50%}
+.marca{
+  position:fixed;top:18px;left:0;right:0;z-index:55;display:flex;align-items:center;
+  justify-content:center;gap:10px;pointer-events:none;
+}
+.marca img{width:20px;height:20px;filter:invert(1);opacity:.85}
+.marca span{font-family:"JetBrains Mono",monospace;font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:#bdbdbd}
+
+/* ---------------------------------------------------------------- portada */
+.portada{text-align:center;position:relative}
+.portada .halo{
+  position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);
+  /* Sin z-index negativo: el fondo del <body> se pinta DESPUES de las capas
+     negativas y se comia el halo entero. Va delante por orden en el documento. */
+  width:130%;aspect-ratio:1;pointer-events:none;
+  background:radial-gradient(circle,rgba(255,106,60,.24) 0%,rgba(255,106,60,.09) 34%,transparent 66%);
+}
+.portada h1{font-size:clamp(2.5rem,11.5vw,3.9rem);margin:26px 0 0}
+.portada h1 em{font-style:normal;color:var(--brasa)}
+.portada .entrada{font-size:1rem;color:#a9a9a9;max-width:30ch;margin:22px auto 0}
+.sello{
+  display:inline-flex;align-items:center;gap:9px;margin:0 auto;
+  border:1px solid var(--linea);border-radius:999px;padding:7px 14px;
+}
+.sello i{width:5px;height:5px;border-radius:50%;background:var(--brasa)}
+/* Anclado abajo del todo, no colgando del texto: la portada tiene poco cuerpo
+   y sin esto el primer salto del video eran casi dos pantallas de negro. */
+.desliza{position:absolute;left:0;right:0;bottom:12%;display:flex;flex-direction:column;align-items:center;gap:10px}
+.desliza .raya{width:1px;height:46px;background:linear-gradient(#5a5a5a,transparent)}
+
+/* ---------------------------------------------------------------- ficha */
+.lamina{
+  position:relative;margin:0 0 26px;border-radius:14px;overflow:hidden;
+  border:1px solid var(--linea);background:var(--plato,#111);
+  box-shadow:0 30px 70px -40px var(--plato,#000);
+}
+/* El tope de altura iguala fichas con fotos de proporciones muy distintas (el
+   Le Rhone es casi cuadrado y el ORION es una tira). Lo que sobra se recorta,
+   que para eso las fotos llevan margen de sobra alrededor de la pieza. */
+.lamina img{width:100%;height:auto;max-height:calc(var(--alto,100svh) * .47);object-fit:cover}
+.lamina .indice{
+  position:absolute;top:0;left:0;padding:10px 14px;
+  font-family:"JetBrains Mono",monospace;font-size:.62rem;letter-spacing:.2em;
+  color:#fff;background:rgba(0,0,0,.55);backdrop-filter:blur(6px);
+  border-right:1px solid var(--linea);border-bottom:1px solid var(--linea);
+  border-bottom-right-radius:10px;
+}
+.tipo{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.tipo i{width:14px;height:1px;background:var(--brasa);flex:0 0 auto}
+.ficha h2{font-size:clamp(1.9rem,8.2vw,2.7rem)}
+.dice{color:#a5a5a5;margin-top:14px;font-size:1rem;max-width:34ch}
+
+.datos{display:flex;gap:26px;margin:24px 0 0;padding:18px 0 0;border-top:1px solid var(--linea);flex-wrap:wrap}
+.datos div{min-width:0}
+.datos b{display:block;font-weight:200;font-size:1.5rem;letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums}
+.datos span{display:block;margin-top:7px;font-family:"JetBrains Mono",monospace;font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;color:var(--suave)}
+.verlo{display:inline-flex;align-items:center;gap:8px;margin-top:22px;font-size:.88rem;color:#d8d8d8;border-bottom:1px solid var(--muy);padding-bottom:3px}
+.verlo:hover{color:#fff;border-color:#fff}
+
+/* ---------------------------------------------------------------- cierre */
+.cierre{text-align:center}
+.cierre .logo{width:74px;margin:0 auto 26px;filter:invert(1)}
+.cierre h2{font-size:clamp(2.1rem,9.5vw,3.2rem)}
+.cierre p{color:#a5a5a5;max-width:28ch;margin:18px auto 0}
+.acciones{display:flex;flex-direction:column;gap:12px;margin-top:34px}
+.btn{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  padding:15px 22px;border:1px solid rgba(255,255,255,.22);border-radius:8px;font-size:.95rem;
+}
+.btn.solido{background:#fff;color:#000;border-color:#fff;font-weight:400}
+.pie{margin-top:44px}
+
+/* ------------------------------------------------- el scroll mueve esto ---
+   Nada se anima con `transition`: el valor sale del scroll y se escribe en
+   --e0..--e3 una vez por fotograma. Asi el grabador puede parar el scroll en
+   cualquier punto y la imagen que captura es exactamente la de ese punto. */
+[data-anim]{--e0:1;--e1:1;--e2:1;--e3:1;--o:1}
+[data-anim] .lamina{
+  opacity:calc(var(--e0) * var(--o));
+  transform:translate3d(0,calc((1 - var(--e0)) * 34px),0) scale(calc(1 + (1 - var(--e0)) * .045));
+}
+[data-anim] .tipo  {opacity:calc(var(--e1) * var(--o));transform:translate3d(0,calc((1 - var(--e1)) * 18px),0)}
+[data-anim] .rotulo{opacity:calc(var(--e2) * var(--o));transform:translate3d(0,calc((1 - var(--e2)) * 22px),0)}
+[data-anim] .abajo {opacity:calc(var(--e3) * var(--o));transform:translate3d(0,calc((1 - var(--e3)) * 22px),0)}
+.portada[data-anim] .lamina{opacity:1;transform:none}
+
+@media (prefers-reduced-motion: reduce){
+  [data-anim] *{opacity:1 !important;transform:none !important}
+}
+@media (min-width:640px){
+  .acciones{flex-direction:row;justify-content:center}
+  .btn{padding:13px 24px}
+}
+</style>
+</head>
+<body>
+
+<div class="barra"><i id="avance"></i></div>
+<div class="marca"><img src="../logo.png" alt=""><span>Beagentry</span></div>
+
+<main>
+
+  <section class="portada" data-anim>
+    <div class="halo"></div>
+    <div class="rotulo">
+      <span class="sello mono"><i></i> Laboratorio · 2026</span>
+      <h1>Nada de esto se ha tocado con el <em>ratón</em>.</h1>
+      <p class="entrada">Seis piezas modeladas dentro de Blender escribiendo código. Cada cota sale de un plano; cada tornillo, de una línea.</p>
+    </div>
+    <div class="abajo desliza">
+      <span class="mono">Desliza</span>
+      <span class="raya"></span>
+    </div>
+  </section>
+
+  <section class="ficha" data-anim style="--plato:#191b1e">
+    <figure class="lamina">
+      <img src="img/turbofan.webp" width="1400" height="788" alt="Turbofan de doble eje seccionado, con el flujo encendido" loading="lazy">
+      <span class="indice">01 / 06</span>
+    </figure>
+    <div class="rotulo">
+      <p class="tipo mono"><i></i> Obra · Motor aeronáutico</p>
+      <h2>Turbofan de doble eje</h2>
+      <p class="dice">Cortado por la mitad para ver lo que pasa dentro. Sube de ralentí a máxima potencia y el flujo, la llama y el calor suben con él.</p>
+    </div>
+    <div class="abajo">
+      <div class="datos">
+        <div><b data-num="264">264</b><span>piezas</span></div>
+        <div><b data-num="2142">2.142</b><span>álabes</span></div>
+        <div><b data-num="900">900</b><span>fotogramas</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ficha" data-anim style="--plato:#81909d">
+    <figure class="lamina">
+      <img src="img/lerhone.webp" width="1061" height="1000" alt="Motor rotativo Le Rhône 9C de nueve cilindros" loading="lazy">
+      <span class="indice">02 / 06</span>
+    </figure>
+    <div class="rotulo">
+      <p class="tipo mono"><i></i> Obra · Motor rotativo, 1917</p>
+      <h2>Le Rhône 9C</h2>
+      <p class="dice">El motor giraba entero con la hélice. Ciento tres piezas levantadas desde las cotas del manual, con su despiece animado.</p>
+    </div>
+    <div class="abajo">
+      <div class="datos">
+        <div><b data-num="103">103</b><span>piezas</span></div>
+        <div><b data-num="9">9</b><span>cilindros</span></div>
+        <div><b data-num="1917" data-plano>1917</b><span>año</span></div>
+      </div>
+      <a class="verlo" href="../motor/">Verlo girar <span>↗</span></a>
+    </div>
+  </section>
+
+  <section class="ficha" data-anim style="--plato:#808f9c">
+    <figure class="lamina">
+      <img src="img/phantom.webp" width="1400" height="819" alt="Dron DJI Phantom 4 modelado por código" loading="lazy">
+      <span class="indice">03 / 06</span>
+    </figure>
+    <div class="rotulo">
+      <p class="tipo mono"><i></i> Obra · Dron</p>
+      <h2>Phantom 4</h2>
+      <p class="dice">Huella de 289,5 mm exactos, carcasa de dos valvas con su costura y hélices con torsión por paso. Despega, se queda quieto y el gimbal le aguanta el horizonte.</p>
+    </div>
+    <div class="abajo">
+      <div class="datos">
+        <div><b data-num="106">106</b><span>piezas</span></div>
+        <div><b data-num="289.5" data-dec="1">289,5</b><span>mm de huella</span></div>
+        <div><b data-num="3">3</b><span>ejes de gimbal</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ficha" data-anim style="--plato:#93a0ac">
+    <figure class="lamina">
+      <img src="img/iphone.webp" width="1400" height="765" alt="Concepto de teléfono plegable abierto, con la interfaz encendida" loading="lazy">
+      <span class="indice">04 / 06</span>
+    </figure>
+    <div class="rotulo">
+      <p class="tipo mono"><i></i> Concepto · Mecanismo</p>
+      <h2>El plegable</h2>
+      <p class="dice">Todo el mecanismo cuelga de un solo mando: de 0 a 180° giran las mitades, la pantalla hace la gota y la interfaz se muda a la pantalla de fuera.</p>
+    </div>
+    <div class="abajo">
+      <div class="datos">
+        <div><b data-num="180">180</b><span>grados</span></div>
+        <div><b data-num="36">36</b><span>claves de forma</span></div>
+        <div><b data-num="2">2</b><span>pantallas</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ficha" data-anim style="--plato:#e7e7e6">
+    <figure class="lamina">
+      <img src="img/orion.webp" width="1400" height="559" alt="Fusil de ciencia ficción ORION V7" loading="lazy">
+      <span class="indice">05 / 06</span>
+    </figure>
+    <div class="rotulo">
+      <p class="tipo mono"><i></i> Obra · Hard surface</p>
+      <h2>ORION V7</h2>
+      <p class="dice">Un arma de ficción sacada de una imagen. Detrás lleva física de verdad: retroceso, recarga, casquillos que caen al suelo y rebotan.</p>
+    </div>
+    <div class="abajo">
+      <div class="datos">
+        <div><b data-num="41">41</b><span>piezas</span></div>
+        <div><b data-num="6">6</b><span>cuerpos rígidos</span></div>
+        <div><b data-num="60">60</b><span>fps en el navegador</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ficha" data-anim style="--plato:#ced6db">
+    <figure class="lamina">
+      <img src="img/torre.webp" width="1400" height="962" alt="Torre residencial de catorce plantas con muro cortina" loading="lazy">
+      <span class="indice">06 / 06</span>
+    </figure>
+    <div class="rotulo">
+      <p class="tipo mono"><i></i> Concepto · Promoción inmobiliaria</p>
+      <h2>La torre</h2>
+      <p class="dice">Catorce plantas con muro cortina, núcleo y terrazas amuebladas, para una web que se recorre a scroll mientras el sol cruza la fachada.</p>
+    </div>
+    <div class="abajo">
+      <div class="datos">
+        <div><b data-num="14">14</b><span>plantas</span></div>
+        <div><b data-num="165">165</b><span>mallas</span></div>
+        <div><b data-num="34172">34.172</b><span>triángulos</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cierre" data-anim>
+    <div class="rotulo">
+      <img class="logo" src="../logo.png" alt="Beagentry">
+      <h2>Beagentry</h2>
+      <p>Software avanzado, agentes que trabajan solos y webs construidas a mano.</p>
+    </div>
+    <div class="abajo">
+      <div class="acciones">
+        <a class="btn solido" href="https://beagentry.com/">beagentry.com</a>
+        <a class="btn" href="https://www.instagram.com/beagentry0/" target="_blank" rel="noopener">@beagentry0</a>
+      </div>
+      <p class="pie mono">Modelado por código en Blender</p>
+    </div>
+  </section>
+
+</main>
+
+<script>
+(function(){
+  var bloques = [].slice.call(document.querySelectorAll('[data-anim]'));
+  var avance  = document.getElementById('avance');
+  var reduce  = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Los numeros suben con el bloque, no con un reloj: el valor sale del mismo
+  // avance que el resto, asi que parar el scroll a la mitad deja el numero
+  // a la mitad y una captura nunca pilla un estado intermedio raro.
+  var cifras = [].slice.call(document.querySelectorAll('[data-num]')).map(function(el){
+    return {
+      el: el,
+      fin: parseFloat(el.dataset.num),
+      dec: parseInt(el.dataset.dec || '0', 10),
+      plano: 'plano' in el.dataset,      // los años no llevan punto de millar
+      bloque: el.closest('[data-anim]'),
+      ultimo: null,
+    };
+  });
+
+  function mide(){ document.documentElement.style.setProperty('--alto', innerHeight + 'px'); }
+  mide();
+
+  function corta(v){ return v < 0 ? 0 : v > 1 ? 1 : v; }
+  function suave(v){ return 1 - Math.pow(1 - v, 3); }
+
+  function escribe(n, dec, plano){
+    var s = n.toFixed(dec).replace('.', ',');
+    if (plano) return s;
+    var p = s.split(',');
+    p[0] = p[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    return p.join(',');
+  }
+
+  function paso(){
+    var vh = innerHeight;
+    for (var i = 0; i < bloques.length; i++){
+      var b = bloques[i], r = b.getBoundingClientRect();
+      // entrada: 0 cuando el bloque asoma por abajo, 1 cuando ya esta colocado
+      var e = corta((vh * 0.94 - r.top) / (vh * 0.58));
+      // salida: se apaga cuando se va por arriba
+      var o = corta((r.bottom - vh * 0.10) / (vh * 0.30));
+      b.style.setProperty('--o', o.toFixed(3));
+      for (var k = 0; k < 4; k++){
+        var d = k * 0.13;                       // cada linea entra un poco despues
+        b.style.setProperty('--e' + k, suave(corta((e - d) / (1 - d))).toFixed(3));
+      }
+      b.__e = e;
+    }
+    for (var c = 0; c < cifras.length; c++){
+      var f = cifras[c], v = suave(corta(((f.bloque.__e || 0) - 0.26) / 0.62)) * f.fin;
+      var t = escribe(f.dec ? v : Math.round(v), f.dec, f.plano);
+      if (t !== f.ultimo){ f.el.textContent = t; f.ultimo = t; }
+    }
+    var alto = document.documentElement.scrollHeight - vh;
+    avance.style.width = (alto > 0 ? corta(scrollY / alto) * 100 : 0).toFixed(2) + '%';
+  }
+
+  // El bucle se lee DENTRO del fotograma, no en el evento `scroll`: asi no se
+  // pierde ninguno ni se pinta con una posicion vieja. Y se para solo cuando el
+  // scroll deja de moverse — un rAF eterno recalcula estilos para siempre y hay
+  // navegadores que ni siquiera dan por pintada una pagina que nunca descansa.
+  var previo = -1, pedido = false;
+  function bucle(){
+    pedido = false;
+    if (scrollY === previo) return;
+    previo = scrollY;
+    paso();
+    pide();
+  }
+  function pide(){ if (!pedido){ pedido = true; requestAnimationFrame(bucle); } }
+
+  if (reduce){
+    avance.style.width = '100%';
+  } else {
+    addEventListener('scroll', pide, {passive:true});
+    addEventListener('resize', function(){ mide(); previo = -1; pide(); }, {passive:true});
+    addEventListener('load', function(){ mide(); previo = -1; pide(); });
+    paso();
+  }
+
+  // Ganchos del grabador (beagentry/tools/reel.mjs):
+  //   REEL_LISTO=__escaparate  — la pagina ya esta montada
+  //   window.__grabar()        — deja pintado el fotograma de ESTE scroll
+  window.__grabar = function(){
+    return new Promise(function(res){
+      paso();
+      requestAnimationFrame(function(){ requestAnimationFrame(res); });
+    });
+  };
+  addEventListener('load', function(){ window.__escaparate = true; });
+})();
+</script>
+
+<!-- Pie legal: el aviso tiene que alcanzarse desde cualquier pagina del sitio. -->
+<footer style="border-top:1px solid rgba(255,255,255,.1);padding:26px 0;margin-top:40px;
+  font:400 11px/1.6 'JetBrains Mono',ui-monospace,Consolas,monospace;letter-spacing:.14em;
+  text-transform:uppercase;color:#8a8a8a;text-align:center">
+  <span>&copy; 2026 <a href="/" style="color:inherit">Beagentry</a>
+  &middot; <a href="/legal/#privacidad" style="color:inherit">Privacidad</a>
+  &middot; <a href="/legal/#cookies" style="color:inherit">Cookies</a>
+  &middot; <a href="/legal/#uso" style="color:inherit">Uso</a></span>
+</footer>
+</body>
+</html>
