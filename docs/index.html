@@ -85,10 +85,12 @@ nav .wrap{height:100%;display:flex;align-items:center;justify-content:space-betw
 
 /* hero */
 .hero{min-height:100svh;display:grid;place-items:center;position:relative;padding:120px 0 80px;overflow:hidden}
-.hero .fondo{position:absolute;inset:0;pointer-events:none}
-.hero .fondo::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 55% 55% at 50% 46%,transparent 40%,#000 100%)}
+/* El velo que apaga los bordes del logo va FIJO a la pantalla, no dentro del
+   hero: el logo tambien es fijo y se sigue viendo por debajo, asi que un velo
+   atado al hero se cortaba en seco en su borde inferior y dejaba una linea. */
+.velo{position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse 55% 55% at 50% 46%,transparent 40%,#000 100%)}
 /* El logo va fijo a la pantalla: cae y gira mientras se hace scroll y se apaga a los 3 s */
-.flota{position:fixed;left:50%;top:46%;z-index:-1;width:min(72vw,680px);aspect-ratio:1;transform:translate(-50%,-50%);perspective:1100px;perspective-origin:50% 45%;pointer-events:none;will-change:transform,opacity}
+.flota{position:fixed;left:50%;top:46%;z-index:-2;width:min(72vw,680px);aspect-ratio:1;transform:translate(-50%,-50%);perspective:1100px;perspective-origin:50% 45%;pointer-events:none;will-change:transform,opacity}
 .flota .flotin{width:100%;height:100%;animation:flotar 9s cubic-bezier(.45,0,.55,1) infinite;transform-style:preserve-3d}
 .flota img{width:100%;height:100%;display:block;filter:invert(1);mix-blend-mode:screen;opacity:.85;transform:rotate(-8deg);will-change:transform,opacity;transform-style:preserve-3d}
 @keyframes flotar{0%{transform:translate(0,0) rotateX(4deg) rotateY(-18deg) rotateZ(-3deg)}25%{transform:translate(1.5%,-2.2%) rotateX(-3deg) rotateY(-4deg) rotateZ(2deg)}50%{transform:translate(0,-3.6%) rotateX(-6deg) rotateY(18deg) rotateZ(4deg)}75%{transform:translate(-1.5%,-1.4%) rotateX(3deg) rotateY(4deg) rotateZ(-2deg)}100%{transform:translate(0,0) rotateX(4deg) rotateY(-18deg) rotateZ(-3deg)}}
@@ -164,7 +166,7 @@ footer .mono a:hover{color:var(--tinta)}
 /* Las rejillas dibujan sus lineas con el fondo y el gap de 1px: si se desvanecen,
    la linea de 8% de blanco desaparece en negro. Entran deslizando, sin fundido. */
 .hacemos.ap,.precios.ap,.avances.ap{opacity:1}
-@media(prefers-reduced-motion:reduce){.ap{opacity:1;transform:none;transition:none}.hero .fondo img{animation:none}}
+@media(prefers-reduced-motion:reduce){.ap{opacity:1;transform:none;transition:none}}
 </style>
 </head>
 <body>
@@ -178,9 +180,9 @@ footer .mono a:hover{color:var(--tinta)}
   </div>
 </div></nav>
 
+<div class="velo"></div>
 <div class="flota" id="flota"><div class="flotin"><img id="logo3d" src="logo.png" alt=""></div></div>
 <header class="hero">
-  <div class="fondo"></div>
   <div class="wrap">
     <div class="mono"><span>Beagentry</span><span>Webs · Agentes · Labs</span><span>2026</span></div>
     <h1>Construimos<br>software avanzado.</h1>
