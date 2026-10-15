@@ -3,31 +3,32 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Software avanzado, agentes y webs · Beagentry</title>
-<meta name="description" content="Cuaderno de trabajo de Beagentry: agentes automatizados, laboratorio de 3D e ingeniería por código, y páginas web construidas a mano.">
+<title>Webs y automatizaciones para negocios · Beagentry</title>
+<meta name="description" content="Hacemos la web de tu negocio y te la enseñamos terminada antes de que pagues nada. Lista en 48 horas. También automatizamos reservas, pedidos y respuestas.">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
-<link rel="icon" href="logo.png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/marca/favicon-48.png" sizes="48x48" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="canonical" href="https://beagentry.com/">
-<!-- Vista previa al compartir el enlace por WhatsApp, Instagram o X -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Beagentry">
-<meta property="og:title" content="Software avanzado, agentes y webs · Beagentry">
+<meta property="og:title" content="Webs y automatizaciones para negocios · Beagentry">
 <meta property="og:locale" content="es_ES">
-<meta property="og:description" content="Cuaderno de trabajo: agentes automatizados, laboratorio de 3D e ingeniería, y webs construidas a mano.">
+<meta property="og:description" content="Ves tu web hecha antes de pagar nada. Lista en 48 horas.">
 <meta property="og:url" content="https://beagentry.com/">
 <meta property="og:image" content="https://beagentry.com/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Beagentry — software avanzado: agentes, labs y webs construidas a mano.">
+<meta property="og:image:alt" content="Beagentry — webs y automatizaciones para negocios. Ves tu web hecha antes de pagar.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Software avanzado, agentes y webs · Beagentry">
-<meta name="twitter:description" content="Cuaderno de trabajo: agentes automatizados, laboratorio de 3D e ingeniería, y webs construidas a mano.">
+<meta name="twitter:title" content="Webs y automatizaciones para negocios · Beagentry">
+<meta name="twitter:description" content="Ves tu web hecha antes de pagar nada. Lista en 48 horas.">
 <meta name="twitter:image" content="https://beagentry.com/og.png">
-<meta name="theme-color" content="#000000">
-<!-- Datos estructurados. Aqui habia un ProfessionalService con los tres
-     escalones como Offer; se quito al pasar la web a portfolio: anunciar
-     tarifa publica es ejercer una actividad, y esa parte esta en pausa.
-     Cuando vuelvan los precios, vuelve ese bloque (esta en el historial). -->
+<meta name="theme-color" content="#F6F4EF" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14161B" media="(prefers-color-scheme: dark)">
+<!-- Sin precios ni Offer A PROPOSITO: ver beagentry/README.md, punto Legal.
+     Anunciar tarifa obliga a publicar titular, NIF y domicilio. El precio se
+     da por escrito a cada negocio, en su presupuesto. -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -47,344 +48,301 @@
       "url": "https://beagentry.com/",
       "name": "Beagentry",
       "inLanguage": "es",
-      "description": "Cuaderno de trabajo: agentes automatizados, laboratorio de 3D e ingenieria por codigo, y paginas web construidas a mano.",
+      "description": "Webs y automatizaciones para negocios locales. La web se enseña hecha antes de cobrar.",
       "publisher": { "@id": "https://beagentry.com/#autor" }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://beagentry.com/#preguntas",
+      "mainEntity": [
+        { "@type": "Question", "name": "¿Cuándo se paga?", "acceptedAnswer": { "@type": "Answer", "text": "Cuando la web está publicada en tu dominio y la has visto funcionando. Antes, nada." } },
+        { "@type": "Question", "name": "¿Cuánto tarda?", "acceptedAnswer": { "@type": "Answer", "text": "48 horas laborables desde que nos das el visto bueno a los textos y las fotos." } },
+        { "@type": "Question", "name": "¿El dominio es mío?", "acceptedAnswer": { "@type": "Answer", "text": "Sí. El dominio va a tu nombre y la web es tuya: si un día te vas, te la llevas." } }
+      ]
     }
   ]
 }
 </script>
-
-<!-- Tipografias servidas desde este dominio: ningun visitante pasa por
-     fonts.googleapis.com. Ver /fuentes/fuentes.css -->
 <link rel="stylesheet" href="/fuentes/fuentes.css">
 <style>
-:root{--bg:#000;--tinta:#eee;--suave:#8a8a8a;--muy:#3a3a3a;--linea:rgba(255,255,255,.08);--ac:#fff}
+:root{
+  --papel:#F6F4EF;--papel-2:#EFECE5;--tinta:#14161B;--tinta-2:#4A4E57;--gris:#6B6F76;--linea:#E3DFD6;
+  --senal:#FF5A1F;--senal-suave:#FFE7DD;--bien:#1F9D55;--mal:#C8361B;--tarjeta:#FFFFFF;--sombra:0 1px 2px rgba(20,22,27,.06),0 8px 24px rgba(20,22,27,.06);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){--papel:#111318;--papel-2:#181B21;--tinta:#F1EFEA;--tinta-2:#C3C1BB;--gris:#8E9097;--linea:#262A31;--senal:#FF6A33;--senal-suave:#3A2118;--tarjeta:#171A20;--sombra:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25)}
+}
+:root[data-theme="dark"]{--papel:#111318;--papel-2:#181B21;--tinta:#F1EFEA;--tinta-2:#C3C1BB;--gris:#8E9097;--linea:#262A31;--senal:#FF6A33;--senal-suave:#3A2118;--tarjeta:#171A20;--sombra:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25)}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--tinta);font-family:Inter,system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;font-weight:300;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-a{color:inherit;text-decoration:none}
-.mono{font-family:"JetBrains Mono",ui-monospace,Consolas,monospace;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--suave)}
-.wrap{width:min(1180px,92vw);margin:0 auto}
-h1,h2{font-weight:300;line-height:1.02;margin:0}
-h1{font-size:clamp(2.6rem,7vw,5rem);letter-spacing:-.04em}
-h2{font-size:clamp(2rem,4.6vw,3.5rem);letter-spacing:-.035em}
+body{margin:0;background:var(--papel);color:var(--tinta);font-family:Inter,system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
 p{margin:0}
+.wrap{width:min(1160px,100% - 32px);margin:0 auto}
+.mono{font-family:"JetBrains Mono",ui-monospace,Consolas,monospace;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gris)}
+h1,h2,h3{margin:0;font-weight:750;letter-spacing:-.035em;line-height:1.04;text-wrap:balance}
+h1{font-size:clamp(2.5rem,6.4vw,4.6rem)}
+h2{font-size:clamp(1.9rem,4vw,3rem)}
+h3{font-size:1.2rem;letter-spacing:-.02em;line-height:1.2}
+.marca svg{display:block}
+
+/* botones */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 22px;border-radius:12px;font-weight:600;font-size:.98rem;text-decoration:none;border:1.5px solid var(--tinta);transition:transform .15s,background .15s,color .15s}
+.btn:hover{transform:translateY(-1px)}
+.btn.lleno{background:var(--tinta);color:var(--papel)}
+.btn.senal{background:var(--senal);border-color:var(--senal);color:#fff}
+.btn.hueco{background:transparent;color:var(--tinta)}
 
 /* nav */
-nav{position:fixed;top:0;left:0;right:0;z-index:50;height:64px;background:rgba(0,0,0,.55);backdrop-filter:blur(14px);border-bottom:1px solid var(--linea)}
-nav .wrap{height:100%;display:flex;align-items:center;justify-content:space-between;gap:24px}
-.logo{display:flex;align-items:center;gap:12px;font-weight:400;letter-spacing:.02em;font-size:.95rem}
-.logo img{width:36px;height:36px;filter:invert(1);mix-blend-mode:screen;display:block}
-.links{display:flex;gap:28px;align-items:center;font-size:.86rem;color:var(--suave)}
+nav{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--papel) 86%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--linea)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;gap:16px}
+.marca{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:750;font-size:1.15rem;letter-spacing:-.03em}
+.links{display:flex;align-items:center;gap:26px;font-size:.95rem;color:var(--tinta-2)}
+.links a{text-decoration:none}
 .links a:hover{color:var(--tinta)}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border:1px solid rgba(255,255,255,.25);border-radius:6px;font-size:.86rem;color:var(--tinta);font-weight:400;transition:background .2s,border-color .2s}
-.btn:hover{background:#fff;color:#000;border-color:#fff}
-.btn.solido{background:#fff;color:#000;border-color:#fff}
-.btn.solido:hover{background:#e6e6e6}
-@media(max-width:700px){.links a:not(.btn){display:none}}
+.links .btn{min-height:40px;padding:0 16px;font-size:.92rem;color:var(--papel)}
+@media(max-width:760px){.links a:not(.btn){display:none}}
 
 /* hero */
-.hero{min-height:100svh;display:grid;place-items:center;position:relative;padding:120px 0 80px;overflow:hidden}
-/* El velo que apaga los bordes del logo va FIJO a la pantalla, no dentro del
-   hero: el logo tambien es fijo y se sigue viendo por debajo, asi que un velo
-   atado al hero se cortaba en seco en su borde inferior y dejaba una linea. */
-.velo{position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse 55% 55% at 50% 46%,transparent 40%,#000 100%)}
-/* El logo va fijo a la pantalla: cae y gira mientras se hace scroll y se apaga a los 3 s */
-.flota{position:fixed;left:50%;top:46%;z-index:-2;width:min(72vw,680px);aspect-ratio:1;transform:translate(-50%,-50%);perspective:1100px;perspective-origin:50% 45%;pointer-events:none;will-change:transform,opacity}
-.flota .flotin{width:100%;height:100%;animation:flotar 9s cubic-bezier(.45,0,.55,1) infinite;transform-style:preserve-3d}
-.flota img{width:100%;height:100%;display:block;filter:invert(1);mix-blend-mode:screen;opacity:.85;transform:rotate(-8deg);will-change:transform,opacity;transform-style:preserve-3d}
-@keyframes flotar{0%{transform:translate(0,0) rotateX(4deg) rotateY(-18deg) rotateZ(-3deg)}25%{transform:translate(1.5%,-2.2%) rotateX(-3deg) rotateY(-4deg) rotateZ(2deg)}50%{transform:translate(0,-3.6%) rotateX(-6deg) rotateY(18deg) rotateZ(4deg)}75%{transform:translate(-1.5%,-1.4%) rotateX(3deg) rotateY(4deg) rotateZ(-2deg)}100%{transform:translate(0,0) rotateX(4deg) rotateY(-18deg) rotateZ(-3deg)}}
-.hero .wrap{position:relative;text-align:center;text-shadow:0 0 30px rgba(0,0,0,.9),0 0 80px rgba(0,0,0,.8)}
-.hero .mono,.hero p{text-shadow:0 0 20px #000,0 0 40px #000}
-.hero .mono{display:flex;gap:16px;justify-content:center;margin-bottom:34px}
-.hero .mono span+span::before{content:"/";margin-right:16px;color:var(--muy)}
-.hero p{font-size:clamp(1rem,1.6vw,1.2rem);color:var(--suave);max-width:36ch;margin:26px auto 40px}
-.hero .acciones{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.baja{position:absolute;bottom:28px;left:0;right:0;text-align:center;opacity:.6}
+.hero{padding:clamp(48px,8vw,96px) 0 clamp(56px,8vw,104px)}
+.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(32px,5vw,72px);align-items:center}
+.chip{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border:1px solid var(--linea);border-radius:999px;background:var(--tarjeta);font-size:.86rem;color:var(--tinta-2);margin-bottom:22px}
+.chip i{width:8px;height:8px;border-radius:50%;background:var(--senal);box-shadow:0 0 0 4px var(--senal-suave)}
+.hero h1 em{font-style:normal;color:var(--senal)}
+.hero .bajada{font-size:clamp(1.05rem,1.6vw,1.25rem);color:var(--tinta-2);max-width:40ch;margin:22px 0 32px}
+.acciones{display:flex;flex-wrap:wrap;gap:12px}
+.garantias{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:28px;font-size:.9rem;color:var(--tinta-2);padding:0;list-style:none}
+.garantias li::before{content:"✓";color:var(--bien);font-weight:700;margin-right:7px}
+@media(max-width:880px){.hero .wrap{grid-template-columns:1fr}}
+
+/* antes / despues */
+.comparar{position:relative;display:grid;gap:14px}
+.movil{background:var(--tarjeta);border:1px solid var(--linea);border-radius:22px;box-shadow:var(--sombra);overflow:hidden}
+.movil .barra{display:flex;align-items:center;gap:8px;padding:10px 14px;border-bottom:1px solid var(--linea);font-size:.78rem;color:var(--gris);font-family:"JetBrains Mono",monospace}
+.movil .barra b{font-weight:600;color:var(--tinta-2)}
+.movil .barra .estado{margin-left:auto;font-weight:700;letter-spacing:.06em}
+.antes .estado{color:var(--mal)}
+.despues .estado{color:var(--bien)}
+.antes .cuerpo{padding:22px 18px;display:flex;gap:14px;align-items:center;color:var(--gris);font-size:.92rem}
+.antes .cuerpo .err{font:700 1.6rem/1 "JetBrains Mono",monospace;color:var(--mal)}
+.despues .cuerpo{padding:18px}
+.despues .portada{border-radius:14px;padding:22px 18px;background:linear-gradient(135deg,#2B4D3A,#3E6B52);color:#fff}
+.despues .portada small{opacity:.8;font-size:.78rem}
+.despues .portada strong{display:block;font-size:1.45rem;letter-spacing:-.03em;margin:4px 0 14px}
+.despues .portada span{display:inline-block;background:#fff;color:#2B4D3A;font-weight:700;font-size:.8rem;padding:8px 12px;border-radius:9px;margin-right:6px}
+.despues .filas{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.despues .filas div{height:46px;border-radius:10px;background:var(--papel-2)}
+.flecha48{justify-self:center;font-size:.85rem;font-weight:600;color:var(--senal);background:var(--senal-suave);padding:6px 12px;border-radius:999px}
 
 /* secciones */
-section{padding:clamp(80px,12vw,160px) 0;border-top:1px solid var(--linea)}
-#hacemos{border-top:0}
-.cab{display:flex;gap:16px;align-items:baseline;margin-bottom:34px}
-.cab .n{color:var(--tinta)}
-.cab .mono+.mono::before{content:"·";margin-right:16px;color:var(--muy)}
-.sub{color:var(--suave);font-size:1.05rem;max-width:44ch;margin-top:20px}
+section{padding:clamp(64px,9vw,112px) 0;border-top:1px solid var(--linea)}
+.cab{max-width:720px;margin-bottom:44px}
+.cab .mono{display:block;margin-bottom:14px}
+.cab p{margin-top:16px;color:var(--tinta-2);font-size:1.08rem;max-width:56ch}
+.rejilla{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.tarjeta{background:var(--tarjeta);border:1px solid var(--linea);border-radius:18px;padding:28px;box-shadow:var(--sombra)}
+.tarjeta .ico{width:44px;height:44px;border-radius:12px;background:var(--senal-suave);color:var(--senal);display:grid;place-items:center;margin-bottom:20px}
+.tarjeta p{color:var(--tinta-2);margin-top:10px;font-size:.98rem}
+.tarjeta ul{margin:16px 0 0;padding:0;list-style:none;font-size:.93rem;color:var(--tinta-2)}
+.tarjeta li{padding:6px 0;border-top:1px dashed var(--linea)}
+@media(max-width:880px){.rejilla{grid-template-columns:1fr}}
 
-/* hacemos */
-.hacemos{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--linea);border:1px solid var(--linea);margin-top:56px}
-.hace{background:var(--bg);padding:44px 32px;min-height:260px;display:flex;flex-direction:column;justify-content:space-between;transition:background .3s}
-.hace:hover{background:#0a0a0a}
-.hace b{font-weight:300;font-size:clamp(1.6rem,2.6vw,2.2rem);letter-spacing:-.03em;display:block;margin:40px 0 10px;line-height:1.05}
-.hace p{color:var(--suave);font-size:.95rem}
-@media(max-width:760px){.hacemos{grid-template-columns:1fr}.hace{min-height:0}.hace b{margin-top:22px}}
+.pasos{counter-reset:paso;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;padding:0;list-style:none;margin:0}
+.pasos li{counter-increment:paso;position:relative;padding:26px 22px;border-radius:18px;background:var(--papel-2)}
+.pasos li::before{content:counter(paso,decimal-leading-zero);font:600 .8rem "JetBrains Mono",monospace;color:var(--senal);display:block;margin-bottom:16px}
+.pasos p{color:var(--tinta-2);font-size:.95rem;margin-top:8px}
+.pasos li.pago{background:var(--tinta);color:var(--papel)}
+.pasos li.pago p{color:color-mix(in srgb,var(--papel) 75%,transparent)}
+@media(max-width:880px){.pasos{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.pasos{grid-template-columns:1fr}}
 
+/* trabajos */
+.trabajos{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:16px}
+.trabajo{display:flex;flex-direction:column;justify-content:space-between;gap:28px;min-height:220px;text-decoration:none;background:var(--tarjeta);border:1px solid var(--linea);border-radius:18px;padding:26px;transition:border-color .2s,transform .2s}
+.trabajo:hover{border-color:var(--tinta);transform:translateY(-2px)}
+.trabajo .arriba{display:flex;justify-content:space-between;align-items:center}
+.trabajo .ir{width:34px;height:34px;border-radius:50%;border:1px solid var(--linea);display:grid;place-items:center}
+.trabajo p{color:var(--tinta-2);font-size:.95rem;margin-top:8px}
+.trabajo .estado{font-size:.8rem;color:var(--gris);margin-top:14px}
+.trabajo .estado::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--bien);margin-right:8px}
+.trabajo.wip .estado::before{background:#E0A100}
 
-/* avances (galeria) */
-.avances{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1px;background:var(--linea);border:1px solid var(--linea);margin-top:56px}
-.avance{background:var(--bg);padding:36px 30px;min-height:240px;display:flex;flex-direction:column;justify-content:space-between;transition:background .3s;position:relative}
-.avance:hover{background:#0a0a0a}
-.avance .arriba{display:flex;justify-content:space-between;align-items:center}
-.avance .flecha{width:34px;height:34px;border:1px solid rgba(255,255,255,.2);border-radius:50%;display:grid;place-items:center;font-size:.9rem;color:var(--suave);transition:background .3s,color .3s,border-color .3s,transform .3s}
-.avance:hover .flecha{background:#fff;color:#000;border-color:#fff;transform:translate(2px,-2px)}
-.avance b{font-weight:300;font-size:clamp(1.5rem,2.4vw,2rem);letter-spacing:-.03em;display:block;margin:34px 0 8px;line-height:1.05}
-.avance p{color:var(--suave);font-size:.92rem}
-.avance .estado{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;font-family:"JetBrains Mono",monospace;color:var(--suave)}
-.avance .estado::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:#7ef0b0;margin-right:8px;vertical-align:middle}
-.avance.wip .estado::before{background:#ffd166}
+/* preguntas */
+.preguntas{max-width:800px}
+details{border-top:1px solid var(--linea);padding:20px 0}
+details:last-child{border-bottom:1px solid var(--linea)}
+summary{cursor:pointer;font-weight:650;font-size:1.08rem;list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary::after{content:"+";color:var(--senal);font-weight:700}
+details[open] summary::after{content:"–"}
+details p{color:var(--tinta-2);margin-top:12px;max-width:64ch}
 
 /* cierre */
-.cierre{text-align:center}
-.cierre .acciones{display:flex;gap:12px;justify-content:center;margin-top:40px;flex-wrap:wrap}
+.cierre{background:var(--tinta);color:var(--papel);border-top:0}
+.cierre .wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:end}
+.cierre p{color:color-mix(in srgb,var(--papel) 72%,transparent);margin-top:18px;font-size:1.08rem;max-width:46ch}
+.cierre .btn.hueco{border-color:color-mix(in srgb,var(--papel) 40%,transparent);color:var(--papel)}
+.cierre .btn.lleno{background:var(--papel);color:var(--tinta);border-color:var(--papel)}
+.cierre .acciones{justify-content:flex-end}
+@media(max-width:880px){.cierre .wrap{grid-template-columns:1fr}.cierre .acciones{justify-content:flex-start}}
 
-footer{border-top:1px solid var(--linea);padding:36px 0}
-footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
-footer .logo img{width:28px;height:28px}
-footer .mono a:hover{color:var(--tinta)}
+footer{padding:28px 0;font-size:.88rem;color:var(--gris)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between}
+footer nav{position:static;background:none;border:0;backdrop-filter:none;display:flex;gap:18px}
+footer a{text-decoration:none}
+footer a:hover{color:var(--tinta)}
 
-/* aparecer */
-/* Banda del turbofan: una pista alta con el lienzo pegado dentro. Lo que
-   recorre el scroll DENTRO de la pista es el mando del motor (fotograma 1 a
-   900). Fuera de vista el bucle se para, no gasta GPU. */
-#motor{padding:0;border-top:0}
-.pista{position:relative;height:220vh}   /* 420vh era el doble de scroll para el mismo estiron */
-.pegado{position:sticky;top:0;height:100vh;overflow:hidden}
-#glMotor{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none}
-.capa{position:absolute;left:50%;transform:translateX(-50%);top:96px;pointer-events:none}
-.capa h2{margin-top:10px;text-shadow:0 0 30px #000,0 0 70px #000}
-.capa .sub{margin-top:16px;text-shadow:0 0 20px #000,0 0 40px #000}
-.lectura{position:absolute;left:50%;transform:translateX(-50%);bottom:52px;width:min(1180px,92vw);
-  display:flex;gap:28px;flex-wrap:wrap;align-items:baseline;color:var(--suave);font-size:.8rem;pointer-events:none;
-  text-shadow:0 0 18px #000,0 0 36px #000}
-.lectura[hidden]{display:none}   /* .lectura es flex: sin esto el atributo hidden no puede con el */
-.lectura b{color:var(--tinta);font-weight:400}
-.lectura .fase{color:var(--tinta)}
-.cargaMotor{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);color:var(--muy);font-size:.8rem;
-  letter-spacing:.16em;text-transform:uppercase}
-@media(max-width:760px){.pista{height:180vh}.capa{top:80px}.lectura{gap:16px;font-size:.72rem}}
-.ap{opacity:0;transform:translateY(18px);transition:opacity .9s ease,transform .9s ease}
+.ap{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s ease}
 .ap.in{opacity:1;transform:none}
-/* Las rejillas dibujan sus lineas con el fondo y el gap de 1px: si se desvanecen,
-   la linea de 8% de blanco desaparece en negro. Entran deslizando, sin fundido. */
-.hacemos.ap,.precios.ap,.avances.ap{opacity:1}
-@media(prefers-reduced-motion:reduce){.ap{opacity:1;transform:none;transition:none}}
+@media(prefers-reduced-motion:reduce){.ap{opacity:1;transform:none;transition:none}.btn:hover,.trabajo:hover{transform:none}}
 </style>
 </head>
 <body>
 
-<nav><div class="wrap">
-  <a class="logo" href="#"><img src="logo.png" alt="Beagentry">Beagentry</a>
+<nav aria-label="Principal"><div class="wrap">
+  <a class="marca" href="/" aria-label="Beagentry, inicio">
+    <svg width="34" height="34" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="15" style="fill:var(--tinta)"/><path style="fill:var(--papel)" d="M15 16.5a4.5 4.5 0 0 1 9 0V37.5H21.0A13.5 13.5 0 0 0 34.5 51.0V52.0H19.5a4.5 4.5 0 0 1 -4.5 -4.5Z"/><path style="fill:var(--papel)" fill-rule="evenodd" d="M20.0 37.5a14.5 14.5 0 1 0 29.0 0a14.5 14.5 0 1 0 -29.0 0ZM28.0 37.5a6.5 6.5 0 1 1 13.0 0a6.5 6.5 0 1 1 -13.0 0Z"/><circle cx="47.5" cy="15.5" r="5.5" fill="#FF5A1F"/></svg>
+    Beagentry
+  </a>
   <div class="links">
-    <a href="#hacemos">Qué hacemos</a>
-    <a href="#avances">Avances</a>
-    <a class="btn" href="#hablar">Hablar →</a>
+    <a href="#servicios">Qué hacemos</a>
+    <a href="#como">Cómo trabajamos</a>
+    <a href="#trabajos">Trabajos</a>
+    <a class="btn lleno" href="#hablar">Pide tu demo</a>
   </div>
 </div></nav>
 
-<div class="velo"></div>
-<div class="flota" id="flota"><div class="flotin"><img id="logo3d" src="logo.png" alt=""></div></div>
-<header class="hero">
-  <div class="wrap">
-    <div class="mono"><span>Beagentry</span><span>Webs · Agentes · Labs</span><span>2026</span></div>
-    <h1>Construimos<br>software avanzado.</h1>
-    <p>Un cuaderno de trabajo abierto: webs, agentes que funcionan solos y cosas que todavía no existen.</p>
+<header class="hero"><div class="wrap">
+  <div>
+    <span class="chip"><i></i> Revisamos tu web gratis y te decimos qué falla</span>
+    <h1>Tu web, hecha y funcionando <em>antes</em> de que pagues.</h1>
+    <p class="bajada">Hacemos webs para negocios de barrio y automatizamos lo que te roba horas: reservas, pedidos y las preguntas de siempre. Te enseñamos el resultado terminado y decides después.</p>
     <div class="acciones">
-      <a class="btn solido" href="#avances">Ver los trabajos →</a>
-      <a class="btn" href="#hablar">Hablar</a>
+      <a class="btn senal" href="#hablar">Quiero ver mi demo</a>
+      <a class="btn hueco" href="#trabajos">Ver trabajos</a>
+    </div>
+    <ul class="garantias">
+      <li>Lista en 48 horas</li>
+      <li>Pagas al verla publicada</li>
+      <li>El dominio es tuyo</li>
+    </ul>
+  </div>
+  <div class="comparar" aria-label="Ejemplo: una web que da error y la misma web rehecha">
+    <div class="movil antes">
+      <div class="barra"><b>tunegocio.es</b><span class="estado">HOY</span></div>
+      <div class="cuerpo"><span class="err">404</span><span>La página que sale en Google y en tu Instagram no abre. Quien la busca, se va.</span></div>
+    </div>
+    <span class="flecha48">↓ en 48 horas</span>
+    <div class="movil despues">
+      <div class="barra"><b>tunegocio.es</b><span class="estado">LISTA</span></div>
+      <div class="cuerpo">
+        <div class="portada"><small>Tu barrio · Abierto hoy hasta las 20:00</small><strong>Tu negocio</strong><span>Llamar</span><span>Cómo llegar</span></div>
+        <div class="filas"><div></div><div></div><div></div></div>
+      </div>
     </div>
   </div>
-  <div class="baja mono">Baja</div>
-</header>
+</div></header>
 
-<section id="hacemos"><div class="wrap">
-  <div class="cab ap"><span class="mono n">01</span><span class="mono">Qué hacemos</span></div>
-  <h2 class="ap">De una web a un agente.<br>Y lo que haya en medio.</h2>
-  <div class="hacemos ap">
-    <div class="hace"><span class="mono">Webs</span><div><b>Páginas web</b><p>Escritas a mano, sin plantillas ni maquetadores. Rápidas porque pesan poco.</p></div></div>
-    <div class="hace"><span class="mono">Agentes</span><div><b>Agentes automatizados</b><p>De todo tipo. Atienden, responden, clasifican, ejecutan. Sin descanso.</p></div></div>
-    <div class="hace"><span class="mono">Labs</span><div><b>Labs</b><p>Lo que aún no existe. Prototipos, modelos, experimentos a medida.</p></div></div>
+<section id="servicios"><div class="wrap">
+  <div class="cab ap">
+    <span class="mono">Qué hacemos</span>
+    <h2>Lo que tu negocio necesita en internet. Nada más.</h2>
+    <p>Sin paquetes inflados ni contratos de permanencia. Empezamos por lo que te trae clientes y seguimos solo si te sirve.</p>
+  </div>
+  <div class="rejilla">
+    <article class="tarjeta ap">
+      <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M3 9h18M7 6.5h.01"/></svg></div>
+      <h3>Webs para negocios</h3>
+      <p>Rápidas, claras y pensadas para el móvil, que es desde donde te buscan.</p>
+      <ul><li>Botones de llamar, WhatsApp y cómo llegar</li><li>Horario, carta o servicios siempre al día</li><li>Aviso legal y privacidad incluidos</li></ul>
+    </article>
+    <article class="tarjeta ap">
+      <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+      <h3>Que te encuentren</h3>
+      <p>Tu ficha de Google revisada y enlazada, y la web escrita para tu ciudad y tu barrio.</p>
+      <ul><li>Ficha de Google Business en orden</li><li>Datos estructurados para buscadores</li><li>Velocidad comprobada</li></ul>
+    </article>
+    <article class="tarjeta ap">
+      <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 3 4 14h6l-1 7 9-11h-6l1-7Z"/></svg></div>
+      <h3>Automatizaciones</h3>
+      <p>Lo repetitivo, que lo haga el ordenador: reservas, pedidos, presupuestos y respuestas a las preguntas de siempre.</p>
+      <ul><li>Formularios que llegan ordenados</li><li>Avisos y recordatorios solos</li><li>Agentes de IA con una persona al mando</li></ul>
+    </article>
   </div>
 </div></section>
 
-<!-- El turbofan de escuela/obras/turbofan, pilotado por el scroll. Se carga
-     en diferido: la portada pinta sin esperar a los 37 MB del modelo. -->
-<section id="motor">
-  <div class="pista" id="pistaMotor">
-    <div class="pegado">
-      <canvas id="glMotor"></canvas>
-      <div class="capa wrap">
-        <div class="cab"><span class="mono">Labs</span><span class="mono">Ingeniería</span></div>
-        <h2>Un turbofan de verdad.<br>Y está girando.</h2>
-        <p class="sub">Doscientas sesenta y cuatro piezas y 2142 álabes, modelados en Blender por código. No es un vídeo: gira aquí, en tu navegador. Baja y dale gas.</p>
-      </div>
-      <div class="lectura mono" id="lecturaMotor" hidden>
-        <span class="fase" id="motorFase"></span>
-        <span>N1 <b id="motorN1">0 %</b></span>
-        <span>N2 <b id="motorN2">0 %</b></span>
-        <span id="motorCotas"></span>
-      </div>
-      <div class="cargaMotor mono" id="motorCarga">cargando el motor…</div>
-    </div>
+<section id="como"><div class="wrap">
+  <div class="cab ap">
+    <span class="mono">Cómo trabajamos</span>
+    <h2>Primero lo ves. Luego decides.</h2>
+    <p>Al revés que casi todo el mundo: no te pedimos dinero por adelantado ni te hacemos firmar nada para empezar.</p>
   </div>
-</section>
+  <ol class="pasos ap">
+    <li><h3>Miramos tu web</h3><p>Te decimos, gratis y en una frase, qué le pasa y cuánto te está costando.</p></li>
+    <li><h3>Te hacemos la demo</h3><p>Con tu nombre, tus datos y tu horario. Te mandamos el enlace.</p></li>
+    <li><h3>La ajustamos</h3><p>Fotos, textos, colores. Dos rondas de cambios incluidas.</p></li>
+    <li class="pago"><h3>Se publica y pagas</h3><p>En tu dominio, funcionando. Antes de este paso no se cobra nada.</p></li>
+  </ol>
+</div></section>
 
-<section id="avances"><div class="wrap">
-  <div class="cab ap"><span class="mono n">04</span><span class="mono">Avances</span></div>
-  <h2 class="ap">Cosas en marcha.</h2>
-  <p class="sub ap">Lo que estamos construyendo ahora mismo. Se actualiza según avanza.</p>
-  <div class="avances ap" id="galeria"></div>
+<section id="trabajos"><div class="wrap">
+  <div class="cab ap">
+    <span class="mono">Trabajos</span>
+    <h2>Hecho a mano, por código.</h2>
+    <p>Algunas cosas que hemos construido. Ábrelas: funcionan en tu navegador.</p>
+  </div>
+  <div class="trabajos ap" id="galeria"></div>
+</div></section>
+
+<section id="preguntas"><div class="wrap">
+  <div class="cab ap"><span class="mono">Preguntas</span><h2>Lo que nos preguntan siempre.</h2></div>
+  <div class="preguntas ap">
+    <details><summary>¿Cuánto cuesta?</summary><p>Depende de lo que necesites. Te damos un precio cerrado y por escrito antes de empezar, con el IVA desglosado, y no pagas hasta ver la web publicada. Sin sorpresas al final.</p></details>
+    <details><summary>¿Cuándo se paga?</summary><p>Cuando la web está publicada en tu dominio y la has visto funcionando. Antes, nada.</p></details>
+    <details><summary>¿Cuánto tarda?</summary><p>48 horas laborables desde que nos das el visto bueno a los textos y las fotos. Si no tienes fotos, empezamos con las de tu Instagram si nos dejas.</p></details>
+    <details><summary>Ya tengo web. ¿Me sirve?</summary><p>Si funciona bien, te lo diremos y no te venderemos nada. Si no abre, se ve en miniatura en el móvil o el navegador avisa de que no es segura, la arreglamos o la rehacemos.</p></details>
+    <details><summary>¿El dominio y la web son míos?</summary><p>Sí. El dominio va a tu nombre y, si un día te vas, te llevas la web entera.</p></details>
+    <details><summary>¿Usáis inteligencia artificial?</summary><p>Para ir más rápido y para automatizar lo repetitivo, sí. Pero cada web la revisa una persona antes de enseñártela, y ningún agente toma decisiones de dinero por ti.</p></details>
+  </div>
 </div></section>
 
 <section id="hablar" class="cierre"><div class="wrap">
-  <h2 class="ap">¿Hablamos?</h2>
-  <div class="acciones ap">
-    <a class="btn solido" href="https://www.instagram.com/beagentry0/" target="_blank" rel="noopener">Instagram →</a>
-    <a class="btn" href="mailto:ok2iatool@gmail.com">ok2iatool@gmail.com</a>
+  <div>
+    <span class="mono" style="color:inherit;opacity:.6">Hablamos</span>
+    <h2 style="margin-top:14px">Dinos el nombre de tu negocio y te enseñamos tu web.</h2>
+    <p>Escríbenos con el nombre y la ciudad (y tu web, si tienes). Te contestamos el mismo día laborable con lo que vemos.</p>
+  </div>
+  <div class="acciones">
+    <a class="btn lleno" href="mailto:ok2iatool@gmail.com?subject=Quiero%20ver%20mi%20demo&amp;body=Negocio%3A%20%0ACiudad%3A%20%0AWeb%20(si%20tengo)%3A%20%0ATel%C3%A9fono%20(opcional)%3A%20">Escribir un correo</a>
+    <a class="btn hueco" href="https://www.instagram.com/beagentry0/" target="_blank" rel="noopener">Instagram</a>
   </div>
 </div></section>
 
 <footer><div class="wrap">
-  <a class="logo" href="#"><img src="logo.png" alt="Beagentry"></a>
-  <span class="mono">© 2026 Beagentry · <a href="https://www.instagram.com/beagentry0/" target="_blank" rel="noopener">@beagentry0</a> · <a href="/legal/#privacidad">Privacidad</a> · <a href="/legal/#cookies">Cookies</a> · <a href="/legal/#uso">Uso</a></span>
+  <span>© 2026 Beagentry</span>
+  <nav aria-label="Legal"><a href="/legal/#privacidad">Privacidad</a><a href="/legal/#cookies">Cookies</a><a href="/legal/#uso">Uso</a><a href="https://www.instagram.com/beagentry0/" target="_blank" rel="noopener">@beagentry0</a></nav>
 </div></footer>
 
 <script>
-// Galeria de avances: una linea por trabajo. Enlace, nombre, una frase, y
-// estado ("listo" o "wip"). Se pinta sola.
-var AVANCES=[
-  {url:'motor/', nombre:'Le Rhône 9C', texto:'Motor rotativo de 1917. Ciento tres piezas escritas a mano en código, ninguna tocada con el ratón.', tipo:'Labs · Ingeniería', estado:'listo'},
-  {url:'nova-engine/', nombre:'Nova Engine', texto:'Un editor 3D con la ergonomía de Unreal, dentro del navegador.', tipo:'Labs · Software', estado:'wip'},
-  {url:'shadow-blade/', nombre:'Shadow Blade', texto:'Tres modelos en 3D que cambian con el scroll. Meshy, Blender y three.js.', tipo:'Labs · 3D', estado:'wip'},
+// Trabajos: una linea por obra (enlace, nombre, frase, tipo, estado).
+var TRABAJOS=[
   {url:'vela/', nombre:'Vela', texto:'Agente que contesta el WhatsApp de un negocio. Producto ficticio, demo real.', tipo:'Agentes', estado:'listo'},
+  {url:'motor/', nombre:'Le Rhône 9C', texto:'Motor rotativo de 1917 en 3D, ciento tres piezas escritas en código.', tipo:'Labs · Ingeniería', estado:'listo'},
+  {url:'nova-engine/', nombre:'Nova Engine', texto:'Un editor 3D con la ergonomía de Unreal, dentro del navegador.', tipo:'Labs · Software', estado:'wip'},
+  {url:'shadow-blade/', nombre:'Shadow Blade', texto:'Tres modelos en 3D que cambian con el scroll.', tipo:'Labs · 3D', estado:'wip'}
 ];
 (function(){
   var g=document.getElementById('galeria');
-  AVANCES.forEach(function(a){
-    var el=document.createElement('a');el.className='avance'+(a.estado==='wip'?' wip':'');el.href=a.url;el.target='_blank';el.rel='noopener';
-    el.innerHTML='<div class="arriba"><span class="mono"></span><span class="flecha">↗</span></div><div><b></b><p></p><div class="estado" style="margin-top:14px"></div></div>';
-    el.querySelector('.mono').textContent=a.tipo;el.querySelector('b').textContent=a.nombre;el.querySelector('p').textContent=a.texto;
-    el.querySelector('.estado').textContent=a.estado==='wip'?'En marcha':'Listo';
+  TRABAJOS.forEach(function(a){
+    var el=document.createElement('a');el.className='trabajo'+(a.estado==='wip'?' wip':'');el.href=a.url;el.target='_blank';el.rel='noopener';
+    el.innerHTML='<div class="arriba"><span class="mono"></span><span class="ir" aria-hidden="true">↗</span></div><div><h3></h3><p></p><div class="estado"></div></div>';
+    el.querySelector('.mono').textContent=a.tipo;el.querySelector('h3').textContent=a.nombre;el.querySelector('p').textContent=a.texto;
+    el.querySelector('.estado').textContent=a.estado==='wip'?'En marcha':'Terminado';
     g.appendChild(el);
   });
-})();
-(function(){
-  // Logo 3D: se inclina con el raton. Al hacer scroll, cae despacio y gira
-  // (el reloj de la caida corre mientras hay scroll: hacia abajo cae, hacia
-  // arriba deshace la caida, con tope a los 4,5 s). Se apaga segun entra en
-  // pantalla el apartado "Que hacemos" y desaparece cuando su titulo se acerca
-  // a la parte alta. Arriba del todo vuelve a su sitio suavemente.
-  var img=document.getElementById('logo3d'),flota=document.getElementById('flota'),hacemos=document.getElementById('hacemos');
-  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(img&&!reduce){
-    var DUR=4500,mx=0,my=0,tx=0,ty=0,acc=0,ultimo=0,prev=0,activo=false,lastY=0,dir=1;
-    function pinta(t){
-      var dt=prev?t-prev:0;prev=t;
-      if(scrollY<=2){acc=Math.max(0,acc-dt*2)}
-      else if(t-ultimo<140){acc=Math.min(DUR,Math.max(0,acc+dir*dt))}
-      var f=acc/DUR,e=1-Math.pow(1-f,2);
-      tx+=(mx-tx)*.08;ty+=(my-ty)*.08;
-      var caida=e*innerHeight*.32;
-      flota.style.transform='translate(-50%,-50%) translate3d(0,'+caida.toFixed(1)+'px,0)';
-      var r=hacemos.getBoundingClientRect(),pos=Math.min(1,Math.max(0,(innerHeight-r.top)/(innerHeight*.9)));
-      flota.style.opacity=(.85*(1-pos)).toFixed(3);
-      flota.style.visibility=pos>=1?'hidden':'visible';
-      var rx=ty*-14+e*55, ry=tx*20+e*-30, rz=-8+e*20, esc=1+e*.25, z=e*-220;
-      img.style.transform='translate3d(0,0,'+z+'px) rotateX('+rx+'deg) rotateY('+ry+'deg) rotateZ('+rz+'deg) scale('+esc+')';
-      var enMov=(t-ultimo<140)||(scrollY<=2&&acc>0)||Math.abs(mx-tx)>.001||Math.abs(my-ty)>.001;
-      if(enMov)requestAnimationFrame(pinta);else{activo=false;prev=0}
-    }
-    function pide(){if(!activo){activo=true;prev=0;requestAnimationFrame(pinta)}}
-    addEventListener('scroll',function(){var y=scrollY;if(y!==lastY)dir=y>lastY?1:-1;lastY=y;ultimo=performance.now();pide()},{passive:true});
-    addEventListener('mousemove',function(ev){mx=ev.clientX/innerWidth*2-1;my=ev.clientY/innerHeight*2-1;pide()},{passive:true});
-    addEventListener('mouseleave',function(){mx=0;my=0;pide()});
-    addEventListener('resize',pide);
-    pide();
-  }
   var els=document.querySelectorAll('.ap');
   if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return}
-  var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:.15});
+  var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:.12});
   els.forEach(function(e){io.observe(e)});
-})();
-</script>
-
-<script type="importmap">
-{ "imports": { "three": "./turbofan/vendor/three.module.js", "three/addons/": "./turbofan/vendor/addons/" } }
-</script>
-<script>
-// Turbofan de la banda "Labs". Tres reglas:
-//   1. carga en diferido — el modelo son 37 MB, no puede retrasar la portada;
-//      no se pide hasta que la banda esta a un pantallazo de distancia,
-//   2. el scroll DENTRO de la pista es el mando: 0 al entrar, 1 al salir,
-//   3. el bucle de dibujo solo corre con la banda a la vista.
-(function(){
-  var pista=document.getElementById('pistaMotor'); if(!pista) return;
-  var carga=document.getElementById('motorCarga'), lectura=document.getElementById('lecturaMotor');
-  var elFase=document.getElementById('motorFase'), elN1=document.getElementById('motorN1'), elN2=document.getElementById('motorN2');
-
-  // quien pide no gastar animacion, o va con ahorro de datos, no lo carga
-  if(matchMedia('(prefers-reduced-motion: reduce)').matches || (navigator.connection && navigator.connection.saveData)){
-    carga.textContent='motor en pausa · ahorro de datos'; return;
-  }
-
-  var motor=null, pedido=false, visible=false;
-
-  // La llama el bucle del motor una vez por fotograma: 0 al entrar en la pista,
-  // 1 al salir. De paso retira el texto: entras, lo lees con el motor lejos y
-  // a ralenti, y para cuando el motor se te viene encima ya no estorba. En el
-  // movil, ademas, es lo unico que evita que el parrafo se cruce con la gondola.
-  var capa=document.querySelector('#motor .capa'), opacidadPuesta=-1;
-  function avance(){
-    var recorrido=pista.offsetHeight-innerHeight;
-    var p=recorrido>0 ? Math.min(1,Math.max(0,-pista.getBoundingClientRect().top/recorrido)) : 0;
-    var t=Math.min(1,Math.max(0,(p-0.12)/0.23)), o=1-t*t*(3-2*t);
-    if(Math.abs(o-opacidadPuesta)>0.01){ opacidadPuesta=o; capa.style.opacity=o.toFixed(3); }
-    return p;
-  }
-  // el motor llama aqui al cambiar de plano o de regimen, no en cada fotograma
-  function alProgreso(texto,S){
-    elFase.textContent=texto;
-    elN1.textContent=S.n1.toFixed(0)+' %'; elN2.textContent=S.n2.toFixed(0)+' %';
-  }
-
-  function cargar(){
-    if(pedido) return; pedido=true;
-    import('./turbofan/motor.js').then(function(mod){
-      return mod.montar({canvas:document.getElementById('glMotor'), rutaModelo:'./turbofan/modelo/',
-                         alProgreso:alProgreso, leerAvance:avance});
-    }).then(function(m){
-      motor=m; window.__motor=m; carga.hidden=true; lectura.hidden=false;
-      var c=m.cotas;
-      document.getElementById('motorCotas').textContent='fan Ø '+c.fan_diametro+' m · BPR '+c.bpr+' · '+c.alabes+' álabes';
-      m.progreso(avance());
-      if(visible) m.arrancar();
-    }).catch(function(e){
-      carga.textContent='el motor no ha podido cargar'; console.error('turbofan:', e);
-    });
-  }
-
-  // Cuando cargar y cuando dibujar. Tres disparadores para lo mismo, y no es
-  // paranoia: si el observador de intersecciones no llega a dispararse (pestana
-  // en segundo plano, webview estrangulada) la banda se quedaria en "cargando"
-  // para siempre. El reloj lento es el seguro, y se apaga en cuanto sirve.
-  function cerca(margen){
-    var r=pista.getBoundingClientRect();
-    return r.top < innerHeight*margen && r.bottom > -innerHeight*(margen-1);
-  }
-  // el reloj se queda puesto: tambien es lo que PARA el bucle al salir de la
-  // banda, y un getBoundingClientRect cada 800 ms no le cuesta nada a nadie
-  setInterval(comprobar, 800);
-  function comprobar(){
-    if(cerca(2)) cargar();
-    visible=cerca(1);
-    if(motor){ if(visible) motor.arrancar(); else motor.parar(); }
-  }
-  if('IntersectionObserver' in window){
-    new IntersectionObserver(comprobar,{rootMargin:'100% 0px'}).observe(pista);
-  }
-  addEventListener('scroll', comprobar, {passive:true});
-  comprobar();
-
-  // sin oyente de resize: el bucle de `motor.js` consulta `avance` una vez por
-  // fotograma, asi que el encuadre se recoloca solo.
 })();
 </script>
 </body>

@@ -5,3 +5,13 @@ ftp.json
 .ftp-estado.json
 video/
 prospeccion/
+
+# Captacion: datos de negocios ajenos (telefonos, verificaciones) y sus demos.
+# Se quedan en este PC; no se publican en el repo.
+captacion/
+clientes/p-*.json
+# Version anterior de la portada y la marca (2026-09), solo de consulta.
+archivo/
+# Encaje (configurador ficticio): listo pero sin aprobar para publicar (2026-10-15).
+# Al publicarlo, quitar esta linea y devolver su tarjeta a TRABAJOS en docs/index.html.
+docs/demo/encaje/

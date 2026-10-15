@@ -6,6 +6,18 @@ El generador de webs de cliente (`generar.mjs`) sigue manejando los tres
 escalones de 200 / 350 / 600 en `config.json`, que es otra cosa: eso va en el
 presupuesto que se le manda a un cliente, no publicado en beagentry.com.
 
+- **Marca (2026-10-15).** Mismo nombre, identidad nueva: isotipo de una «b»
+  de fuste y cuenco con un punto naranja (la señal), tinta `#14161B`, papel
+  `#F6F4EF`, señal `#FF5A1F`, Inter en negrita para titulares. TODO sale de
+  `tools/marca.py` (SVG en `docs/marca/`, `logo.png`, `favicon.svg`,
+  `apple-touch-icon.png`, `og.png`); si se toca una cota, se regenera todo.
+  El fuste y el anillo van en trazados distintos (con evenodd en uno solo, el
+  solape sale hueco) y el fuste se mete dentro del anillo (si solo se tocan,
+  queda una costura fina). La portada pasó de portfolio oscuro a página
+  comercial clara (con modo oscuro), SIN precios: la decisión legal de abajo
+  sigue en pie. Lo anterior está en `archivo/` (no se publica). Beagentry OS
+  (`../beagentry-os`) usa el mismo isotipo y el naranja como acento.
+- `captacion/` — prospecto → gancho verificado → demo → llamada. Ver su README.
 - `docs/` — TODO lo publico. Es lo que sirve GitHub Pages (repo `ok2iatool-coder/Beagentry-Solutions`, Settings > Pages > main, carpeta /docs) y lo que se sube tal cual a `public_html` en Hostinger. Dentro: `index.html` + `logo.png` (la web de la agencia, correo ok2iatool@gmail.com), `vela/` (producto ficticio, agente de WhatsApp) y `shadow-blade/` (copia estatica de `../shinobi-scroll`: tres modelos 3D con scroll; si cambia el original, volver a copiar index.html, main.js, assets/ y vendor/), `motor/` (el Le Rhone 9C de `escuela/obras/lerhone9c` con despiece animado; three.js propio en `motor/vendor/`) y `nova-engine/` (el editor 3D compilado, ver abajo), mas `legal/` (aviso legal, privacidad y cookies) y `fuentes/` (las tipografias, servidas desde aqui y no desde Google).
 - La galeria "Avances" de la web se rellena en la lista `AVANCES` al principio del script de `docs/index.html`; los enlaces son relativos para que valgan en localhost, Pages y Hostinger.
 - **Legal, y por que la web NO tiene precios.** La portada tenia tres
@@ -98,6 +110,89 @@ presupuesto que se le manda a un cliente, no publicado en beagentry.com.
   - el avance se lee **una vez por fotograma dentro del bucle**, no en el evento
     `scroll`: asi no puede perderse un evento ni quedarse con un estado viejo;
   - se regenera copiando `turbofan-web/modelo/` y `turbofan-web/vendor/`.
+
+- `docs/demo/encaje/` — **Encaje, el producto ficticio nuevo: un configurador
+  de armarios a medida** para una carpinteria inventada (Carpinteria Aldama).
+  El cliente mueve cuatro cotas y elige acabado e interior; el mueble se rehace
+  en 3D, y con el el plano acotado, la hoja de corte y el precio.
+
+  Lo que lo sostiene es que **todo sale de UNA lista de piezas**. `encaje.js`
+  recibe la configuracion y devuelve las piezas con su sitio y su medida;
+  `escena.js` pone una caja por pieza, `alzado.js` dibuja esas mismas piezas de
+  frente y de perfil, y el precio suma esas mismas piezas. Por eso no puede
+  ensenarse un mueble que el taller no sabe cortar: si en la pantalla hay una
+  balda, en el despiece hay una balda.
+
+  El motor es puro (ni DOM ni three.js), asi que lo ejecuta Node:
+
+      "C:/Users/rdmat/tools/node-v24.19.0-win-x64/node.exe" docs/demo/encaje/test.mjs
+
+  8.208 comprobaciones sin red. No comprueban "que no reviente": comprueban que
+  el mueble sea CONSTRUIBLE — que ninguna pieza atraviese a otra, que nada se
+  salga del hueco medido, que cada corte salga de un tablero de 2750x1830, que
+  las puertas tapen el frente, que el precio sea la suma de sus partidas y que
+  el plan de corte se pueda cortar — todas las piezas colocadas, ninguna fuera
+  del tablero, hueco para el disco entre dos piezas y ninguna girada cuando el
+  material tiene veta. La mayoria salen de un barrido de 480 armarios al azar
+  con semilla fija.
+
+  Las cotas y la tarifa (ficticia) viven enteras en `catalogo.js`; el motor no
+  tiene ni un numero magico. Las reglas que mandan son de carpinteria, no de
+  gusto: una balda de 19 mm se comba pasados los 900 mm de luz (por eso el
+  armario se parte en cuerpos), una percha mide 52 cm (por eso con poco fondo
+  no hay barra que valga) y la guia de una corredera roba 6 o 9 cm de fondo
+  (por eso un armario de correderas de 60 se queda sin barra, y lo dice). Cuando
+  algo no cabe **el configurador lo cambia y lo explica**, que es justo lo que
+  hace un carpintero al otro lado del telefono.
+
+  **El plan de corte (`corte.js`) y lo que encontro.** La cuarta pestana coloca
+  las piezas sobre tableros de verdad y dibuja uno por uno lo que se lleva el
+  operario a la seccionadora. Dos reglas que no son adorno: el corte es de
+  GUILLOTINA, de canto a canto, porque una seccionadora no sabe hacer una L (un
+  encaje tipo tetris seria mas bonito y el taller no podria cortarlo); y con
+  veta —roble, nogal— las piezas NO se giran, o el mueble parece de segunda
+  mano. En melamina lisa si.
+
+  Esto se hizo buscando un ahorro que **no existe**: se midio si ordenar las
+  piezas de mayor a menor antes de colocarlas ahorraba tableros, y no ahorra
+  ninguno. Lo que salio al medir es mas util:
+
+  - **la regla del 15 % de merma se queda corta en el 49 % de los armarios**
+    (medido sobre los 480 del barrido), y en el peor caso faltan TRES tableros;
+  - **la merma real media es del 31 %**, no del 15. Con corte pasante y veta,
+    un lateral de 2420 deja 310 mm de tablero muertos a lo largo;
+  - en el armario de catalogo eso son 130 € de roble que no estaban en la
+    cuenta, sobre un mueble de 2.132 €: un 6 % del precio de venta, y el
+    cliente no lo paga — la merma sale del margen del taller.
+
+  Por eso el numero de tableros del despiece ya no es `m2 * 1,15`: es el plan
+  colocado. Y por eso `ACABADOS` tiene ahora dos precios, `precio` (lo que se
+  factura) y `coste` (lo que cuesta el tablero al taller), que es contra el que
+  se mide el dinero perdido.
+
+  Detalles del algoritmo, por si se toca: es un empaquetado glotón con lista de
+  huecos libres y corte de guillotina, eligiendo el hueco que mejor ajusta por
+  el lado corto. Se hacen DOS pasadas —colocando primero las piezas grandes y
+  siguiendo el orden del despiece— y se queda la mejor, porque medido sobre 480
+  armarios la pasada "primero las grandes", que es la del manual, sale peor 11
+  veces: un metodo glotón no garantiza el minimo. Las dos juntas tardan 0,3 ms,
+  asi que se recalcula en cada golpe de deslizador.
+
+  Trampas ya resueltas, por si se toca:
+  - **va en `docs/demo/` a proposito.** Ensena euros, y `publicar.mjs` se niega
+    a publicar precios fuera de las demos de cliente (ver el punto Legal). Ahi
+    dentro esta excluido, y la pagina avisa en el pie de que el taller y la
+    tarifa son inventados;
+  - el zocalo se corta **por cuerpos**. De una pieza salia un frente de tres
+    metros, y de un tablero de 2750 no sale. Lo caza la comprobacion de que
+    toda pieza quepa en el tablero;
+  - las hojas correderas **solapan**, asi que el numero de hojas no es dividir:
+    de exigir hoja <= 1200 sale n >= (ancho - solape) / (1200 - solape);
+  - encuadrar la camara no es alejarse: el cono depende de la forma del lienzo,
+    y en un panel apaisado es el ALTO el que corta. Se reencuadra tambien al
+    cambiar de tamano la ventana;
+  - el SVG del plano ocupa la caja entera (`width:100%;height:100%` con
+    viewBox): asi entra siempre y no hay que hacer scroll para leer una cota.
 
 - `docs/escaparate/` — **el escaparate del laboratorio, pensado para grabarlo.**
   Una columna de 620 px con la portada, seis fichas (turbofan, Le Rhone 9C,

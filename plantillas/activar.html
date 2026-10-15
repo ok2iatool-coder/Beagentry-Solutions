@@ -20,7 +20,7 @@ section{padding:clamp(40px,6vw,72px) 0;border-top:1px solid var(--linea)}
 header{padding:20px 0}
 header .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
 .logo{font-weight:800;font-size:1.1rem;letter-spacing:.02em;text-decoration:none}
-.logo i{display:inline-block;width:10px;height:10px;background:var(--ac);border-radius:2px;margin-right:8px;transform:rotate(45deg)}
+.logo{display:inline-flex;align-items:center;gap:8px}.logo svg{display:block}
 .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;border-radius:999px;font-weight:700;text-decoration:none;background:var(--ac);color:#111;border:2px solid var(--ac);cursor:pointer;font-size:1rem;transition:transform .15s}
 .btn:hover{transform:translateY(-2px)}
 .btn.sec{background:transparent;color:var(--tinta);border-color:var(--linea)}
@@ -84,7 +84,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 <body>
 
 <header><div class="wrap">
-  <a class="logo" href="https://{{agencia_dominio}}"><i></i>{{agencia_mayus}}</a>
+  <a class="logo" href="https://{{agencia_dominio}}"><svg width="22" height="22" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="15" fill="#14161B"/><path fill="#F6F4EF" d="M15 16.5a4.5 4.5 0 0 1 9 0V37.5H21.0A13.5 13.5 0 0 0 34.5 51.0V52.0H19.5a4.5 4.5 0 0 1 -4.5 -4.5Z"/><path fill="#F6F4EF" fill-rule="evenodd" d="M20.0 37.5a14.5 14.5 0 1 0 29.0 0a14.5 14.5 0 1 0 -29.0 0ZM28.0 37.5a6.5 6.5 0 1 1 13.0 0a6.5 6.5 0 1 1 -13.0 0Z"/><circle cx="47.5" cy="15.5" r="5.5" fill="#FF5A1F"/></svg>{{agencia}}</a>
   {{#si agencia_whatsapp}}<a class="btn sec" href="{{agencia_url_whatsapp}}" target="_blank" rel="noopener">Hablar con {{agencia}}</a>{{/si}}
 </div></header>
 
